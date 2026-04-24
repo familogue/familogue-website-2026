@@ -64,6 +64,14 @@ export default function Page() {
           曾在不同的跨國品牌和公司工作，在品牌推廣、公共關係、企業傳訊、廣告、業務發展方面擁有豐富的經驗。她曾接受過故事爸媽訓練，並於學校擔任義工和在課堂擔任助教工作。
         </p>
       </section>
+      <hr />
+      <section>
+        <h2>查閱語你童行的的章程及細則</h2>
+        <ul>
+          <li><a target="_blank" href="/assets/bylaws.pdf">Bylaws</a></li>
+          <li><a target="_blank" href="/assets/constitution_2026_mar.pdf">Constitution (2026 March)</a></li>
+        </ul>
+      </section>
     </div>
   );
 };

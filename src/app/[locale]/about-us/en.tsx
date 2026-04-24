@@ -63,6 +63,14 @@ export default function Page() {
           Seasoned marketing professional with experience in branding, public relations, corporate communications, advertising, and business development, who has also received training from 故事爸媽 and volunteered as a teacher assistant in schools.
         </p>
       </section>
+      <hr />
+      <section>
+        <h2>Review Bylaws and Constitution of Familogue</h2>
+        <ul>
+          <li><a target="_blank" href="/assets/bylaws.pdf">Bylaws</a></li>
+          <li><a target="_blank" href="/assets/constitution_2026_mar.pdf">Constitution (2026 March)</a></li>
+        </ul>
+      </section>
     </div >
   );
 };
