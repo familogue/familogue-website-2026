@@ -49,7 +49,7 @@ export default async function Page() {
               </div>
               <div>
                 <h3><Link href={`/our-services#${record.slug}`}>{record.title}</Link></h3>
-                <p className="text-muted-foreground">{record.content}</p>
+                <p className="text-muted-foreground">{record.content.split("\n")[0]}</p>
                 <p><Button asChild variant="outline" size="sm"><Link href={`/our-services#${record.slug}`}>{t("General.view_details")} &rarr;</Link></Button></p>
               </div>
             </div>
