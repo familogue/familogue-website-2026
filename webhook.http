@@ -1,67 +1,7 @@
-@BASE_ID={{$dotenv AIRTABLE_BASE_ID}}
-@BASE_URL=https://api.airtable.com/v0/bases
-@API_KEY={{$dotenv AIRTABLE_API_KEY}}
-@WEBHOOK_URL={{BASE_URL}}/{{BASE_ID}}/webhooks
-@SERVICE_TABLE_ID=tblhFs46yyTpwURCT
-@WEBHOOK_ID={{$dotenv AIRTABLE_WEBHOOK_ID}}
-
-### Insert
-POST {{WEBHOOK_URL}}
-Authorization: Bearer {{API_KEY}}
-Content-Type: application/json
-
-{
-  "notificationUrl": "https://www.familogue.ca/api/revalidate",
-  "specification": {
-    "options": {
-      "filters": {
-        "dataTypes": [
-          "tableData"
-        ],
-        "recordChangeScope": "{{SERVICE_TABLE_ID}}"
-      }
-    }
-  }
-}
-
-### List
-GET {{WEBHOOK_URL}}
-Authorization: Bearer {{API_KEY}}
-Content-Type: application/json
-
-### Get
-GET {{WEBHOOK_URL}}/{{WEBHOOK_ID}}
-Authorization: Bearer {{API_KEY}}
-Content-Type: application/json
-
-### payloads
-GET {{WEBHOOK_URL}}/{{WEBHOOK_ID}}/payloads
-Authorization: Bearer {{API_KEY}}
-Content-Type: application/json
-
-### Refresh
-POST {{WEBHOOK_URL}}/{{WEBHOOK_ID}}/refresh
-Authorization: Bearer {{API_KEY}}
-Content-Type: application/json
-
-### Delete
-DELETE {{WEBHOOK_URL}}/{{WEBHOOK_ID}}
-Authorization: Bearer {{API_KEY}}
-Content-Type: application/json
-
-### Test webhook
-POST https://www.familogue.ca/api/revalidate
-
+@REVALIDATE_SECRET=<random-string>
+@REVALIDATE_URL=http://localhost:3000/api/revalidate
+@REVALIDATE_URL_LIVE=https://www.familogue.ca/api/revalidate
 ###
-POST http://localhost:3000/api/revalidate
+POST {{REVALIDATE_URL}}
+X-Revalidate-Token: {{REVALIDATE_SECRET}}
 Content-Type: application/json
-
-{
-  "base": {
-    "id": "<the app id>"
-  },
-  "webhook": {
-    "id": "<the webhook id>"
-  },
-  "timestamp": "<timestamp value>"
-}
