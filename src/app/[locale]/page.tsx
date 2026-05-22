@@ -4,6 +4,7 @@ import { getAllServices } from "@/utils/sdk/services";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link";
+import img from "./news/voting-member.png";
 
 export async function generateMetadata() {
   const locale = await getLocale();
@@ -14,6 +15,7 @@ export default async function Page() {
   const locale = await getLocale();
   const records = await getAllServices(locale);
   const t = await getTranslations();
+  const voting_link = "https://store.familogue.ca/items/b82eaa1c-e929-4dcb-bf78-f8fe3822a332";
   return (
     <div className="x-top-page">
       <section className="x-hero">
@@ -25,6 +27,11 @@ export default async function Page() {
         <ProgramList />
         <p><Link className="x-button" href="/programs">更多課程及活動 &rarr;</Link></p>
       </section> */}
+      <section>
+        <h2>立即登記成為我們的投票會員，共同打造屬於你的語你童行。<br />Join us as a voting member and help us build Familogue together.</h2>
+        <p><Link href={voting_link}><Image src={img} alt="voting-member" /></Link></p>
+        <p><Link className="x-button" href={voting_link}>{t("General.view_details")} &rarr;</Link></p>
+      </section>
       <section>
         <h2>{t("AboutUs.title")}</h2>
         <h3>{t("AboutUs.subtitle")}</h3>
