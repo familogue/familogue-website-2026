@@ -29,7 +29,7 @@ export default async function Page() {
       <section>
         <h2>立即登記成為我們的投票會員，共同打造屬於你的語你童行。<br />Join us as a voting member and help us build Familogue together.</h2>
         <p><Link href="/news"><Image src={img} alt="voting-member" /></Link></p>
-        <p><Link className="x-button" href="/news">{t("General.view_details")} &rarr;</Link></p>
+        <p><Button asChild variant="accent" size="lg"><Link href="/news">{t("General.view_details")} &rarr;</Link></Button></p>
       </section>
       <section>
         <h2>{t("AboutUs.title")}</h2>
