@@ -2,9 +2,8 @@ backend:
   name: github
   repo: calvincchan/familogue-website-2025
   branch: main
-
-# TODO: remove local_backend before issue #11 OAuth ships
-local_backend: true
+  base_url: https://familogue.ca
+  auth_endpoint: /api/auth
 
 media_folder: public/images
 public_folder: /images
