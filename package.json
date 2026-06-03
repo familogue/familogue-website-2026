@@ -5,7 +5,6 @@
   "dependencies": {
     "@next/third-parties": "^15.3.2",
     "@radix-ui/react-slot": "^1.2.3",
-    "@supabase/supabase-js": "^2.49.4",
     "@tailwindcss/typography": "^0.5.16",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -23,8 +22,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "start": "next start",
-    "gen-types": "supabase gen types typescript --project-id adodrwirdngxnjiwcmyl > ./src/types/database.types.ts"
+    "start": "next start"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^15.3.2",
