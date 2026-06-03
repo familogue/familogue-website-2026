@@ -20,6 +20,7 @@ collections:
           - name: services
             label: Services
             widget: list
+            summary: "{{title_en}}"
             fields:
               - { name: slug, label: Slug, widget: string }
               - { name: title, label: Title (ZH), widget: string }
@@ -38,7 +39,6 @@ collections:
                 media_folder: /public/images
                 public_folder: /images
                 required: false
-              - { name: position, label: Position, widget: number }
               - name: status
                 label: Status
                 widget: select
