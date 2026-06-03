@@ -1,0 +1,40 @@
+backend:
+  name: github
+  repo: calvincchan/familogue-website-2025
+  branch: main
+
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: services
+    label: Services
+    files:
+      - name: services
+        label: Services
+        file: content/services.json
+        fields:
+          - { name: slug, label: Slug, widget: string }
+          - { name: title, label: Title (ZH), widget: string }
+          - { name: title_en, label: Title (EN), widget: string }
+          - name: content
+            label: Content (ZH)
+            widget: markdown
+            editor_components: []
+          - name: content_en
+            label: Content (EN)
+            widget: markdown
+            editor_components: []
+          - name: image
+            label: Image
+            widget: file
+            media_folder: /public/images
+            public_folder: /images
+            required: false
+          - { name: position, label: Position, widget: number }
+          - name: status
+            label: Status
+            widget: select
+            options:
+              - Published
+              - Archived
