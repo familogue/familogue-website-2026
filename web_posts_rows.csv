@@ -1,0 +1,64 @@
+id,created_at,slug,title,title_en,content,content_en,position,status,image
+1,2025-10-27 16:17:19.911696+00,interactive-chinese-literacy-class,中文互動讀寫班,Interactive Chinese Literacy Class,讀寫班課程以螺絲式分級閱讀教學方式，帶領小朋友由淺入深累積識字量，開心學中文。配合有趣繪本丶延伸活動互動教學，提升書面語閱讀能力，陪養孩子自主閱讀。,These levelled literacy classes use a spiral reading approach to help children gradually build character recognition while enjoying Chinese learning. Engaging picture books and interactive activities enhance formal reading skills and foster independent reading habits.,1,Published,https://adodrwirdngxnjiwcmyl.supabase.co/storage/v1/object/public/public-images/355086515_227111686794094_7767515279605135472_n.jpeg
+2,2025-10-27 16:17:53.509149+00,books-go-around,語你傳書,Books Go Around,本會恆常進行「以一書換一書」放漂書本活動，為更多孩子提供閱讀的機會。家長亦可選擇捐助我們以換取童書一本。義賣所得之善款將會用作推廣及傳承母語之用。,"We run regular “book floating” exchanges, allowing children to trade one book for another. Parents can also support us by donating and receiving a children’s book. All proceeds support the promotion and preservation of the mother tongue.",2,Published,https://adodrwirdngxnjiwcmyl.supabase.co/storage/v1/object/public/public-images/books.jpg
+3,2025-10-27 16:19:15.652259+00,clinical-counselling-services,臨床輔導服務,Clinical Counselling Services,"由卑詩省註冊臨床輔導員（前香港社工）提供情緒管理及調節丶家庭關係輔導丶壓力及創傷復原等專業支援，廣東話丶英語及普通話皆可。無保險或無資助人士可獲津貼補助。
+","Our services are provided by a BC-registered clinical counsellor (formerly a social worker in Hong Kong). We offer support in emotional regulation, family dynamics, stress and trauma recovery—in Cantonese, English, and Mandarin. Subsidies are available for individuals without insurance or financial resources.",50,Archived,
+4,2025-10-27 16:19:44.315853+00,speech-therapy-individual-and-group,個人及小組言語治療,Speech Therapy (Individual & Group),本會的卑詩省註冊言語治療師具超過20年在港經驗，在本中心提供言語治療服務。根據由教育學博士主理的中文識字量免費評估結果，於家長三方會談中，制定治療目標及計劃。,"peech-language pathologist, with over 20 years of experience in Hong Kong, now offers services at our centre. Based on a free Cantonese literacy assessment led by a PhD in education, therapy goals and plans are developed in collaboration with parents.",40,Archived,
+5,2025-10-27 16:20:10.599975+00,youth-career-and-life-planning,青年人生涯規劃輔導,Youth Career and Life Planning,輔導過程中，資深教育工作者會運用MBTI丶DISC個性及九型人格測驗，再通過面談讓青年人認識自己，幫助他們尋求路向，了解選科丶升學及職業的各種可能。,"Senior educators utilize tools such as MBTI, DISC, and Enneagram tests, along with interviews, to help youth understand themselves and explore academic and career pathways.",70,Archived,
+6,2025-10-27 16:20:44.945045+00,cantonese-book-set-purchasing,代購青田中文教材套,Cantonese Book Set Purchasing,本會伙拍香港青田教育中心及木綿樹出版社，協助家長訂購香港的童書及繪本。配合《我自己會讀》能力分層閱讀叢書，本會推出紅書教材套，包括字配圖卡丶家長指引及親子互動教材。,"In partnership with Hong Kong’s Ching Tin Education Centre and Cotton Tree Publishing, we assist parents in ordering children’s books and readers from Hong Kong. We also offer teaching kits aligned with the I Can Read on My Own levelled series, including illustrated vocabulary cards, guides, and parent-child materials.
+",60,Archived,
+7,2025-10-27 16:21:24.48644+00,storytelling-parents-volunteer-team,故事爸媽,Storytelling Parents Volunteer Team,「故事爸媽」義工受過專業訓練，他們會使用對話式閱讀技巧在《語你傳書》時段與小朋友講故事，提升幼兒對閱讀的興趣，促進中文口語及書面詞彙量的認識。費用全免。,"Our trained volunteer “Storytime Parents” use dialogic reading techniques during our Book Exchange sessions to share stories with children, boosting their interest in reading and enriching their oral and written vocabulary. Free of charge.
+",80,Archived,
+8,2025-10-27 16:24:02.678321+00,parent-talks-and-workshops,家長講座及工作坊,Parent Talks & Workshops,本會定期邀請來自不同範疇的專家舉辦家長講座，分享各種心得丶同路人的經驗，讓家長更了解自己的子女，促進家庭成員間的溝通！,We regularly invite professionals from various fields to host talks and workshops for parents and caregivers. These sessions provide expert insights and shared experiences to help parents better understand their children and strengthen family communication.,30,Archived,https://adodrwirdngxnjiwcmyl.supabase.co/storage/v1/object/public/public-images/talks.png
+9,2026-04-29 18:57:05.990246+00," speech‑language-pathology",言語治療," Speech‑Language Pathology","透過專業評估及個別/小組訓練，協助個人改善語言、發音及溝通能力，從而提升學習表現及社交互動。
+
+服務語言：廣東話，普通話，英文
+*本中心接受個人醫療保險計劃、自閉症資助及卑詩關愛兒童基金會資助。
+**我們提供15分鐘的免費電話諮詢
+","We provide professional assessment and individual/group training to improve language, speech, and communication skills, enhancing learning and social interaction.
+
+Language: Cantonese, English, Mandarin
+*We accept individual health benefit plans, Autism Funding, and Variety BC Grant.
+**We also provide 15min free phone consultation
+",3,Published,https://adodrwirdngxnjiwcmyl.supabase.co/storage/v1/object/public/public-images/2-slp.png
+10,2026-04-29 19:00:47.18396+00,occupational-therapy,職業治療,Occupational Therapy,"協助個人提升日常生活、自我照顧、學習及社交等各方面能力，從而更獨立及自信地參與生活。
+
+服務語言：廣東話，普通話，英文
+*本中心接受個人醫療保險計劃、自閉症資助及卑詩關愛兒童基金會資助。
+**我們提供15分鐘的免費電話諮詢
+","We support individuals in developing daily living, self‑care, learning, and social skills so they can participate more independently and confidently.
+
+Language: Cantonese, English, Mandarin
+*We accept individual health benefit plans, Autism Funding, and Variety BC Grant.
+**We also provide 15min free phone consultation",4,Published,https://adodrwirdngxnjiwcmyl.supabase.co/storage/v1/object/public/public-images/3-ot.png
+11,2026-04-29 19:02:43.687653+00,counselling-and-support-service,輔導及支援服務,Counselling & Support Service,"提供情緒困擾、家庭關係、壓力及創傷等方面的輔導服務，並支援父母管教及家庭適應需要。
+
+服務語言：廣東話，普通話，英文
+*本中心接受個人醫療保險計劃、自閉症資助及卑詩關愛兒童基金會資助。
+**我們提供15分鐘的免費電話諮詢
+","We offer counselling for emotional difficulties, family relationship concerns, stress, and trauma, as well as parenting support and family adjustment.
+
+Language: Cantonese, English, Mandarin
+*We accept individual health benefit plans, Autism Funding, and Variety BC Grant.
+**We also provide 15min free phone consultation
+",5,Published,https://adodrwirdngxnjiwcmyl.supabase.co/storage/v1/object/public/public-images/6-councelling.png
+12,2026-04-29 19:04:23.122053+00,social-skills-group,社交小組,Social Skills Group,"透過小組活動，協助孩子學習社交技巧、情緒表達、合作及解難能力，建立自信而正向的人際關係。
+
+服務語言：廣東話，普通話，英文
+*本中心接受個人醫療保險計劃、自閉症資助及卑詩關愛兒童基金會資助。
+**我們提供15分鐘的免費電話諮詢
+","Through guided group activities, children learn social skills, emotional expression, cooperation, and problem‑solving, building confident and positive relationships.
+
+Language: Cantonese, English, Mandarin
+*We accept individual health benefit plans, Autism Funding, and Variety BC Grant.
+**We also provide 15min free phone consultation",6,Published,https://adodrwirdngxnjiwcmyl.supabase.co/storage/v1/object/public/public-images/5-social-skills.png
+13,2026-04-29 19:05:28.744891+00,behavior-intervention,行為治療,Behavior Intervention,"協助個人了解及調整行為模式，培養正向行為，從而改善情緒健康及日常生活適應。
+
+服務語言：廣東話，普通話，英文
+*本中心接受個人醫療保險計劃、自閉症資助及卑詩關愛兒童基金會資助。
+**我們提供15分鐘的免費電話諮詢","We help individuals understand and modify behavior patterns, build positive behaviors, and improve emotional wellbeing and daily functioning.
+
+Language: Cantonese, English, Mandarin
+*We accept individual health benefit plans, Autism Funding, and Variety BC Grant.
+**We also provide 15min free phone consultation",7,Published,https://adodrwirdngxnjiwcmyl.supabase.co/storage/v1/object/public/public-images/4-bi.png
+14,2026-06-03 01:15:46.866174+00,senior-services,長者服務,Senior Services,輕鬆手作藝術 & 認知訓練聚會。,Come join us for craft and cognitive fun experience!,0,Published,https://adodrwirdngxnjiwcmyl.supabase.co/storage/v1/object/public/public-images/senior-services.png
