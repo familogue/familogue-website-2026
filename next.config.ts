@@ -10,6 +10,9 @@ import createNextIntlPlugin from "next-intl/plugin";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   cleanDistDir: true,
+  async rewrites() {
+    return [{ source: '/admin', destination: '/admin/index.html' }];
+  },
   images: {
     remotePatterns: [
       {
