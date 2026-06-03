@@ -11,4 +11,6 @@ export type BlogMetadata = {
 export type ServiceRecord = {
   title: string;
   content: string;
+  slug: string;
+  image: string[];
 };

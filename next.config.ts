@@ -18,11 +18,7 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
-      {
-        protocol: "https",
-        hostname: "adodrwirdngxnjiwcmyl.supabase.co",
-      },
-      {
+{
         protocol: "https",
         hostname: "*.airtableusercontent.com",
       }

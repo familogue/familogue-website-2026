@@ -1,16 +1,29 @@
-import { supabaseClient } from "../supabase-client";
+import fs from "fs";
+import path from "path";
+import { ServiceRecord } from "src/types";
 
-export async function getAllServices(locale: string) {
-  const { data } = await supabaseClient
-    .from("web_posts")
-    .select()
-    .eq("status", "Published")
-    .order("position", { ascending: true });
-  const records = data || [];
-  return records.map(record => ({
-    title: locale === "zh" ? record.title : record.title_en,
-    content: locale === "zh" ? record.content : record.content_en,
-    slug: record.slug,
-    image: record.image ? [record.image] : [],
-  }));
+type ServiceRow = {
+  id: number;
+  slug: string;
+  title: string;
+  title_en: string;
+  content: string;
+  content_en: string;
+  image: string | null;
+  position: number;
+  status: string;
 };
+
+export async function getAllServices(locale: string): Promise<ServiceRecord[]> {
+  const filePath = path.join(process.cwd(), "content/services.json");
+  const rows: ServiceRow[] = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+  return rows
+    .filter(r => r.status === "Published")
+    .sort((a, b) => a.position - b.position)
+    .map(r => ({
+      title: locale === "zh" ? r.title : r.title_en,
+      content: locale === "zh" ? r.content : r.content_en,
+      slug: r.slug,
+      image: r.image ? [r.image] : [],
+    }));
+}
