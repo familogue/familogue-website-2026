@@ -13,7 +13,7 @@ export async function generateMetadata() {
 
 export default async function Page() {
   const locale = await getLocale();
-  const records = await getAllServices(locale);
+  const records = getAllServices(locale);
   const t = await getTranslations();
   return (
     <div className="x-top-page">

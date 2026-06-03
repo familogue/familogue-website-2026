@@ -14,7 +14,7 @@ type ServiceRow = {
   status: string;
 };
 
-export async function getAllServices(locale: string): Promise<ServiceRecord[]> {
+export function getAllServices(locale: string): ServiceRecord[] {
   const filePath = path.join(process.cwd(), "content/services.json");
   const rows: ServiceRow[] = JSON.parse(fs.readFileSync(filePath, "utf-8"));
   return rows
