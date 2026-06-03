@@ -16,7 +16,7 @@ type ServiceRow = {
 
 export function getAllServices(locale: string): ServiceRecord[] {
   const filePath = path.join(process.cwd(), "content/services.json");
-  const rows: ServiceRow[] = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+  const { services: rows }: { services: ServiceRow[] } = JSON.parse(fs.readFileSync(filePath, "utf-8"));
   return rows
     .filter(r => r.status === "Published")
     .sort((a, b) => a.position - b.position)
