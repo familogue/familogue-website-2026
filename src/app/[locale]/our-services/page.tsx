@@ -2,6 +2,7 @@ import { generatedMetadataForPage } from "@/utils/generatedMetadataForPage";
 import { getAllServices } from "@/utils/sdk/services";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
+import Markdown from "markdown-to-jsx";
 
 export async function generateMetadata() {
   const locale = await getLocale();
@@ -25,7 +26,9 @@ export default async function Page() {
             className="aspect-[16/9] object-cover" />
           <div className="flex-1">
             <h2 className="mt-0">{record.title}</h2>
-            <p className="text-muted-foreground whitespace-pre-line">{record.content}</p>
+            <Markdown options={{ overrides: { img: { component: "img" } } }}>
+              {record.content}
+            </Markdown>
           </div>
         </section>
       ))}
