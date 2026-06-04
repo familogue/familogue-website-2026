@@ -1,8 +1,8 @@
 import { generatedMetadataForPage } from "@/utils/generatedMetadataForPage";
 import { getAllServices } from "@/utils/sdk/services";
+import Markdown from "markdown-to-jsx";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
-import Markdown from "markdown-to-jsx";
 
 export async function generateMetadata() {
   const locale = await getLocale();
@@ -17,7 +17,7 @@ export default async function Page() {
     <div className="x-container prose">
       <h1>{t("title")}</h1>
       {records.map((record) => (
-        <section key={record.slug} className="sm:flex sm:flex-row-reverse sm:items-start gap-2">
+        <section key={record.slug} className="sm:flex sm:flex-row-reverse sm:items-start gap-2 mb-6">
           <Image
             src={record.image && record.image.length > 0 ? record.image[0] : "/images/og-image.png"}
             alt={record.title || "Service Image"}
