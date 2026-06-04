@@ -3,7 +3,7 @@ backend:
   repo: calvincchan/familogue-website-2025
   branch: main
 
-# TODO: remove local_backend before issue #11 OAuth ships
+# TODO: remove local_backend before enabling OAuth in production
 local_backend: true
 
 media_folder: public/images
