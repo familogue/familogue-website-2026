@@ -9,7 +9,7 @@ export function GET(request: NextRequest) {
 
   const params = new URLSearchParams({
     client_id: clientId,
-    scope: "repo",
+    scope: "public_repo",
   });
 
   // Pass through state param if Decap sends one

@@ -2,7 +2,6 @@ import { type NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
   const code = request.nextUrl.searchParams.get("code");
-  const state = request.nextUrl.searchParams.get("state");
 
   if (!code) {
     return new Response("Missing OAuth code", { status: 400 });
@@ -36,7 +35,6 @@ export async function GET(request: NextRequest) {
 
   // Decap CMS expects postMessage with provider + token
   const content = JSON.stringify({ token: data.access_token, provider: "github" });
-  const stateAttr = state ? JSON.stringify(state) : "null";
 
   const html = `<!DOCTYPE html>
 <html>
@@ -45,10 +43,9 @@ export async function GET(request: NextRequest) {
 <script>
 (function () {
   var content = ${content};
-  var state = ${stateAttr};
   var msg = "authorization:github:success:" + JSON.stringify(content);
   if (window.opener) {
-    window.opener.postMessage(msg, "*");
+    window.opener.postMessage(msg, window.location.origin);
   }
   window.close();
 })();
