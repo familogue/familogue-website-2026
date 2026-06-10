@@ -43,7 +43,7 @@ export default async function Page() {
           {records.map((record) => (
             <div key={record.title} className="col-span-1 flex flex-col gap-2">
               <div className="flex items-start justify-center">
-                <Link href={`/our-services#${record.slug}`}>
+                <Link href={`/our-services/${record.slug}`}>
                   <Image
                     src={record.image && record.image.length > 0 ? record.image[0] : "/images/og-image.png"}
                     alt={record.title || "Service Image"}
@@ -54,9 +54,9 @@ export default async function Page() {
                 </Link>
               </div>
               <div>
-                <h3><Link href={`/our-services#${record.slug}`}>{record.title}</Link></h3>
+                <h3><Link href={`/our-services/${record.slug}`}>{record.title}</Link></h3>
                 <p className="text-muted-foreground">{record.content.split("\n")[0]}</p>
-                <p><Button asChild variant="outline" size="sm"><Link href={`/our-services#${record.slug}`}>{t("General.view_details")} &rarr;</Link></Button></p>
+                <p><Button asChild variant="outline" size="sm"><Link href={`/our-services/${record.slug}`}>{t("General.view_details")} &rarr;</Link></Button></p>
               </div>
             </div>
           ))}
