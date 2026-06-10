@@ -17,7 +17,7 @@ export default async function Page() {
   const t = await getTranslations();
   return (
     <div className="x-container prose">
-      <h1>{t("title")}</h1>
+      <h1>{t("OurServices.title")}</h1>
       {records.map((record) => (
         <section key={record.slug} className="sm:flex sm:flex-row-reverse sm:items-start gap-2 mb-6">
           <Image
