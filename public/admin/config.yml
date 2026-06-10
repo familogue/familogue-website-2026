@@ -2,9 +2,8 @@ backend:
   name: github
   repo: familogue/familogue-website-2026
   branch: main
-
-# TODO: remove local_backend before enabling OAuth in production
-local_backend: true
+  base_url: https://familogue.ca
+  auth_endpoint: /api/auth
 
 media_folder: public/images
 public_folder: /images
@@ -33,6 +32,7 @@ collections:
                 label: Content (EN)
                 widget: markdown
                 editor_components: []
+              - { name: position, label: Position, widget: number }
               - name: image
                 label: Image
                 widget: file
