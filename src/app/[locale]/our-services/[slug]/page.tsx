@@ -1,12 +1,12 @@
+import { locales } from "@/i18n/config";
+import { Link } from "@/i18n/navigation";
 import { getAllServices, getServiceBySlug } from "@/utils/sdk/services";
 import Markdown from "markdown-to-jsx";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
-  const locales = ["en", "zh"];
   const params: { locale: string; slug: string }[] = [];
   for (const locale of locales) {
     const services = getAllServices(locale);
@@ -46,12 +46,12 @@ export default async function Page({ params }: Props) {
   const service = getServiceBySlug(slug, locale);
   if (!service) notFound();
 
-  const ourServicesLabel = locale === "zh" ? "我們的服務" : "Our Services";
+  const t = await getTranslations("OurServices");
 
   return (
     <div className="x-container prose">
       <nav aria-label="breadcrumb" className="not-prose text-sm mb-4">
-        <Link href="/our-services" className="hover:underline">{ourServicesLabel}</Link>
+        <Link href="/our-services" className="hover:underline">{t("title")}</Link>
         <span className="mx-2 text-gray-400">/</span>
         <span>{service.title}</span>
       </nav>
