@@ -1,24 +1,40 @@
 # PRD: Individual Service Pages
 
 ## Status
-Draft — needs refinement
+Ready for implementation
 
-## Problem
-"Our Services" is a single page. No deep-linkable URLs per service, poor SEO, hard to expand content per service.
+## Context
+
+`/our-services` renders all 8 published services on one page. No deep-linkable URLs per service — poor SEO, no shareable links, hard to expand per-service content.
 
 ## Goal
-Each service gets its own page at `/services/[slug]`. The `/services` index page becomes a listing/overview.
 
-## Scope
-- Generate individual routes from existing CMS service content
-- `/services` index lists all services with summary + link
-- Each service page renders full content (already rendered as markdown — see issue #18)
-- Navigation / breadcrumbs
+Each service gets its own page at `/our-services/[slug]`. The `/our-services` index becomes a summary listing.
 
-## Out of Scope
-- New service content authoring (existing CMS flow unchanged)
+## Data model
+
+Service slugs already exist in `content/services.json` — no CMS schema change needed. Excerpt derived from first paragraph of markdown `content`/`content_en` at render time.
+
+## Routes
+
+| Route | Behaviour |
+|---|---|
+| `/our-services` | Summary listing: image + title + first-paragraph excerpt + "Read more" link per service |
+| `/our-services/[slug]` | Full service page: image + title + full markdown content |
+| `/our-services/[nonexistent]` | `notFound()` → Next.js 404 |
+
+## Navigation changes
+
+- Homepage service cards: change links from `/our-services#${slug}` → `/our-services/${slug}`
+- Individual service page: breadcrumb "Our Services → [Service Title]"
+
+## SEO
+
+- `sitemap.ts`: add dynamic entries for all published service slugs (both locales)
+- Individual page: locale-aware `<title>` and `<meta description>` from service title + excerpt
+
+## Out of scope
+
+- New service content authoring (CMS flow unchanged)
 - Design overhaul
-
-## Open Questions
-- URL slug: derived from service title or explicit field in CMS?
-- Should `/services` index remain as-is visually, just adding "Read more" links?
+- Adding excerpt/description field to CMS
