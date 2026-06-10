@@ -6,6 +6,8 @@ export function extractExcerpt(markdown: string, maxLength?: number): string {
     .replace(/[*_`#]+/g, "")
     .replace(/\s+/g, " ")
     .trim();
-  if (maxLength !== undefined) result = result.slice(0, maxLength);
+  if (maxLength !== undefined && result.length > maxLength) {
+    result = result.slice(0, maxLength).replace(/\s\S*$/, "") + "…";
+  }
   return result;
 }
