@@ -32,7 +32,6 @@ collections:
                 label: Content (EN)
                 widget: markdown
                 editor_components: []
-              - { name: position, label: Position, widget: number }
               - name: image
                 label: Image
                 widget: file
