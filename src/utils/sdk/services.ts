@@ -12,15 +12,28 @@ type ServiceRow = {
   status: string;
 };
 
-export function getAllServices(locale: string): ServiceRecord[] {
+function loadRows(): ServiceRow[] {
   const filePath = path.join(process.cwd(), "content/services.json");
   const { services: rows }: { services: ServiceRow[] } = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-  return rows
+  return rows;
+}
+
+function toRecord(r: ServiceRow, locale: string): ServiceRecord {
+  return {
+    title: locale === "zh" ? r.title : r.title_en,
+    content: locale === "zh" ? r.content : r.content_en,
+    slug: r.slug,
+    image: r.image ? [r.image] : [],
+  };
+}
+
+export function getAllServices(locale: string): ServiceRecord[] {
+  return loadRows()
     .filter(r => r.status === "Published")
-    .map(r => ({
-      title: locale === "zh" ? r.title : r.title_en,
-      content: locale === "zh" ? r.content : r.content_en,
-      slug: r.slug,
-      image: r.image ? [r.image] : [],
-    }));
+    .map(r => toRecord(r, locale));
+}
+
+export function getServiceBySlug(slug: string, locale: string): ServiceRecord | null {
+  const row = loadRows().find(r => r.slug === slug && r.status === "Published");
+  return row ? toRecord(row, locale) : null;
 }
