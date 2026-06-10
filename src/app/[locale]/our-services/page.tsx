@@ -1,7 +1,8 @@
+import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
+import { extractExcerpt } from "@/utils/extractExcerpt";
 import { generatedMetadataForPage } from "@/utils/generatedMetadataForPage";
 import { getAllServices } from "@/utils/sdk/services";
-import { extractExcerpt } from "@/utils/extractExcerpt";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 
@@ -13,7 +14,7 @@ export async function generateMetadata() {
 export default async function Page() {
   const locale = await getLocale();
   const records = getAllServices(locale);
-  const t = await getTranslations('OurServices');
+  const t = await getTranslations();
   return (
     <div className="x-container prose">
       <h1>{t("title")}</h1>
@@ -28,9 +29,9 @@ export default async function Page() {
           <div className="flex-1">
             <h2 className="mt-0">{record.title}</h2>
             <p>{extractExcerpt(record.content)}</p>
-            <Link href={`/our-services/${record.slug}`} className="not-prose text-sm font-medium hover:underline" aria-label={`${t("readMore")}: ${record.title}`}>
-              {t("readMore")} →
-            </Link>
+            <p>
+              <Button asChild className="not-prose" variant="accent" size="lg"><Link href={`/our-services/${record.slug}`}>{t("General.view_details")} &rarr;</Link></Button>
+            </p>
           </div>
         </section>
       ))}
