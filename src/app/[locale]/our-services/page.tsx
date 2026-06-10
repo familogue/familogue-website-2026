@@ -1,6 +1,7 @@
+import { Link } from "@/i18n/navigation";
 import { generatedMetadataForPage } from "@/utils/generatedMetadataForPage";
 import { getAllServices } from "@/utils/sdk/services";
-import Markdown from "markdown-to-jsx";
+import { extractExcerpt } from "@/utils/extractExcerpt";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 
@@ -26,16 +27,10 @@ export default async function Page() {
             className="aspect-[16/9] object-cover" />
           <div className="flex-1">
             <h2 className="mt-0">{record.title}</h2>
-            <Markdown
-              options={{
-                overrides: {
-                  img: { component: "img" },
-                  a: { props: { target: "_blank", rel: "noopener noreferrer" } },
-                },
-              }}
-            >
-              {record.content}
-            </Markdown>
+            <p>{extractExcerpt(record.content)}</p>
+            <Link href={`/our-services/${record.slug}`} className="not-prose text-sm font-medium hover:underline" aria-label={`${t("readMore")}: ${record.title}`}>
+              {t("readMore")} →
+            </Link>
           </div>
         </section>
       ))}

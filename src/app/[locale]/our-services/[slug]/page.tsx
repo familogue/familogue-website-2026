@@ -1,6 +1,7 @@
 import { locales } from "@/i18n/config";
 import { Link } from "@/i18n/navigation";
 import { getAllServices, getServiceBySlug } from "@/utils/sdk/services";
+import { extractExcerpt } from "@/utils/extractExcerpt";
 import Markdown from "markdown-to-jsx";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
@@ -19,17 +20,12 @@ export async function generateStaticParams() {
 
 type Props = { params: Promise<{ slug: string }> };
 
-function extractExcerpt(markdown: string): string {
-  const firstParagraph = markdown.split(/\n\n+/)[0];
-  return firstParagraph.replace(/<[^>]+>/g, "").trim().slice(0, 160);
-}
-
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const locale = await getLocale();
   const service = getServiceBySlug(slug, locale);
   if (!service) return {};
-  const excerpt = extractExcerpt(service.content);
+  const excerpt = extractExcerpt(service.content, 160);
   return {
     title: service.title,
     description: excerpt,
