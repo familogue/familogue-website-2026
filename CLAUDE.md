@@ -2,7 +2,7 @@
 
 ### Issue tracker
 
-Issues live in GitHub Issues (`calvincchan/familogue-website-2025`). See `docs/agents/issue-tracker.md`.
+Issues live in GitHub Issues (`familogue/familogue-website-2026`). See `docs/agents/issue-tracker.md`.
 
 ### Triage labels
 

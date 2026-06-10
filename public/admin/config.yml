@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: calvincchan/familogue-website-2025
+  repo: familogue/familogue-website-2026
   branch: main
 
 # TODO: remove local_backend before enabling OAuth in production

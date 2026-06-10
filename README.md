@@ -41,7 +41,7 @@ Once the OAuth App is registered and env vars are set, update `public/admin/conf
 ```yaml
 backend:
   name: github
-  repo: calvincchan/familogue-website-2025
+  repo: familogue/familogue-website-2026
   branch: main
   base_url: https://familogue.ca
   auth_endpoint: /api/auth
