@@ -1,22 +1,13 @@
 import { Link } from "@/i18n/navigation";
 import { generatedMetadataForPage } from "@/utils/generatedMetadataForPage";
 import { getAllServices } from "@/utils/sdk/services";
+import { extractExcerpt } from "@/utils/extractExcerpt";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 
 export async function generateMetadata() {
   const locale = await getLocale();
   return generatedMetadataForPage(locale, "OurServices", "/our-services");
-}
-
-function extractExcerpt(markdown: string): string {
-  const firstParagraph = markdown.split(/\n\n+/)[0];
-  return firstParagraph
-    .replace(/<[^>]+>/g, " ")
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
-    .replace(/[*_`#]+/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
 }
 
 export default async function Page() {
@@ -37,7 +28,7 @@ export default async function Page() {
           <div className="flex-1">
             <h2 className="mt-0">{record.title}</h2>
             <p>{extractExcerpt(record.content)}</p>
-            <Link href={`/our-services/${record.slug}`} className="not-prose text-sm font-medium hover:underline">
+            <Link href={`/our-services/${record.slug}`} className="not-prose text-sm font-medium hover:underline" aria-label={`${t("readMore")}: ${record.title}`}>
               {t("readMore")} →
             </Link>
           </div>
