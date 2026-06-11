@@ -14,3 +14,12 @@ export type ServiceRecord = {
   slug: string;
   image: string[];
 };
+
+export type MediaRecord = {
+  outlet: string;
+  headline: string;
+  date: string;
+  url: string;
+  thumbnail: string;
+  status: "Published" | "Archived";
+};

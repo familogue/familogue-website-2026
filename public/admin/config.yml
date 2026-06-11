@@ -44,3 +44,31 @@ collections:
                 options:
                   - Published
                   - Archived
+  - name: media
+    label: Media
+    files:
+      - name: media
+        label: Media
+        file: content/media.json
+        fields:
+          - name: media
+            label: Media Items
+            widget: list
+            summary: "{{outlet}} — {{headline}}"
+            fields:
+              - { name: outlet, label: Outlet, widget: string }
+              - { name: headline, label: Headline, widget: string }
+              - { name: date, label: Date, widget: datetime, format: YYYY-MM-DD, date_format: YYYY-MM-DD, time_format: false }
+              - { name: url, label: URL, widget: string }
+              - name: thumbnail
+                label: Thumbnail
+                widget: file
+                media_folder: /public/images
+                public_folder: /images
+                required: false
+              - name: status
+                label: Status
+                widget: select
+                options:
+                  - Published
+                  - Archived
