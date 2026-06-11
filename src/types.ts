@@ -20,6 +20,6 @@ export type MediaRecord = {
   headline: string;
   date: string;
   url: string;
-  thumbnail: string;
+  thumbnail?: string;
   status: "Published" | "Archived";
 };
