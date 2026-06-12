@@ -73,8 +73,25 @@ export default async function Page() {
           ))}
         </div>
       </section>
-      <section>
-        <h2>{t("Homepage.mediaSection.title")}</h2>
+      <section aria-labelledby="media-section-heading">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              mediaItems.map((item) => ({
+                "@context": "https://schema.org",
+                "@type": item.url.includes("youtube.com") || item.url.includes("youtu.be")
+                  ? "VideoObject"
+                  : "NewsArticle",
+                "name": item.headline,
+                "url": item.url,
+                "datePublished": item.date,
+                "publisher": { "@type": "Organization", "name": item.outlet },
+              }))
+            ),
+          }}
+        />
+        <h2 id="media-section-heading">{t("Homepage.mediaSection.title")}</h2>
         <div className="mt-8 flex flex-col gap-4">
           {mediaItems.map((item) => (
             <a
@@ -95,17 +112,20 @@ export default async function Page() {
                   />
                 </div>
               ) : (
-                <Image
-                  src={item.thumbnail && item.thumbnail.length > 0 ? item.thumbnail : "/images/og-image.png"}
-                  alt={item.headline}
-                  width={LOGO_SIZE}
-                  height={LOGO_SIZE}
-                  className="shrink-0 object-cover"
-                  style={{ width: LOGO_SIZE, height: LOGO_SIZE }}
-                />
+                <div className="flex shrink-0 items-center justify-center" style={{ width: LOGO_SIZE, height: LOGO_SIZE }}>
+                  <Image
+                    src={item.thumbnail ?? "/images/og-image.png"}
+                    alt={item.headline}
+                    width={LOGO_SIZE}
+                    height={LOGO_SIZE}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
               )}
               <div>
-                <div className="text-muted-foreground text-sm">{item.outlet}</div>
+                <div className="text-muted-foreground text-sm">
+                  {item.outlet} · <time dateTime={item.date}>{item.date}</time>
+                </div>
                 <h3>{item.headline} →</h3>
               </div>
             </a>
