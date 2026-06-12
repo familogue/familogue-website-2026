@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { generatedMetadataForPage } from "@/utils/generatedMetadataForPage";
+import { getAllMedia } from "@/utils/sdk/media";
 import { getAllServices } from "@/utils/sdk/services";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
@@ -11,9 +12,19 @@ export async function generateMetadata() {
   return await generatedMetadataForPage(locale, "Home", "/");
 }
 
+const OUTLET_LOGOS: Record<string, string> = {
+  "Fairchild TV": "/images/logo-fairchildtv.jpg",
+  "OMNI News": "/images/logo-omnitv.jpg",
+  "One Night Talk": "/images/logo-onenighttalk.jpg",
+  "UBC Asia Pacific": "/images/logo-ubc.jpg",
+};
+
+const LOGO_SIZE = 60;
+
 export default async function Page() {
   const locale = await getLocale();
   const records = getAllServices(locale);
+  const mediaItems = getAllMedia();
   const t = await getTranslations();
   return (
     <div className="x-top-page">
@@ -59,6 +70,65 @@ export default async function Page() {
                 <p><Button asChild variant="outline" size="sm"><Link href={`/our-services/${record.slug}`}>{t("General.view_details")} &rarr;</Link></Button></p>
               </div>
             </div>
+          ))}
+        </div>
+      </section>
+      <section aria-labelledby="media-section-heading">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              mediaItems.map((item) => ({
+                "@context": "https://schema.org",
+                "@type": item.url.includes("youtube.com") || item.url.includes("youtu.be")
+                  ? "VideoObject"
+                  : "NewsArticle",
+                "name": item.headline,
+                "url": item.url,
+                "datePublished": item.date,
+                "publisher": { "@type": "Organization", "name": item.outlet },
+              }))
+            ),
+          }}
+        />
+        <h2 id="media-section-heading">{t("Homepage.mediaSection.title")}</h2>
+        <div className="mt-8 flex flex-col gap-4">
+          {mediaItems.map((item) => (
+            <a
+              key={item.url}
+              href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-row items-center gap-4"
+            >
+              {OUTLET_LOGOS[item.outlet] ? (
+                <div className="flex shrink-0 items-center justify-center" style={{ width: LOGO_SIZE, height: LOGO_SIZE }}>
+                  <Image
+                    src={OUTLET_LOGOS[item.outlet]}
+                    alt={item.outlet}
+                    width={LOGO_SIZE}
+                    height={LOGO_SIZE}
+                    className="h-full w-full object-contain rounded"
+                  />
+                </div>
+              ) : (
+                <div className="flex shrink-0 items-center justify-center" style={{ width: LOGO_SIZE, height: LOGO_SIZE }}>
+                  <Image
+                    src={item.thumbnail ?? "/images/og-image.png"}
+                    alt={item.headline}
+                    width={LOGO_SIZE}
+                    height={LOGO_SIZE}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              )}
+              <div>
+                <div className="text-muted-foreground text-sm">
+                  {item.outlet} · <time dateTime={item.date}>{item.date}</time>
+                </div>
+                <h3>{item.headline} →</h3>
+              </div>
+            </a>
           ))}
         </div>
       </section>
