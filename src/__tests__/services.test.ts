@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import fs from "fs";
 
 const FIXTURE = {
@@ -30,20 +30,33 @@ const FIXTURE = {
       image: "/images/gamma.png",
       status: "Published",
     },
+    {
+      slug: "delta",
+      title: "丁標題",
+      title_en: "Delta Title",
+      content: "丁內容",
+      content_en: "Delta content",
+      image: null,
+      status: "Published",
+    },
   ],
 };
 
 vi.mock("fs");
 
-beforeEach(() => {
-  vi.mocked(fs.readFileSync).mockReturnValue(JSON.stringify(FIXTURE));
-});
-
 describe("getAllServices", () => {
+  beforeEach(() => {
+    vi.mocked(fs.readFileSync).mockReturnValue(JSON.stringify(FIXTURE));
+  });
+
+  afterEach(() => {
+    vi.resetModules();
+  });
+
   it("returns only Published rows", async () => {
     const { getAllServices } = await import("src/utils/sdk/services");
     const results = getAllServices("en");
-    expect(results.map(r => r.slug)).toEqual(["alpha", "gamma"]);
+    expect(results.map(r => r.slug)).toEqual(["alpha", "gamma", "delta"]);
   });
 
   it("maps zh locale fields", async () => {
@@ -68,9 +81,8 @@ describe("getAllServices", () => {
 
   it("maps null image to empty array", async () => {
     const { getAllServices } = await import("src/utils/sdk/services");
-    // gamma is the second Published entry
     const results = getAllServices("en");
-    const gamma = results.find(r => r.slug === "gamma")!;
-    expect(gamma.image).toEqual(["/images/gamma.png"]);
+    const delta = results.find(r => r.slug === "delta")!;
+    expect(delta.image).toEqual([]);
   });
 });

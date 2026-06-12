@@ -17,6 +17,7 @@ describe("GET /api/auth", () => {
 
   afterEach(() => {
     delete process.env.GITHUB_CLIENT_ID;
+    vi.resetModules();
   });
 
   it("redirects to GitHub OAuth authorize URL with correct params", async () => {
