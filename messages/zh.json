@@ -1,7 +1,10 @@
 {
   "Homepage": {
     "subtitle": "用母語讓家長與孩子更有效地溝通，一起同行與成長",
-    "title": "Familogue 語你童行"
+    "title": "Familogue 語你童行",
+    "mediaSection": {
+      "title": "媒體報導"
+    }
   },
   "Navigation": {
     "home": "首頁",

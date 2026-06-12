@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { generatedMetadataForPage } from "@/utils/generatedMetadataForPage";
+import { getAllMedia } from "@/utils/sdk/media";
 import { getAllServices } from "@/utils/sdk/services";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
@@ -14,6 +15,7 @@ export async function generateMetadata() {
 export default async function Page() {
   const locale = await getLocale();
   const records = getAllServices(locale);
+  const mediaItems = getAllMedia().slice(0, 6);
   const t = await getTranslations();
   return (
     <div className="x-top-page">
@@ -59,6 +61,34 @@ export default async function Page() {
                 <p><Button asChild variant="outline" size="sm"><Link href={`/our-services/${record.slug}`}>{t("General.view_details")} &rarr;</Link></Button></p>
               </div>
             </div>
+          ))}
+        </div>
+      </section>
+      <section>
+        <h2>{t("Homepage.mediaSection.title")}</h2>
+        <div className="mt-8 grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-4">
+          {mediaItems.map((item) => (
+            <a
+              key={item.url}
+              href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="col-span-1 flex flex-col gap-2"
+            >
+              <div className="flex items-start justify-center">
+                <Image
+                  src={item.thumbnail && item.thumbnail.length > 0 ? item.thumbnail : "/images/og-image.png"}
+                  alt={item.headline}
+                  width={320}
+                  height={180}
+                  className="aspect-[16/9] w-full object-cover"
+                />
+              </div>
+              <div>
+                <p className="text-muted-foreground text-sm">{item.outlet}</p>
+                <h3>{item.headline}</h3>
+              </div>
+            </a>
           ))}
         </div>
       </section>
