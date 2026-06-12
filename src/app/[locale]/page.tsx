@@ -15,6 +15,7 @@ export async function generateMetadata() {
 const OUTLET_LOGOS: Record<string, string> = {
   "Fairchild TV": "/images/logo-fairchildtv.png",
   "OMNI News": "/images/logo-omnitv.svg",
+  "One Night Talk": "/images/logo-onenighttalk.jpg",
 };
 
 export default async function Page() {
@@ -81,12 +82,12 @@ export default async function Page() {
               className="flex flex-row items-center gap-4"
             >
               {OUTLET_LOGOS[item.outlet] ? (
-                <div className="flex aspect-[16/9] w-40 shrink-0 items-center justify-center bg-[var(--chart-4)] p-3">
+                <div className="flex aspect-square w-20 shrink-0 items-center justify-center bg-[var(--chart-4)] p-2">
                   <Image
                     src={OUTLET_LOGOS[item.outlet]}
                     alt={item.outlet}
-                    width={140}
-                    height={79}
+                    width={80}
+                    height={80}
                     className="h-full w-full object-contain"
                   />
                 </div>
@@ -94,9 +95,9 @@ export default async function Page() {
                 <Image
                   src={item.thumbnail && item.thumbnail.length > 0 ? item.thumbnail : "/images/og-image.png"}
                   alt={item.headline}
-                  width={160}
-                  height={90}
-                  className="aspect-[16/9] w-40 shrink-0 object-cover"
+                  width={80}
+                  height={80}
+                  className="aspect-square w-20 shrink-0 object-cover"
                 />
               )}
               <div>
