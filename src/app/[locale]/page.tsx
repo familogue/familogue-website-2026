@@ -12,6 +12,11 @@ export async function generateMetadata() {
   return await generatedMetadataForPage(locale, "Home", "/");
 }
 
+const OUTLET_LOGOS: Record<string, string> = {
+  "Fairchild TV": "/images/logo-fairchildtv.png",
+  "OMNI News": "/images/logo-omnitv.svg",
+};
+
 export default async function Page() {
   const locale = await getLocale();
   const records = getAllServices(locale);
@@ -75,13 +80,25 @@ export default async function Page() {
               rel="noopener noreferrer"
               className="flex flex-row items-center gap-4"
             >
-              <Image
-                src={item.thumbnail && item.thumbnail.length > 0 ? item.thumbnail : "/images/og-image.png"}
-                alt={item.headline}
-                width={160}
-                height={90}
-                className="aspect-[16/9] shrink-0 object-cover"
-              />
+              {OUTLET_LOGOS[item.outlet] ? (
+                <div className="flex aspect-[16/9] w-40 shrink-0 items-center justify-center bg-[var(--chart-4)] p-3">
+                  <Image
+                    src={OUTLET_LOGOS[item.outlet]}
+                    alt={item.outlet}
+                    width={140}
+                    height={79}
+                    className="h-full w-full object-contain"
+                  />
+                </div>
+              ) : (
+                <Image
+                  src={item.thumbnail && item.thumbnail.length > 0 ? item.thumbnail : "/images/og-image.png"}
+                  alt={item.headline}
+                  width={160}
+                  height={90}
+                  className="aspect-[16/9] w-40 shrink-0 object-cover"
+                />
+              )}
               <div>
                 <div className="text-muted-foreground text-sm">{item.outlet}</div>
                 <h3>{item.headline}</h3>
