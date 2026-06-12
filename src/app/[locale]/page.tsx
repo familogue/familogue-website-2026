@@ -13,8 +13,8 @@ export async function generateMetadata() {
 }
 
 const OUTLET_LOGOS: Record<string, string> = {
-  "Fairchild TV": "/images/logo-fairchildtv.png",
-  "OMNI News": "/images/logo-omnitv.svg",
+  "Fairchild TV": "/images/logo-fairchildtv.jpg",
+  "OMNI News": "/images/logo-omnitv.jpg",
   "One Night Talk": "/images/logo-onenighttalk.jpg",
 };
 
