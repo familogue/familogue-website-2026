@@ -19,6 +19,8 @@ const OUTLET_LOGOS: Record<string, string> = {
   "UBC Asia Pacific": "/images/logo-ubc.jpg",
 };
 
+const LOGO_SIZE = 40;
+
 export default async function Page() {
   const locale = await getLocale();
   const records = getAllServices(locale);
@@ -83,12 +85,12 @@ export default async function Page() {
               className="flex flex-row items-center gap-4"
             >
               {OUTLET_LOGOS[item.outlet] ? (
-                <div className="flex aspect-square w-20 shrink-0 items-center justify-center">
+                <div className="flex shrink-0 items-center justify-center" style={{ width: LOGO_SIZE, height: LOGO_SIZE }}>
                   <Image
                     src={OUTLET_LOGOS[item.outlet]}
                     alt={item.outlet}
-                    width={80}
-                    height={80}
+                    width={LOGO_SIZE}
+                    height={LOGO_SIZE}
                     className="h-full w-full object-contain rounded-2xl"
                   />
                 </div>
@@ -96,9 +98,10 @@ export default async function Page() {
                 <Image
                   src={item.thumbnail && item.thumbnail.length > 0 ? item.thumbnail : "/images/og-image.png"}
                   alt={item.headline}
-                  width={80}
-                  height={80}
-                  className="aspect-square w-20 shrink-0 object-cover"
+                  width={LOGO_SIZE}
+                  height={LOGO_SIZE}
+                  className="shrink-0 object-cover"
+                  style={{ width: LOGO_SIZE, height: LOGO_SIZE }}
                 />
               )}
               <div>
