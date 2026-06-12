@@ -2,7 +2,7 @@ backend:
   name: github
   repo: familogue/familogue-website-2026
   branch: main
-  base_url: http://localhost:3000
+  base_url: https://familogue.ca
   auth_endpoint: /api/auth
 
 media_folder: public/images
@@ -54,11 +54,18 @@ collections:
           - name: media
             label: Media Items
             widget: list
-            summary: "{{outlet}} — {{headline}}"
+            summary: '{{outlet}} — {{headline}}'
             fields:
               - { name: outlet, label: Outlet, widget: string }
               - { name: headline, label: Headline, widget: string }
-              - { name: date, label: Date, widget: datetime, format: YYYY-MM-DD, date_format: YYYY-MM-DD, time_format: false }
+              - {
+                  name: date,
+                  label: Date,
+                  widget: datetime,
+                  format: YYYY-MM-DD,
+                  date_format: YYYY-MM-DD,
+                  time_format: false,
+                }
               - { name: url, label: URL, widget: string }
               - name: thumbnail
                 label: Thumbnail
