@@ -15,7 +15,7 @@ export async function generateMetadata() {
 export default async function Page() {
   const locale = await getLocale();
   const records = getAllServices(locale);
-  const mediaItems = getAllMedia().slice(0, 6);
+  const mediaItems = getAllMedia();
   const t = await getTranslations();
   return (
     <div className="x-top-page">
@@ -66,24 +66,22 @@ export default async function Page() {
       </section>
       <section>
         <h2>{t("Homepage.mediaSection.title")}</h2>
-        <div className="mt-8 grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-4">
+        <div className="mt-8 flex flex-col gap-4">
           {mediaItems.map((item) => (
             <a
               key={item.url}
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="col-span-1 flex flex-col gap-2"
+              className="flex flex-row items-center gap-4"
             >
-              <div className="flex items-start justify-center">
-                <Image
-                  src={item.thumbnail && item.thumbnail.length > 0 ? item.thumbnail : "/images/og-image.png"}
-                  alt={item.headline}
-                  width={320}
-                  height={180}
-                  className="aspect-[16/9] w-full object-cover"
-                />
-              </div>
+              <Image
+                src={item.thumbnail && item.thumbnail.length > 0 ? item.thumbnail : "/images/og-image.png"}
+                alt={item.headline}
+                width={160}
+                height={90}
+                className="aspect-[16/9] shrink-0 object-cover"
+              />
               <div>
                 <p className="text-muted-foreground text-sm">{item.outlet}</p>
                 <h3>{item.headline}</h3>
