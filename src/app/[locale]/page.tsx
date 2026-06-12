@@ -83,7 +83,7 @@ export default async function Page() {
                 className="aspect-[16/9] shrink-0 object-cover"
               />
               <div>
-                <p className="text-muted-foreground text-sm">{item.outlet}</p>
+                <div className="text-muted-foreground text-sm">{item.outlet}</div>
                 <h3>{item.headline}</h3>
               </div>
             </a>
