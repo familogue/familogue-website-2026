@@ -2,7 +2,7 @@ backend:
   name: github
   repo: familogue/familogue-website-2026
   branch: main
-  base_url: https://familogue.ca
+  base_url: http://localhost:3000
   auth_endpoint: /api/auth
 
 media_folder: public/images
@@ -19,7 +19,7 @@ collections:
           - name: services
             label: Services
             widget: list
-            summary: "{{title_en}}"
+            summary: '{{title_en}}'
             fields:
               - { name: slug, label: Slug, widget: string }
               - { name: title, label: Title (ZH), widget: string }

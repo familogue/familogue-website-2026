@@ -33,8 +33,11 @@ export async function GET(request: NextRequest) {
     return new Response(`GitHub error: ${data.error ?? "no token"}`, { status: 502 });
   }
 
-  // Decap CMS expects postMessage with provider + token
-  const content = JSON.stringify({ token: data.access_token, provider: "github" });
+  const state = request.nextUrl.searchParams.get("state");
+  const provider = request.nextUrl.searchParams.get("provider") ?? "github";
+  const token = JSON.stringify(data.access_token);
+  const providerJson = JSON.stringify(provider);
+  const stateJson = state ? JSON.stringify(state) : "null";
 
   const html = `<!DOCTYPE html>
 <html>
@@ -42,12 +45,18 @@ export async function GET(request: NextRequest) {
 <body>
 <script>
 (function () {
-  var content = ${content};
-  var msg = "authorization:github:success:" + JSON.stringify(content);
-  if (window.opener) {
-    window.opener.postMessage(msg, window.location.origin);
+  var provider = ${providerJson};
+  var stateVal = ${stateJson};
+  var content = { token: ${token}, provider: provider };
+  function receiveMessage(e) {
+    if (e.data === "authorizing:" + provider) {
+      var msg = "authorization:" + provider + ":success:" + JSON.stringify(content);
+      if (stateVal) msg += ":" + stateVal;
+      window.opener.postMessage(msg, e.origin);
+    }
   }
-  window.close();
+  window.addEventListener("message", receiveMessage, { once: true });
+  window.opener.postMessage("authorizing:" + provider, "*");
 })();
 </script>
 <p>Authorization complete. You may close this window.</p>
