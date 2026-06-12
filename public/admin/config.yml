@@ -2,7 +2,7 @@ backend:
   name: github
   repo: familogue/familogue-website-2026
   branch: main
-  base_url: https://familogue.ca
+  base_url: https://www.familogue.ca
   auth_endpoint: /api/auth
 
 media_folder: public/images
