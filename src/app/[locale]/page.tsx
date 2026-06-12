@@ -19,7 +19,7 @@ const OUTLET_LOGOS: Record<string, string> = {
   "UBC Asia Pacific": "/images/logo-ubc.jpg",
 };
 
-const LOGO_SIZE = 40;
+const LOGO_SIZE = 60;
 
 export default async function Page() {
   const locale = await getLocale();
@@ -91,7 +91,7 @@ export default async function Page() {
                     alt={item.outlet}
                     width={LOGO_SIZE}
                     height={LOGO_SIZE}
-                    className="h-full w-full object-contain rounded-2xl"
+                    className="h-full w-full object-contain rounded"
                   />
                 </div>
               ) : (
@@ -106,7 +106,7 @@ export default async function Page() {
               )}
               <div>
                 <div className="text-muted-foreground text-sm">{item.outlet}</div>
-                <h3>{item.headline}</h3>
+                <h3>{item.headline} →</h3>
               </div>
             </a>
           ))}
