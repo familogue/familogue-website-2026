@@ -33,9 +33,11 @@ export async function GET(request: NextRequest) {
     return new Response(`GitHub error: ${data.error ?? "no token"}`, { status: 502 });
   }
 
-  // Decap CMS requires a two-step handshake: popup pings "authorizing:github",
-  // Decap echoes it back, then popup sends the token to the echoed origin.
+  const state = request.nextUrl.searchParams.get("state");
+  const provider = request.nextUrl.searchParams.get("provider") ?? "github";
   const token = JSON.stringify(data.access_token);
+  const providerJson = JSON.stringify(provider);
+  const stateJson = state ? JSON.stringify(state) : "null";
 
   const html = `<!DOCTYPE html>
 <html>
@@ -43,16 +45,18 @@ export async function GET(request: NextRequest) {
 <body>
 <script>
 (function () {
+  var provider = ${providerJson};
+  var stateVal = ${stateJson};
+  var content = { token: ${token}, provider: provider };
   function receiveMessage(e) {
-    if (e.data === "authorizing:github") {
-      window.opener.postMessage(
-        "authorization:github:success:" + JSON.stringify({ token: ${token}, provider: "github" }),
-        e.origin
-      );
+    if (e.data === "authorizing:" + provider) {
+      var msg = "authorization:" + provider + ":success:" + JSON.stringify(content);
+      if (stateVal) msg += ":" + stateVal;
+      window.opener.postMessage(msg, e.origin);
     }
   }
   window.addEventListener("message", receiveMessage, { once: true });
-  window.opener.postMessage("authorizing:github", "*");
+  window.opener.postMessage("authorizing:" + provider, "*");
 })();
 </script>
 <p>Authorization complete. You may close this window.</p>
