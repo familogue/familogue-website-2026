@@ -10,6 +10,7 @@ export function GET(request: NextRequest) {
   const params = new URLSearchParams({
     client_id: clientId,
     scope: "public_repo",
+    redirect_uri: `${process.env.NEXT_PUBLIC_BASE_URL}/api/callback`,
   });
 
   // Pass through state param if Decap sends one

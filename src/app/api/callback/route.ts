@@ -33,8 +33,9 @@ export async function GET(request: NextRequest) {
     return new Response(`GitHub error: ${data.error ?? "no token"}`, { status: 502 });
   }
 
-  // Decap CMS expects postMessage with provider + token
-  const content = JSON.stringify({ token: data.access_token, provider: "github" });
+  // Decap CMS requires a two-step handshake: popup pings "authorizing:github",
+  // Decap echoes it back, then popup sends the token to the echoed origin.
+  const token = JSON.stringify(data.access_token);
 
   const html = `<!DOCTYPE html>
 <html>
@@ -42,12 +43,16 @@ export async function GET(request: NextRequest) {
 <body>
 <script>
 (function () {
-  var content = ${content};
-  var msg = "authorization:github:success:" + JSON.stringify(content);
-  if (window.opener) {
-    window.opener.postMessage(msg, window.location.origin);
+  function receiveMessage(e) {
+    if (e.data === "authorizing:github") {
+      window.opener.postMessage(
+        "authorization:github:success:" + JSON.stringify({ token: ${token}, provider: "github" }),
+        e.origin
+      );
+    }
   }
-  window.close();
+  window.addEventListener("message", receiveMessage, { once: true });
+  window.opener.postMessage("authorizing:github", "*");
 })();
 </script>
 <p>Authorization complete. You may close this window.</p>
