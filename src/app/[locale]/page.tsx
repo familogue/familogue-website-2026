@@ -16,6 +16,7 @@ const OUTLET_LOGOS: Record<string, string> = {
   "Fairchild TV": "/images/logo-fairchildtv.jpg",
   "OMNI News": "/images/logo-omnitv.jpg",
   "One Night Talk": "/images/logo-onenighttalk.jpg",
+  "UBC Asia Pacific": "/images/logo-ubc.jpg",
 };
 
 export default async function Page() {
@@ -82,13 +83,13 @@ export default async function Page() {
               className="flex flex-row items-center gap-4"
             >
               {OUTLET_LOGOS[item.outlet] ? (
-                <div className="flex aspect-square w-20 shrink-0 items-center justify-center bg-[var(--chart-4)] p-2">
+                <div className="flex aspect-square w-20 shrink-0 items-center justify-center">
                   <Image
                     src={OUTLET_LOGOS[item.outlet]}
                     alt={item.outlet}
                     width={80}
                     height={80}
-                    className="h-full w-full object-contain"
+                    className="h-full w-full object-contain rounded-2xl"
                   />
                 </div>
               ) : (
