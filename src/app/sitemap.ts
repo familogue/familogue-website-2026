@@ -1,5 +1,6 @@
 import { siteConfig } from "@/utils/site-config";
 import { getAllServices } from "@/utils/sdk/services";
+import { getAllNews } from "@/utils/sdk/news";
 import type { MetadataRoute } from 'next';
 
 const locales = siteConfig.locales;
@@ -25,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     generateLocalePage('/'),
     generateLocalePage('/news'),
+    ...getAllNews("en").map(p => generateLocalePage(`/news/${p.slug}`)),
     generateLocalePage('/our-services'),
     ...getAllServices("en").map(s => generateLocalePage(`/our-services/${s.slug}`)),
     generateLocalePage('/about-us'),

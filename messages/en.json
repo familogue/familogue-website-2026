@@ -70,6 +70,15 @@
     },
     "no_description": "No description available."
   },
+  "News": {
+    "title": "News",
+    "description": "Latest updates and announcements",
+    "readMore": "Read More",
+    "postedOn": "Date:",
+    "meta": {
+      "description": "Latest news, updates, and announcements from Familogue Education Society."
+    }
+  },
   "General": {
     "view_details": "View Details",
     "register_now": "Register Now"

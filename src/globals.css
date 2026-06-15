@@ -185,6 +185,9 @@
     @apply my-10 border-stone-200 dark:border-stone-700;
   }
 
+  section {
+    @apply my-20;
+  }
 }
 
 .x-contact-page {
@@ -207,7 +210,7 @@
 }
 
 .x-hero {
-  @apply my-8 sm:my-36;
+  @apply my-4 sm:my-36;
 
   h1 {
     @apply text-primary;

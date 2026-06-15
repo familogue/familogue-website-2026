@@ -71,6 +71,15 @@
     "title": "課程",
     "no_description": "沒有詳細內容。"
   },
+  "News": {
+    "title": "資訊中心",
+    "description": "最新消息和公告",
+    "readMore": "閱讀更多",
+    "postedOn": "日期：",
+    "meta": {
+      "description": "語你童行教育學會的最新消息和公告。"
+    }
+  },
   "General": {
     "register_now": "立即報名",
     "view_details": "查看詳情"

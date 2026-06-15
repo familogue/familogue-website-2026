@@ -44,6 +44,43 @@ collections:
                 options:
                   - Published
                   - Archived
+  - name: news
+    label: News
+    files:
+      - name: news
+        label: News Posts
+        file: content/news.json
+        fields:
+          - name: news
+            label: News Posts
+            widget: list
+            summary: '{{title_en}}'
+            fields:
+              - { name: slug, label: Slug, widget: string }
+              - { name: title, label: Title (ZH), widget: string }
+              - { name: title_en, label: Title (EN), widget: string }
+              - { name: date, label: Date, widget: datetime, format: YYYY-MM-DD, date_format: YYYY-MM-DD, time_format: false }
+              - { name: author, label: Author, widget: string }
+              - name: body
+                label: Body (ZH)
+                widget: markdown
+                editor_components: []
+              - name: body_en
+                label: Body (EN)
+                widget: markdown
+                editor_components: []
+              - name: featured_image
+                label: Featured Image
+                widget: file
+                media_folder: /public/images
+                public_folder: /images
+                required: false
+              - name: status
+                label: Status
+                widget: select
+                options:
+                  - Published
+                  - Archived
   - name: media
     label: Media
     files:
