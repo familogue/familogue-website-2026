@@ -184,10 +184,6 @@
   hr {
     @apply my-10 border-stone-200 dark:border-stone-700;
   }
-
-  section {
-    @apply my-20;
-  }
 }
 
 .x-contact-page {

@@ -19,26 +19,22 @@ export default async function Page() {
     <div className="x-container prose">
       <h1>{t("News.title")}</h1>
       {posts.map((post) => (
-        <section key={post.slug} className="sm:flex sm:items-start gap-4 mb-8 border-b pb-6 last:border-b-0 not-prose">
+        <section key={post.slug} className="sm:flex sm:flex-row-reverse sm:items-start gap-2 mb-20">
           <Link href={`/news/${post.slug}`} className="shrink-0">
             <Image
               src={post.featured_image ?? "/images/og-image.png"}
               alt={post.title}
               width={320}
               height={180}
-              className="aspect-[16/9] object-cover w-full sm:w-[320px]"
+              className="aspect-[16/9] object-cover not-prose"
             />
           </Link>
-          <div className="flex-1 mt-3 sm:mt-0">
-            <h2 className="mt-0 text-xl font-semibold">
-              <Link href={`/news/${post.slug}`} className="hover:underline">
-                {post.title}
-              </Link>
-            </h2>
-            <p className="text-gray-700">{extractExcerpt(post.body)}</p>
+          <div className="flex-1">
+            <h2 className="mt-0"><Link href={`/news/${post.slug}`}>{post.title}</Link></h2>
+            <p>{extractExcerpt(post.body)}</p>
             <p>
-              <Button asChild variant="accent" size="lg">
-                <Link href={`/news/${post.slug}`}>{t("General.view_details")} &rarr;</Link>
+              <Button asChild className="not-prose" variant="accent" size="lg">
+                <Link href={`/news/${post.slug}`}>{t("General.view_details")}</Link>
               </Button>
             </p>
             <p className="text-sm text-gray-500 mb-1">{t("News.postedOn")} {post.date}</p>

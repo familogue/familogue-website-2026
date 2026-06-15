@@ -19,18 +19,18 @@ export default async function Page() {
     <div className="x-container prose">
       <h1>{t("OurServices.title")}</h1>
       {records.map((record) => (
-        <section key={record.slug} className="sm:flex sm:flex-row-reverse sm:items-start gap-2 mb-6">
+        <section key={record.slug} className="sm:flex sm:flex-row-reverse sm:items-start gap-2 mb-20">
           <Image
             src={record.image && record.image.length > 0 ? record.image[0] : "/images/og-image.png"}
             alt={record.title || "Service Image"}
             width={320}
             height={180}
-            className="aspect-[16/9] object-cover" />
+            className="aspect-[16/9] object-cover not-prose" />
           <div className="flex-1">
-            <h2 className="mt-0">{record.title}</h2>
+            <h2 className="mt-0"><Link href={`/our-services/${record.slug}`}>{record.title}</Link></h2>
             <p>{extractExcerpt(record.content)}</p>
             <p>
-              <Button asChild className="not-prose" variant="accent" size="lg"><Link href={`/our-services/${record.slug}`}>{t("General.view_details")} &rarr;</Link></Button>
+              <Button asChild className="not-prose" variant="accent" size="lg"><Link href={`/our-services/${record.slug}`}>{t("General.view_details")}</Link></Button>
             </p>
           </div>
         </section>
