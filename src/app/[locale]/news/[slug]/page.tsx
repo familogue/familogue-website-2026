@@ -74,7 +74,7 @@ export default async function Page({ params }: Props) {
           className="w-full aspect-[16/9] object-cover rounded-lg mb-6"
         />
       )}
-      <p className="not-prose text-sm text-gray-500 mb-1">Date: {post.date}</p>
+      <p className="not-prose text-sm text-gray-500 mb-1">{t("postedOn")} {post.date}</p>
       <h1>{post.title}</h1>
       <Markdown
         options={{

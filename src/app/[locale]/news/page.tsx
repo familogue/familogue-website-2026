@@ -41,7 +41,7 @@ export default async function Page() {
                 <Link href={`/news/${post.slug}`}>{t("General.view_details")} &rarr;</Link>
               </Button>
             </p>
-            <p className="text-sm text-gray-500 mb-1">Date: {post.date}</p>
+            <p className="text-sm text-gray-500 mb-1">{t("News.postedOn")} {post.date}</p>
           </div>
         </section>
       ))}

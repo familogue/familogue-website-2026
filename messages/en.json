@@ -74,6 +74,7 @@
     "title": "News",
     "description": "Latest updates and announcements",
     "readMore": "Read More",
+    "postedOn": "Date:",
     "meta": {
       "description": "Latest news, updates, and announcements from Familogue Education Society."
     }

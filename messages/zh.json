@@ -75,6 +75,7 @@
     "title": "資訊中心",
     "description": "最新消息和公告",
     "readMore": "閱讀更多",
+    "postedOn": "日期：",
     "meta": {
       "description": "語你童行教育學會的最新消息和公告。"
     }
