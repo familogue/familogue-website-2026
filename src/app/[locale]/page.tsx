@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { generatedMetadataForPage } from "@/utils/generatedMetadataForPage";
 import { getAllMedia } from "@/utils/sdk/media";
 import { getAllServices } from "@/utils/sdk/services";
+import { getAllNews } from "@/utils/sdk/news";
+import { extractExcerpt } from "@/utils/extractExcerpt";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link";
@@ -24,6 +26,7 @@ export default async function Page() {
   const locale = await getLocale();
   const records = getAllServices(locale);
   const mediaItems = getAllMedia();
+  const latestNews = getAllNews(locale)[0];
   const t = await getTranslations();
   return (
     <div className="x-top-page">
@@ -36,11 +39,27 @@ export default async function Page() {
         <ProgramList />
         <p><Link className="x-button" href="/programs">更多課程及活動 &rarr;</Link></p>
       </section> */}
-      <section>
-        <h2>立即登記成為我們的投票會員，共同打造屬於你的語你童行。<br />Join us as a voting member and help us build Familogue together.</h2>
-        <p><Link href="/news"><Image src="/images/voting-member.png" alt="voting-member" width={1280} height={720} className="w-full" /></Link></p>
-        <p><Button asChild variant="accent" size="lg"><Link href="/news">{t("General.view_details")} &rarr;</Link></Button></p>
-      </section>
+      {latestNews && (
+        <section>
+          <h2>{t("News.title")}</h2>
+          <div className="mt-4 flex flex-col sm:flex-row sm:items-start gap-4">
+            <Link href={`/news/${latestNews.slug}`} className="shrink-0">
+              <Image
+                src={latestNews.featured_image ?? "/images/og-image.png"}
+                alt={latestNews.title}
+                width={320}
+                height={180}
+                className="aspect-[16/9] object-cover w-full sm:w-[320px]"
+              />
+            </Link>
+            <div className="flex-1">
+              <h3><Link href={`/news/${latestNews.slug}`}>{latestNews.title}</Link></h3>
+              <p className="text-muted-foreground">{extractExcerpt(latestNews.body)}</p>
+              <p><Button asChild variant="accent" size="lg"><Link href={`/news/${latestNews.slug}`}>{t("General.view_details")} &rarr;</Link></Button></p>
+            </div>
+          </div>
+        </section>
+      )}
       <section>
         <h2>{t("AboutUs.title")}</h2>
         <h3>{t("AboutUs.subtitle")}</h3>
