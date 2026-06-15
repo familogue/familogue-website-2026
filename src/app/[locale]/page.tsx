@@ -29,7 +29,7 @@ export default async function Page() {
   return (
     <div className="x-top-page">
       <section className="x-hero">
-        <h1>{t("Homepage.title")}</h1>
+        <h1>{t("Homepage.title")} ✨</h1>
         <h2>{t("Homepage.subtitle")}</h2>
       </section>
       {/* <section>
