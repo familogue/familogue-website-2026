@@ -38,7 +38,7 @@ export default async function Page() {
             <p className="text-gray-700">{extractExcerpt(post.body)}</p>
             <p>
               <Button asChild variant="accent" size="lg">
-                <Link href={`/news/${post.slug}`}>{t("General.view_details")} &rarr;</Link>
+                <Link href={`/news/${post.slug}`}>{t("General.view_details")}</Link>
               </Button>
             </p>
             <p className="text-sm text-gray-500 mb-1">{t("News.postedOn")} {post.date}</p>

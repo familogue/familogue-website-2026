@@ -30,7 +30,7 @@ export default async function Page() {
             <h2 className="mt-0">{record.title}</h2>
             <p>{extractExcerpt(record.content)}</p>
             <p>
-              <Button asChild className="not-prose" variant="accent" size="lg"><Link href={`/our-services/${record.slug}`}>{t("General.view_details")} &rarr;</Link></Button>
+              <Button asChild className="not-prose" variant="accent" size="lg"><Link href={`/our-services/${record.slug}`}>{t("General.view_details")}</Link></Button>
             </p>
           </div>
         </section>

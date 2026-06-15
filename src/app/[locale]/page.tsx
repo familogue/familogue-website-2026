@@ -31,13 +31,13 @@ export default async function Page() {
   return (
     <div className="x-top-page">
       <section className="x-hero">
-        <h1>{t("Homepage.title")} ✨</h1>
+        <h1>{t("Homepage.title")}</h1>
         <h2>{t("Homepage.subtitle")}</h2>
       </section>
       {latestNews && (
-        <section>
-          <h2><Link href="/news">{t("News.title")}</Link></h2>
-          <div className="my-8 flex flex-col sm:flex-row sm:items-start gap-4">
+        <section className="mt-20">
+          <h2><Link href="/news">{t("News.title")} &rsaquo;</Link></h2>
+          <div className="mt-4 flex flex-col sm:flex-row sm:items-start gap-4">
             <Link href={`/news/${latestNews.slug}`} className="shrink-0">
               <Image
                 src={latestNews.featured_image ?? "/images/og-image.png"}
@@ -50,21 +50,19 @@ export default async function Page() {
             <div className="flex-1">
               <h3><Link href={`/news/${latestNews.slug}`}>{latestNews.title}</Link></h3>
               <p className="text-muted-foreground">{extractExcerpt(latestNews.body)}</p>
-              <p><Button asChild variant="outline"><Link href={`/news/${latestNews.slug}`}>{t("General.view_details")} &rarr;</Link></Button></p>
+              <p><Button asChild variant="accent"><Link href={`/news/${latestNews.slug}`}>{t("General.view_details")}</Link></Button></p>
             </div>
           </div>
-          <p><Button asChild variant="accent" size="sm"><Link href={`/news`}>{t("General.view_details")} &rarr;</Link></Button></p>
         </section>
       )}
-      <section>
-        <h2><Link href="/about-us">{t("AboutUs.title")}</Link></h2>
+      <section className="mt-20">
+        <h2><Link href="/about-us">{t("AboutUs.title")} &rsaquo;</Link></h2>
         <h3>{t("AboutUs.subtitle")}</h3>
         <p>{t("AboutUs.description")}</p>
-        <p><Button asChild variant="accent" size="sm"><Link href="/about-us">{t("General.view_details")} &rarr;</Link></Button></p>
       </section>
-      <section>
-        <h2><Link href="/our-services">{t("OurServices.title")}</Link></h2>
-        <div className="mt-8 grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-4">
+      <section className="mt-20">
+        <h2><Link href="/our-services">{t("OurServices.title")} &rsaquo;</Link></h2>
+        <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-4">
           {records.map((record) => (
             <div key={record.title} className="col-span-1 flex flex-col gap-2">
               <div className="flex items-start justify-center">
@@ -81,13 +79,13 @@ export default async function Page() {
               <div>
                 <h3><Link href={`/our-services/${record.slug}`}>{record.title}</Link></h3>
                 <p className="text-muted-foreground">{record.content.split("\n")[0]}</p>
-                <p><Button asChild variant="outline" size="sm"><Link href={`/our-services/${record.slug}`}>{t("General.view_details")} &rarr;</Link></Button></p>
+                <p><Button asChild variant="accent" size="sm"><Link href={`/our-services/${record.slug}`}>{t("General.view_details")}</Link></Button></p>
               </div>
             </div>
           ))}
         </div>
       </section>
-      <section aria-labelledby="media-section-heading">
+      <section className="mt-20" aria-labelledby="media-section-heading">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -140,7 +138,7 @@ export default async function Page() {
                 <div className="text-muted-foreground text-sm">
                   {item.outlet} · <time dateTime={item.date}>{item.date}</time>
                 </div>
-                <h3>{item.headline} →</h3>
+                <h3>{item.headline} &rsaquo;</h3>
               </div>
             </a>
           ))}
