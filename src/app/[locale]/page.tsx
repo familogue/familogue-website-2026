@@ -5,7 +5,6 @@ import { getAllServices } from "@/utils/sdk/services";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link";
-import img from "./news/voting-member.png";
 
 export async function generateMetadata() {
   const locale = await getLocale();
@@ -39,7 +38,7 @@ export default async function Page() {
       </section> */}
       <section>
         <h2>立即登記成為我們的投票會員，共同打造屬於你的語你童行。<br />Join us as a voting member and help us build Familogue together.</h2>
-        <p><Link href="/news"><Image src={img} alt="voting-member" /></Link></p>
+        <p><Link href="/news"><Image src="/images/voting-member.png" alt="voting-member" width={1280} height={720} className="w-full" /></Link></p>
         <p><Button asChild variant="accent" size="lg"><Link href="/news">{t("General.view_details")} &rarr;</Link></Button></p>
       </section>
       <section>
