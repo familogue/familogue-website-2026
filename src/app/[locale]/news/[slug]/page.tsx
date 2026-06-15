@@ -1,8 +1,8 @@
-import { siteConfig } from "@/utils/site-config";
 import { locales } from "@/i18n/config";
 import { Link } from "@/i18n/navigation";
-import { getAllNews, getNewsBySlug } from "@/utils/sdk/news";
 import { extractExcerpt } from "@/utils/extractExcerpt";
+import { getAllNews, getNewsBySlug } from "@/utils/sdk/news";
+import { siteConfig } from "@/utils/site-config";
 import Markdown from "markdown-to-jsx";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
@@ -74,7 +74,7 @@ export default async function Page({ params }: Props) {
           className="w-full aspect-[16/9] object-cover rounded-lg mb-6"
         />
       )}
-      <p className="not-prose text-sm text-gray-500 mb-1">{post.date} · {post.author}</p>
+      <p className="not-prose text-sm text-gray-500 mb-1">Date: {post.date}</p>
       <h1>{post.title}</h1>
       <Markdown
         options={{

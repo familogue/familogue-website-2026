@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
+import { extractExcerpt } from "@/utils/extractExcerpt";
 import { generatedMetadataForPage } from "@/utils/generatedMetadataForPage";
 import { getAllMedia } from "@/utils/sdk/media";
-import { getAllServices } from "@/utils/sdk/services";
 import { getAllNews } from "@/utils/sdk/news";
-import { extractExcerpt } from "@/utils/extractExcerpt";
+import { getAllServices } from "@/utils/sdk/services";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link";
@@ -34,15 +34,10 @@ export default async function Page() {
         <h1>{t("Homepage.title")} ✨</h1>
         <h2>{t("Homepage.subtitle")}</h2>
       </section>
-      {/* <section>
-        <h2>課程及活動</h2>
-        <ProgramList />
-        <p><Link className="x-button" href="/programs">更多課程及活動 &rarr;</Link></p>
-      </section> */}
       {latestNews && (
         <section>
-          <h2>{t("News.title")}</h2>
-          <div className="mt-4 flex flex-col sm:flex-row sm:items-start gap-4">
+          <h2><Link href="/news">{t("News.title")}</Link></h2>
+          <div className="my-8 flex flex-col sm:flex-row sm:items-start gap-4">
             <Link href={`/news/${latestNews.slug}`} className="shrink-0">
               <Image
                 src={latestNews.featured_image ?? "/images/og-image.png"}
@@ -55,19 +50,20 @@ export default async function Page() {
             <div className="flex-1">
               <h3><Link href={`/news/${latestNews.slug}`}>{latestNews.title}</Link></h3>
               <p className="text-muted-foreground">{extractExcerpt(latestNews.body)}</p>
-              <p><Button asChild variant="accent" size="lg"><Link href={`/news/${latestNews.slug}`}>{t("General.view_details")} &rarr;</Link></Button></p>
+              <p><Button asChild variant="outline"><Link href={`/news/${latestNews.slug}`}>{t("General.view_details")} &rarr;</Link></Button></p>
             </div>
           </div>
+          <p><Button asChild variant="accent" size="sm"><Link href={`/news`}>{t("General.view_details")} &rarr;</Link></Button></p>
         </section>
       )}
       <section>
-        <h2>{t("AboutUs.title")}</h2>
+        <h2><Link href="/about-us">{t("AboutUs.title")}</Link></h2>
         <h3>{t("AboutUs.subtitle")}</h3>
         <p>{t("AboutUs.description")}</p>
-        <p><Button asChild variant="accent" size="lg"><Link href="/about-us">{t("General.view_details")} &rarr;</Link></Button></p>
+        <p><Button asChild variant="accent" size="sm"><Link href="/about-us">{t("General.view_details")} &rarr;</Link></Button></p>
       </section>
       <section>
-        <h2>{t("OurServices.title")}</h2>
+        <h2><Link href="/our-services">{t("OurServices.title")}</Link></h2>
         <div className="mt-8 grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-4">
           {records.map((record) => (
             <div key={record.title} className="col-span-1 flex flex-col gap-2">

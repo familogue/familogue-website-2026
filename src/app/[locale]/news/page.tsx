@@ -30,16 +30,18 @@ export default async function Page() {
             />
           </Link>
           <div className="flex-1 mt-3 sm:mt-0">
-            <p className="text-sm text-gray-500 mb-1">{post.date}</p>
             <h2 className="mt-0 text-xl font-semibold">
               <Link href={`/news/${post.slug}`} className="hover:underline">
                 {post.title}
               </Link>
             </h2>
             <p className="text-gray-700">{extractExcerpt(post.body)}</p>
-            <Button asChild variant="accent" size="lg">
-              <Link href={`/news/${post.slug}`}>{t("General.view_details")} &rarr;</Link>
-            </Button>
+            <p>
+              <Button asChild variant="accent" size="lg">
+                <Link href={`/news/${post.slug}`}>{t("General.view_details")} &rarr;</Link>
+              </Button>
+            </p>
+            <p className="text-sm text-gray-500 mb-1">Date: {post.date}</p>
           </div>
         </section>
       ))}
