@@ -37,7 +37,7 @@ export default async function Page() {
       {featuredNews.length > 0 && (
         <section className="mt-20">
           <h2><Link href="/news">{t("News.title")} &rsaquo;</Link></h2>
-          <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className={`mt-4 grid grid-cols-1 gap-4${featuredNews.length > 1 ? " sm:grid-cols-2" : ""}`}>
             {featuredNews.map((post) => (
               <div key={post.slug} className="flex flex-col gap-2">
                 <Link href={`/news/${post.slug}`} className="shrink-0">
