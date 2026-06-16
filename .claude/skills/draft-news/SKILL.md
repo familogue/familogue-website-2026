@@ -47,6 +47,7 @@ Produce a single JSON object matching this schema:
   "body": "",
   "body_en": "",
   "featured_image": "",
+  "featured": false,
   "status": "Draft"
 }
 ```

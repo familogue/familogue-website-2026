@@ -11,6 +11,7 @@ type NewsRow = {
   author: string;
   featured_image: string | null;
   status: string;
+  featured?: boolean;
 };
 
 export type NewsPost = {
@@ -42,6 +43,13 @@ function toPost(r: NewsRow, locale: string): NewsPost {
 export function getAllNews(locale: string): NewsPost[] {
   return loadRows()
     .filter(r => r.status === "Published")
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .map(r => toPost(r, locale));
+}
+
+export function getFeaturedNews(locale: string): NewsPost[] {
+  return loadRows()
+    .filter(r => r.status === "Published" && r.featured === true)
     .sort((a, b) => b.date.localeCompare(a.date))
     .map(r => toPost(r, locale));
 }
