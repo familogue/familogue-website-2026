@@ -42,23 +42,23 @@ export default function Page() {
       </section>
       <section>
         <h2>Founding Members</h2>
-        <h3>Dr Fay - 教育學博士</h3>
+        <h3>Dr Fay Wong - PhD in Education</h3>
         <p>
           Dr. Fay, who holds a PhD in Education and has experience in bilingualism, language acquisition, and special education, as well as teacher training and parent education.
         </p>
-        <h3>石姨姨 - 卑詩省註冊幼兒教育老師</h3>
+        <h3>Ms Shek - BC Licensed Early Childhood &amp; Special Needs Educator (ECEBC, SNEBC)</h3>
         <p>
           Registered Early Childhood Educator in British Columbia who has worked in early childhood education for many years and also participated in a bilingual education program for deaf students at the Chinese University of Hong Kong.
         </p>
-        <h3>海豚姨姨 Florence - 註冊言語治療師 RSLP (CSHBC)</h3>
+        <h3>Ms Florence Kwok - BC registered Speech-Language Pathologist, RSLP(CSHBC)</h3>
         <p>
           Registered Speech-Language Pathologist with over 10 years of experience in the field, who aims to work alongside parents using her professional knowledge.
         </p>
-        <h3>恩恩姨姨 - 香港資深中學老師及特殊教育統籌主任</h3>
+        <h3>Ms Felicia Cheung - BC Certified Teacher</h3>
         <p>
           Senior high school teacher and special education coordinator in Hong Kong with 20 years of teaching experience, who believes that every individual has unique potential.
         </p>
-        <h3>叻薯媽 (Slash Mom) 資深市場營銷人員</h3>
+        <h3>Ms Wymen Ng - Seasoned Marketer</h3>
         <p>
           Seasoned marketing professional with experience in branding, public relations, corporate communications, advertising, and business development, who has also received training from 故事爸媽 and volunteered as a teacher assistant in schools.
         </p>
