@@ -68,6 +68,8 @@ Produce a single JSON object matching this schema:
 
 **featured_image:** Suggest `/images/<slug>.<ext>`. If the user provides an image file, note the copy command: `cp <source> public/images/<slug>.<ext>`.
 
+**featured:** Ask: "Should this post be featured on the landing page?" Set `featured: true` if yes, `false` if no.
+
 ### 4 — Present and verify
 
 Show the full JSON. Show a preview of the meta description (first 160 chars of `body_en`).
@@ -95,3 +97,17 @@ If yes:
 6. Confirm: "Added `<slug>` to news.json."
 
 If no: output the JSON block only, for manual use.
+
+### 6 — Commit and open PR
+
+Ask: "Create a branch, commit, and open a PR?"
+
+If yes:
+1. Create branch: `git checkout -b news/<slug>`
+2. Stage: `git add content/news.json public/images/<slug>.*`
+3. Commit: `feat(news): add <slug>` (no body needed)
+4. Push: `git push -u origin news/<slug>`
+5. Open PR via `gh pr create` with title matching the commit subject and a brief markdown body (Summary bullets + Test plan checklist).
+6. Return the PR URL.
+
+If no: done.
