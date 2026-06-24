@@ -1,19 +1,19 @@
 ---
 name: draft-news
-description: Draft a bilingual (zh/en) news entry for content/news.json from a URL source (Zeffy, Facebook Events, Google Forms, press release, etc.). Enforces AEO/SEO best practices. Use when given a source URL to draft a news post.
+description: Draft a bilingual (zh/en) news entry for content/news.json from a URL source (Zeffy, Facebook Events, Google Forms, press release, etc.). Use when the user provides a URL to announce an event or news item.
 ---
 
 # Draft News
 
 Draft a bilingual news post for `content/news.json` from a URL source, then offer to write it.
 
-## Input
-
-Arg is a URL. If no arg, ask for one.
+**Answer snippet:** a 1–2 sentence standalone answer to "What is [this event/announcement]?" that fits within 160 characters — used as the page meta description.
 
 ## Steps
 
 ### 1 — Fetch source
+
+Arg is a URL. If no arg, ask for one.
 
 `WebFetch` the URL. Extract:
 - Event/announcement title
@@ -24,6 +24,8 @@ Arg is a URL. If no arg, ask for one.
 - Pricing or bid ranges
 - Any named items, speakers, or sponsors worth listing
 
+Note "Not found" for any field absent from the page before proceeding.
+
 ### 2 — Detect post type
 
 | Signal | Type |
@@ -32,6 +34,8 @@ Arg is a URL. If no arg, ask for one.
 | Facebook Event | `event` |
 | AGM / meeting notice | `meeting` |
 | Press release / article | `announcement` |
+
+Assign exactly one type before proceeding.
 
 ### 3 — Draft JSON entry
 
@@ -56,21 +60,27 @@ Produce a single JSON object matching this schema:
 
 **date:** Use today's date (publication date) in YYYY-MM-DD.
 
-**AEO/SEO rules — non-negotiable:**
-
-- `body_en` **must** open with a 1–2 sentence answer snippet that directly answers *"What is [this event/announcement]?"* — this becomes the page meta description (truncated to 160 chars by `extractExcerpt`). Write it as a complete, standalone sentence a search engine can surface as a featured snippet.
-- `body` (Chinese) **must** open with an equivalent 1–2 sentence summary.
+- Open `body_en` with an **answer snippet**.
+- Open `body` (Chinese) with an equivalent **answer snippet**.
 - For `event` type: bold **Date**, **Time**, **Location** fields near the top of both bodies.
 - Include the source/ticket URL as a prominent CTA link at the end of both bodies.
 - Keep markdown clean — no raw HTML.
 
 **featured_image:** Suggest `/images/<slug>.<ext>`. If the user provides an image file, note the copy command: `cp <source> public/images/<slug>.<ext>`.
 
-### 4 — Present draft
+### 4 — Present and verify
 
-Show the full JSON. Then show a preview of what the meta description will be (first 160 chars of `body_en`).
+Show the full JSON. Show a preview of the meta description (first 160 chars of `body_en`).
 
 Flag any missing info (e.g. event date not found on page, no image provided).
+
+Verify before proceeding:
+
+- [ ] `body_en` opens with an **answer snippet** (≤160 chars)
+- [ ] Event date/time/location bolded in body (if `event` type)
+- [ ] Source/ticket CTA link present
+- [ ] `featured_image` path set (or noted as missing)
+- [ ] `slug` is explicit kebab-case, not derived from Chinese title
 
 ### 5 — Confirm and write
 
@@ -85,12 +95,3 @@ If yes:
 6. Confirm: "Added `<slug>` to news.json."
 
 If no: output the JSON block only, for manual use.
-
-## AEO/SEO checklist (verify before writing)
-
-- [ ] `body_en` first paragraph answers "What is X?" in ≤160 chars
-- [ ] Event date/time/location bolded in body
-- [ ] Source/ticket CTA link present
-- [ ] `featured_image` path set (or noted as missing)
-- [ ] `slug` is explicit kebab-case, not derived from Chinese title
-- [ ] `hreflang` covered by existing page routing (automatic — no action needed)
