@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { generatedMetadataForPage } from "@/utils/generatedMetadataForPage";
 import { HandCoins, HeartHandshake, Megaphone } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 export async function generateMetadata() {
   const locale = await getLocale();

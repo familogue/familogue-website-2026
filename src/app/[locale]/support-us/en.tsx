@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 export default function Page() {
   const t = useTranslations();
