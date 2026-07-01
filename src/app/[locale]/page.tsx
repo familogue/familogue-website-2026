@@ -6,7 +6,7 @@ import { getFeaturedNews } from "@/utils/sdk/news";
 import { getAllServices } from "@/utils/sdk/services";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 export async function generateMetadata() {
   const locale = await getLocale();
