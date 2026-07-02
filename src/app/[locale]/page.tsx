@@ -18,6 +18,7 @@ const OUTLET_LOGOS: Record<string, string> = {
   "OMNI News": "/images/logo-omnitv.jpg",
   "One Night Talk": "/images/logo-onenighttalk.jpg",
   "UBC Asia Pacific": "/images/logo-ubc.jpg",
+  "The Toronto Star": "/images/logo-torontostar.jpg",
 };
 
 const LOGO_SIZE = 60;
