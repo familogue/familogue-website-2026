@@ -19,6 +19,7 @@ const OUTLET_LOGOS: Record<string, string> = {
   "One Night Talk": "/images/logo-onenighttalk.jpg",
   "UBC Asia Pacific": "/images/logo-ubc.jpg",
   "The Toronto Star": "/images/logo-torontostar.jpg",
+  "CBC News": "/images/logo-cbcnews.jpg",
 };
 
 const LOGO_SIZE = 60;
