@@ -1,4 +1,5 @@
 import { locales } from "@/i18n/config";
+import { buildAlternates, openGraphLocale } from "@/utils/alternates";
 import { Link } from "@/i18n/navigation";
 import { extractExcerpt } from "@/utils/extractExcerpt";
 import { getAllNews, getNewsBySlug } from "@/utils/sdk/news";
@@ -30,18 +31,14 @@ export async function generateMetadata({ params }: Props) {
   return {
     title: `${post.title} | ${siteConfig.name}`,
     description: excerpt,
-    alternates: {
-      canonical: `/${locale}/news/${slug}`,
-      languages: {
-        en: `/en/news/${slug}`,
-        zh: `/zh/news/${slug}`,
-      },
-    },
+    alternates: buildAlternates(locale, `/news/${slug}`),
     openGraph: {
       title: `${post.title} | ${siteConfig.name}`,
       description: excerpt,
       url: `/${locale}/news/${slug}`,
       siteName: siteConfig.name,
+      locale: openGraphLocale(locale),
+      alternateLocale: locales.filter((l) => l !== locale).map(openGraphLocale),
       type: "article",
       images: post.featured_image
         ? [{ url: post.featured_image, width: 1280, height: 720, alt: post.title }]

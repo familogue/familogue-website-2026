@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { locales } from "@/i18n/config";
+import { buildAlternates, localePath, openGraphLocale } from "./alternates";
 import { siteConfig } from "./site-config";
 
 
@@ -24,8 +26,10 @@ export async function generatedMetadataForPage(locale: string, namespace: string
     openGraph: {
       title: t("title") + " | " + siteConfig.name,
       description: t("meta.description"),
-      url: pathname,
+      url: localePath(locale, pathname),
       siteName: siteConfig.name,
+      locale: openGraphLocale(locale),
+      alternateLocale: locales.filter(l => l !== locale).map(openGraphLocale),
       type: "website",
       images: [
         {
@@ -36,13 +40,7 @@ export async function generatedMetadataForPage(locale: string, namespace: string
         }
       ]
     },
-    alternates: {
-      canonical: pathname,
-      languages: {
-        en: `/en${pathname}`,
-        zh: `/zh${pathname}`,
-      }
-    }
+    alternates: buildAlternates(locale, pathname),
   };
   return { ...defaultMeta, ...metadata };
 }

@@ -1,5 +1,6 @@
 import { siteConfig } from "@/utils/site-config";
 import { locales } from "@/i18n/config";
+import { buildAlternates, openGraphLocale } from "@/utils/alternates";
 import { Link } from "@/i18n/navigation";
 import { getAllServices, getServiceBySlug } from "@/utils/sdk/services";
 import { extractExcerpt } from "@/utils/extractExcerpt";
@@ -30,18 +31,14 @@ export async function generateMetadata({ params }: Props) {
   return {
     title: `${service.title} | ${siteConfig.name}`,
     description: excerpt,
-    alternates: {
-      canonical: `/${locale}/our-services/${slug}`,
-      languages: {
-        en: `/en/our-services/${slug}`,
-        zh: `/zh/our-services/${slug}`,
-      },
-    },
+    alternates: buildAlternates(locale, `/our-services/${slug}`),
     openGraph: {
       title: `${service.title} | ${siteConfig.name}`,
       description: excerpt,
       url: `/${locale}/our-services/${slug}`,
       siteName: siteConfig.name,
+      locale: openGraphLocale(locale),
+      alternateLocale: locales.filter((l) => l !== locale).map(openGraphLocale),
       type: "website",
       images:
         service.image.length > 0
