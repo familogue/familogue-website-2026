@@ -1,3 +1,4 @@
+import { siteConfig } from "@/utils/site-config";
 import type { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
@@ -7,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       // disallow: '/private/',
     },
-    host: process.env.SITE_URL,
-    sitemap: process.env.SITE_URL + '/sitemap.xml',
+    host: siteConfig.baseUrl,
+    sitemap: `${siteConfig.baseUrl}/sitemap.xml`,
   };
 }
