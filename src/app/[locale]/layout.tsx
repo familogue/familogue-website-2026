@@ -42,7 +42,7 @@ const RootLayout: FC<{ children: ReactNode; params: Promise<{ locale: 'en' | 'zh
               "@type": ["NGO", "LocalBusiness"],
               "name": "Familogue 語你童行",
               "url": "https://familogue.ca",
-              "telephone": "+17788070211",
+              "telephone": "+17789910902",
               "email": "info@familogue.ca",
               "location": [
                 {
