@@ -66,7 +66,12 @@ export function organizationSchema(locale: string) {
         name: siteConfig.name,
         alternateName: ["語你童行", "Familogue", "Familogue Education Society"],
         url: siteConfig.baseUrl,
-        logo: `${siteConfig.baseUrl}/images/og-image.png`,
+        logo: {
+          "@type": "ImageObject",
+          url: `${siteConfig.baseUrl}/familogue-icon.png`,
+          width: 828,
+          height: 827,
+        },
         image: `${siteConfig.baseUrl}/images/og-image.png`,
         description: siteConfig.description,
         foundingDate: "2022",
