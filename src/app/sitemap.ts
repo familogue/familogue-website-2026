@@ -1,4 +1,4 @@
-import { defaultLocale, locales } from "@/i18n/config";
+import { locales } from "@/i18n/config";
 import { bcp47For } from "@/utils/alternates";
 import { getAllNews } from "@/utils/sdk/news";
 import { getAllServices } from "@/utils/sdk/services";
@@ -18,7 +18,7 @@ function generateLocalePage(path: string, lastModified: Date = buildDate) {
   for (const locale of locales) {
     languages[bcp47For(locale)] = `${baseUrl}/${locale}${path}`;
   }
-  languages['x-default'] = `${baseUrl}/${defaultLocale}${path}`;
+  languages['x-default'] = `${baseUrl}${path}`;
 
   return locales.map<MetadataRoute.Sitemap[number]>((locale) => ({
     url: `${baseUrl}/${locale}${path}`,
