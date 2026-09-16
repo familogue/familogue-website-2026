@@ -12,16 +12,17 @@ export const CategoryBlob: React.FC<{
   const theme = CATEGORY_THEME[category];
   return (
     <div className={`relative ${className}`}>
+      {/* Only the shape rotates — the label sits in a separate, static layer. */}
       <svg
         viewBox="0 0 900 900"
         aria-hidden
-        className={`absolute inset-0 h-full w-full ${theme.blobFill}`}
+        className={`x-animate-slow-spin absolute inset-0 h-full w-full origin-center motion-reduce:animate-none ${theme.blobFill}`}
         fill="currentColor"
       >
         <path d={BLOB_PATH} />
       </svg>
       {children && (
-        <div className={`relative flex h-full w-full items-center justify-center p-6 text-center ${theme.onBlob}`}>
+        <div className={`relative flex h-full w-full items-center justify-center px-9 py-6 text-center ${theme.onBlob}`}>
           {children}
         </div>
       )}

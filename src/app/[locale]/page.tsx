@@ -78,10 +78,12 @@ export default async function Page() {
               href={`/our-services#${category}`}
               className="group col-span-1 flex flex-col items-center text-center no-underline"
             >
-              <CategoryBlob category={category} className="h-44 w-52 transition-transform group-hover:scale-105">
-                <span className="text-lg leading-tight font-bold">
+              <CategoryBlob category={category} className="h-[12.65rem] w-[14.95rem] transition-transform group-hover:scale-105">
+                <span className="text-sm leading-tight font-semibold text-balance">
                   {tAlt(`ServiceCategories.${category}.name`)}
-                  <span className="mt-1 block text-xl">{t(`ServiceCategories.${category}.name`)}</span>
+                  <span className="mt-1 block text-lg font-bold">
+                    {t(`ServiceCategories.${category}.name`)}
+                  </span>
                 </span>
               </CategoryBlob>
               <p className="text-muted-foreground mt-3 mb-0! text-sm">{t(`ServiceCategories.${category}.tagline`)}</p>
