@@ -70,9 +70,7 @@ export default async function Page() {
 
       {groups.map(({ role, members }) => (
         <section key={role} id={role} className="mt-12 scroll-mt-24">
-          <h2 className="border-b-2 border-emerald-500 pb-2 text-xl font-bold">
-            {t(`TeamRoles.${role}`)}
-          </h2>
+          <h2 className="x-section-heading">{t(`TeamRoles.${role}`)}</h2>
           <div className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2">
             {members.map((member) => (
               <article key={member.slug} className="rounded-lg border p-5">

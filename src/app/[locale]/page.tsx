@@ -41,8 +41,8 @@ export default async function Page() {
       </section>
       {featuredNews.length > 0 && (
         <section className="mt-20">
-          <h2><Link href="/news">{t("News.title")} &rsaquo;</Link></h2>
-          <div className={"mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2"}>
+          <h2 className="x-section-heading"><Link href="/news">{t("News.title")} &rsaquo;</Link></h2>
+          <div className={"mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2"}>
             {featuredNews.map((post) => (
               <div key={post.slug} className="flex flex-col gap-2">
                 <Link href={`/news/${post.slug}`} className="shrink-0">
@@ -65,12 +65,12 @@ export default async function Page() {
         </section>
       )}
       <section className="mt-20">
-        <h2><Link href="/about-us">{t("AboutUs.title")} &rsaquo;</Link></h2>
+        <h2 className="x-section-heading"><Link href="/about-us">{t("AboutUs.title")} &rsaquo;</Link></h2>
         <h3>{t("AboutUs.subtitle")}</h3>
         <p>{t("AboutUs.description")}</p>
       </section>
       <section className="mt-20">
-        <h2><Link href="/our-services">{t("OurServices.title")} &rsaquo;</Link></h2>
+        <h2 className="x-section-heading"><Link href="/our-services">{t("OurServices.title")} &rsaquo;</Link></h2>
         <div className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-3">
           {serviceGroups.map(({ category, services }) => (
             <Link
@@ -110,7 +110,7 @@ export default async function Page() {
             ),
           }}
         />
-        <h2 id="media-section-heading">{t("Homepage.mediaSection.title")}</h2>
+        <h2 id="media-section-heading" className="x-section-heading">{t("Homepage.mediaSection.title")}</h2>
         <div className="mt-8 flex flex-col gap-4">
           {mediaItems.map((item) => (
             <a

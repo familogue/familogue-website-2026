@@ -7,7 +7,6 @@ import { getServicesByCategory } from "@/utils/sdk/services";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { ServiceCategory, ServiceRecord } from "src/types";
-import { CategoryBlob } from "../_components/category-blob";
 
 const THERAPEUTIC: ServiceCategory = "therapeutic-services";
 
@@ -31,7 +30,9 @@ const ServiceThumb: React.FC<{ service: ServiceRecord; }> = ({ service }) => {
     );
   }
   return (
-    <div className={`flex aspect-[16/9] w-full items-center justify-center ${theme.softBg}`}>
+    // The page background is already cream, so the lighter category tints need
+    // an outline to read as a deliberate placeholder rather than empty space.
+    <div className={`flex aspect-[16/9] w-full items-center justify-center border ${theme.softBg} ${theme.border}`}>
       <div className={`h-10 w-16 rounded-full opacity-70 ${theme.bg}`} />
     </div>
   );
@@ -52,33 +53,26 @@ export default async function Page() {
         const theme = CATEGORY_THEME[category];
         return (
           <section key={category} id={category} className="mt-16 scroll-mt-24">
-            <div className={`border-b-2 pb-5 ${theme.border}`}>
-              <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-8">
-                <CategoryBlob category={category} className="h-44 w-52 shrink-0">
-                  <h2 className="text-lg leading-tight font-bold">
-                    {tAlt(`ServiceCategories.${category}.name`)}
-                    <span className="mt-1 block text-xl">
-                      {t(`ServiceCategories.${category}.name`)}
-                    </span>
-                  </h2>
-                </CategoryBlob>
-                <div className="flex-1 text-center sm:text-left">
-                  <p className="text-muted-foreground my-0! max-w-prose">
-                    {t(`ServiceCategories.${category}.tagline`)}
-                  </p>
-                  {category === THERAPEUTIC && (
-                    <p className="mt-3 mb-0!">
-                      <Link
-                        href="/our-therapists"
-                        className={`font-medium underline underline-offset-4 ${theme.text}`}
-                      >
-                        {t("OurTherapists.meetTheTeam")} &rsaquo;
-                      </Link>
-                    </p>
-                  )}
-                </div>
-              </div>
-            </div>
+            <h2 className="x-section-heading flex flex-wrap items-baseline gap-x-3">
+              <span aria-hidden className={`inline-block size-3 shrink-0 rounded-full ${theme.bg}`} />
+              {t(`ServiceCategories.${category}.name`)}
+              <span className="text-muted-foreground font-normal">
+                {tAlt(`ServiceCategories.${category}.name`)}
+              </span>
+            </h2>
+            <p className="text-muted-foreground mt-3 mb-0! max-w-prose">
+              {t(`ServiceCategories.${category}.tagline`)}
+            </p>
+            {category === THERAPEUTIC && (
+              <p className="mt-2 mb-0!">
+                <Link
+                  href="/our-therapists"
+                  className="font-medium text-emerald-700 underline underline-offset-4"
+                >
+                  {t("OurTherapists.meetTheTeam")} &rsaquo;
+                </Link>
+              </p>
+            )}
 
             <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-3">
               {services.map((service) => (

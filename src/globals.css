@@ -329,6 +329,18 @@
   }
 }
 
+/**
+ * Section heading rule. One shared treatment for every top-level section
+ * heading across the site: heading text with a 2px accent rule beneath it.
+ */
+.x-section-heading {
+  @apply border-b-2 border-emerald-500 pb-2 text-xl font-bold;
+
+  a {
+    @apply no-underline hover:underline;
+  }
+}
+
 p {
   @apply my-6;
 }

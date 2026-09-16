@@ -140,15 +140,15 @@ export default async function Page({ params }: Props) {
       </Markdown>
 
       {therapists.length > 0 && (
-        <section className="not-prose mt-12 rounded-lg border border-emerald-200 bg-emerald-50/60 p-6">
-          <h2 className="text-lg font-bold">{tt("OurTherapists.onThisService")}</h2>
-          <ul className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <section className="not-prose mt-12">
+          <h2 className="x-section-heading">{tt("OurTherapists.onThisService")}</h2>
+          <ul className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {therapists.map((m) => (
-              <li key={m.slug} className="flex items-start gap-3">
+              <li key={m.slug} className="flex items-start gap-3 rounded-lg border p-4">
                 {m.photo ? (
                   <Image src={m.photo} alt={m.name} width={48} height={48} className="size-12 shrink-0 rounded-full object-cover" />
                 ) : (
-                  <span aria-hidden className="flex size-12 shrink-0 items-center justify-center rounded-full bg-emerald-200 text-sm font-semibold text-emerald-900">
+                  <span aria-hidden className="flex size-12 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-sm font-semibold text-emerald-800">
                     {initials(m.name)}
                   </span>
                 )}
@@ -162,7 +162,7 @@ export default async function Page({ params }: Props) {
               </li>
             ))}
           </ul>
-          <p className="mt-5">
+          <p className="mt-5 mb-0!">
             <Link href="/our-therapists" className="font-medium text-emerald-700 underline underline-offset-4">
               {tt("OurTherapists.meetTheTeam")} &rsaquo;
             </Link>

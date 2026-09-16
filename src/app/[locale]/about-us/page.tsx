@@ -19,8 +19,8 @@ export default async function Page() {
     <>
       {locale === 'en' ? <EnglishPage /> : <ChinesePage />}
       <section className="x-container mt-12">
-        <h2 className="text-xl font-bold">{t("title")}</h2>
-        <p className="text-muted-foreground mt-2 max-w-prose">{t("subtitle")}</p>
+        <h2 className="x-section-heading">{t("title")}</h2>
+        <p className="text-muted-foreground mt-3 mb-0! max-w-prose">{t("subtitle")}</p>
         <p className="mt-4">
           <Button asChild variant="accent">
             <Link href="/our-therapists">{t("meetTheTeam")}</Link>
