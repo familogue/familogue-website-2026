@@ -39,6 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...news.map(p => generateLocalePage(`/news/${p.slug}`, new Date(p.date))),
     generateLocalePage('/our-services'),
     ...getAllServices("en").map(s => generateLocalePage(`/our-services/${s.slug}`)),
+    generateLocalePage('/our-therapists'),
     generateLocalePage('/about-us'),
     generateLocalePage('/support-us'),
     generateLocalePage('/donate'),

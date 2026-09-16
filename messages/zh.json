@@ -101,5 +101,43 @@
     "description": "語你童行致力幫助大溫地區的華人家長和孩子在家可以更有系統地將他們的母語能力轉化成其他能力。為達成目標，我們恆常舉辦各類活動及提供各項服務。不論你是希望投入社區，了解機構更多，抑或為了發揮所長，我們都歡迎你加入我們的義工團隊，為我們的社區出一份力！",
     "volunteerFormButton": "義工報名表",
     "description_2": "填寫義工報名表，讓我們互相認識，了解更多。"
+  },
+  "ServiceCategories": {
+    "language-acquisition": {
+      "name": "語文學習",
+      "tagline": "以廣東話為本的讀寫及語言課程，為孩子打好母語基礎。"
+    },
+    "therapeutic-services": {
+      "name": "治療及支援服務",
+      "tagline": "由卑詩省註冊治療師提供評估及治療，服務語言包括廣東話、普通話及英文。"
+    },
+    "community-services": {
+      "name": "社區服務",
+      "tagline": "面向長者、家長及家庭的免費及低收費社區活動，服務大溫地區。"
+    }
+  },
+  "TeamRoles": {
+    "speech-language-pathologist": "言語治療師",
+    "occupational-therapist": "職業治療師",
+    "occupational-therapist-assistant": "職業治療師助理",
+    "counsellor": "輔導員",
+    "behaviour-analyst": "行為治療",
+    "social-skills-instructor": "社交技巧小組導師"
+  },
+  "Languages": {
+    "en": "英文",
+    "cmn": "普通話",
+    "yue": "廣東話"
+  },
+  "OurTherapists": {
+    "title": "治療師團隊",
+    "subtitle": "卑詩省註冊治療師，以廣東話、普通話及英文服務家庭。",
+    "meta": {
+      "description": "認識語你童行的註冊言語治療師、職業治療師、輔導員及行為分析師，以廣東話、普通話及英文服務大溫地區家庭。"
+    },
+    "certifications": "專業資格",
+    "languages": "服務語言",
+    "meetTheTeam": "認識整個團隊",
+    "onThisService": "提供此服務的治療師"
   }
 }

@@ -3,6 +3,8 @@ import { locales } from "@/i18n/config";
 import { buildAlternates, openGraphLocale } from "@/utils/alternates";
 import { Link } from "@/i18n/navigation";
 import { getAllServices, getServiceBySlug } from "@/utils/sdk/services";
+import { getTeamForService } from "@/utils/sdk/team";
+import { initials } from "@/utils/category-theme";
 import { extractExcerpt } from "@/utils/extractExcerpt";
 import Markdown from "markdown-to-jsx";
 import { getLocale, getTranslations } from "next-intl/server";
@@ -55,7 +57,9 @@ export default async function Page({ params }: Props) {
   if (!service) notFound();
 
   const t = await getTranslations("OurServices");
+  const tt = await getTranslations();
   const excerpt = extractExcerpt(service.content, 160);
+  const therapists = getTeamForService(slug, locale);
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -76,19 +80,27 @@ export default async function Page({ params }: Props) {
     ],
   };
 
-  const courseJsonLd = {
+  const serviceJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Course",
+    "@type": "Service",
     name: service.title,
     description: excerpt,
+    category: tt(`ServiceCategories.${service.category}.name`),
     provider: {
       "@type": "Organization",
       name: siteConfig.name,
       url: siteConfig.baseUrl,
     },
-    audience: { "@type": "EducationalAudience", educationalRole: "student" },
-    inLanguage: "zh",
-    offers: { "@type": "Offer", url: "https://store.familogue.ca" },
+    areaServed: { "@type": "AdministrativeArea", name: "Greater Vancouver, British Columbia" },
+    availableLanguage: ["yue", "cmn", "en"],
+    ...(therapists.length > 0 && {
+      employee: therapists.map((m) => ({
+        "@type": "Person",
+        name: m.name,
+        jobTitle: tt(`TeamRoles.${m.role}`),
+        knowsLanguage: m.languages,
+      })),
+    }),
   };
 
   return (
@@ -99,7 +111,7 @@ export default async function Page({ params }: Props) {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
       />
       <nav aria-label="breadcrumb" className="not-prose text-sm mb-4">
         <Link href="/our-services" className="hover:underline">{t("title")}</Link>
@@ -126,6 +138,37 @@ export default async function Page({ params }: Props) {
       >
         {service.content}
       </Markdown>
+
+      {therapists.length > 0 && (
+        <section className="not-prose mt-12 rounded-lg border border-emerald-200 bg-emerald-50/60 p-6">
+          <h2 className="text-lg font-bold">{tt("OurTherapists.onThisService")}</h2>
+          <ul className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {therapists.map((m) => (
+              <li key={m.slug} className="flex items-start gap-3">
+                {m.photo ? (
+                  <Image src={m.photo} alt={m.name} width={48} height={48} className="size-12 shrink-0 rounded-full object-cover" />
+                ) : (
+                  <span aria-hidden className="flex size-12 shrink-0 items-center justify-center rounded-full bg-emerald-200 text-sm font-semibold text-emerald-900">
+                    {initials(m.name)}
+                  </span>
+                )}
+                <div className="min-w-0 space-y-0.5">
+                  <p className="my-0! leading-tight font-semibold">{m.name}</p>
+                  <p className="text-muted-foreground my-0! text-sm leading-snug">{m.credentials}</p>
+                  <p className="text-muted-foreground my-0! text-sm leading-snug">
+                    {m.languages.map((c) => tt(`Languages.${c}`)).join(" · ")}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-5">
+            <Link href="/our-therapists" className="font-medium text-emerald-700 underline underline-offset-4">
+              {tt("OurTherapists.meetTheTeam")} &rsaquo;
+            </Link>
+          </p>
+        </section>
+      )}
     </div>
   );
 }

@@ -1,0 +1,260 @@
+{
+  "team": [
+    {
+      "slug": "ka-wing-leung",
+      "name": "Ka Wing Leung",
+      "role": "speech-language-pathologist",
+      "credentials": "SLP",
+      "languages": [
+        "en",
+        "cmn",
+        "yue"
+      ],
+      "content": "卑詩省註冊言語治療師，致力提供個別化、以家庭為中心，以及照顧神經多樣性的服務。臨床興趣包括完形語言處理、輔助及替代溝通（AAC）、早期語言發展，以及支援跨語言溝通的兒童及家庭。可提供英語、普通話及粵語（廣東話）服務。",
+      "content_en": "Registered Speech-Language Pathologist in British Columbia. Ka Wing is committed to providing individualized, family-centred, and neurodiversity-affirming care, including Autism Spectrum Disorder (ASD), Development Language Disorder (DLD), speech sound disorders, and motor speech disorders. Her clinical interests include Gestalt Language Processing (GLP), Augmentative and Alternative Communication (AAC), early language development, and supporting multilingual communicators.",
+      "certifications": [
+        "Certified therapist of PROMPT technique",
+        "Certified therapist of TalkTools Oral Placement Therapy Level 1 & Level 2",
+        "Certified therapist of Beckman Oral Motor Assessment and Intervention",
+        "DIR® 101: Introduction to DIR®/Floortime®",
+        "Certificate of membership – The Hong Kong Association of Speech Therapists",
+        "Eligible user of the Hong Kong Test of Preschool Oral Language (Cantonese) (TOPOL)",
+        "Eligible user of the Hong Kong Cantonese Oral Language Assessment Scale (HKCOLAS)",
+        "Eligible user of the Hong Kong Cantonese Articulation Test (HKCAT)",
+        "Eligible provider and user of the Hong Kong Graded Character Naming Test (HKGCNT)",
+        "Eligible user of the Chinese Language Assessment Scales – Toddler and Pre-schoolers (CLAS-TP)"
+      ],
+      "photo": null,
+      "services": [
+        "speech-language-pathology"
+      ],
+      "status": "Published"
+    },
+    {
+      "slug": "jessica-huen",
+      "name": "Jessica Huen",
+      "role": "speech-language-pathologist",
+      "credentials": "SLP, MScESLPLD (Master of Science in Educational Speech-Language Pathology and Learning Disabilities), RASP",
+      "languages": [
+        "en",
+        "yue"
+      ],
+      "content": "卑詩省 RASP 自閉症服務提供者註冊名單上的言語治療師，具豐富經驗。支援有言語、語言及溝通困難的兒童。她以遊戲為本的治療方式，並根據每位兒童的強項和興趣設計個別化介入方案，可提供英語及粵語（廣東話）服務。",
+      "content_en": "On RASP list registered Speech-Language Pathologist in British Columbia with extensive experience supporting children with a variety of needs, including Autism, Developmental Language Disorders, Speech Sound Disorders, and Augmentative and Alternative Communication (AAC).\n\nJessica uses a play-based approach and tailors therapy to each child's individual strengths and interests.",
+      "certifications": [
+        "Hanen Program: More Than Words Certification",
+        "Beckman Oral Motor Assessment and Intervention Certificate",
+        "Talk Tools: A Sensory Motor Approach course"
+      ],
+      "photo": null,
+      "services": [
+        "speech-language-pathology"
+      ],
+      "status": "Published"
+    },
+    {
+      "slug": "cherling-lee",
+      "name": "Cherling Lee",
+      "role": "occupational-therapist",
+      "credentials": "OT, MAFCFE, RASP",
+      "languages": [
+        "en",
+        "cmn",
+        "yue"
+      ],
+      "content": "卑詩省 RASP 自閉症服務提供者註冊名單上的註冊職業治療師，擁有超過 18 年經驗。她透過個別化介入計劃及實證為本的治療方法，協助兒童建立參與日常生活所需的能力，並提升生活質素。",
+      "content_en": "On RASP list registered Occupational Therapist with over 18 years of experience, including more than 15 years specializing in paediatric rehabilitation, supporting children in developing the skills they need for daily life through individualized intervention plans and evidence-based therapeutic approaches. These included sensory integration, fine motor development, handwriting and pre-writing skills, visual-perceptual training, ocular motor training, and daily living skills for children with diverse developmental, neurological, and medical needs. She also served as a Clinical Educator for occupational therapy students from both Bachelor's and Master's programs in Hong Kong. Cherling has specialized expertise in working with children with Autism Spectrum Disorder (ASD), Sensory Processing Disorder, ADHD, physical disabilities, and complex developmental delays, as well as children with a range of musculoskeletal, neurological, and medical conditions. Her clinical experience spans acute hospitals, rehabilitation hospitals, outpatient clinics, special childcare centres, early learning and training centres, home-based programs, preschools, and elementary school settings.",
+      "certifications": [
+        "Prechtl General Movement Assessment (GMA)",
+        "Handwriting Without Tears® – K–5 Handwriting Workshop & Level 1 Certified Handwriting Specialist",
+        "Brick-by-Brick® Programme Facilitator (formerly LEGO®-based Therapy)",
+        "Neurodevelopmental Treatment (NDT) for Children with Developmental Disabilities",
+        "Intervention in Young Children with Cerebral Palsy & Bobath Concept",
+        "Blomberg Rhythmic Movement Training (RBMT), Levels 1–3",
+        "The SCERTS Model – Social Communication, Emotional Regulation & Transactional Support",
+        "Seeing Moving: Vestibular–Visual Integration for Learning – Kim Barthel",
+        "Sensory Integration and Praxis Test (SIPT) by A. Jean Ayres",
+        "Copying Speed Test for Hong Kong Secondary Students",
+        "Therapeutic Listening®",
+        "Member of the Vancouver Regional Paediatric Team"
+      ],
+      "photo": null,
+      "services": [
+        "occupational-therapy"
+      ],
+      "status": "Published"
+    },
+    {
+      "slug": "cather-chan",
+      "name": "Cather Chan",
+      "role": "occupational-therapist",
+      "credentials": "OT, MA ECE",
+      "languages": [
+        "en",
+        "cmn",
+        "yue"
+      ],
+      "content": "卑詩省 RASP 自閉症服務提供者註冊名單上的註冊職業治療師，擁有超過 20 年兒科服務經驗。她按每位孩子的獨特需要制定個別化介入計劃，範疇包括感覺統合、前庭訓練、書寫訓練、視覺動作及眼球活動訓練，以及日常生活技能支援。",
+      "content_en": "On RASP list registered Occupational Therapist with over 20 years of experience working with children and families. Cather addresses each child's unique needs through tailored intervention plans, including sensory integration, vestibular training, handwriting and pre-writing, visual-motor and ocular-motor training, and daily living skills support.",
+      "certifications": [
+        "Certificate of Achievement in “Plan to Protect - Abuse Prevention Training” (The Bridge Church)",
+        "Certified consultant of Relationship Development Intervention (RDI) Program (RDIconnect)",
+        "Certificate in “The SCERTS Model: Advanced Course on Implementation & Assessment Training” (Communication Crossroads)",
+        "Certificate of “M.O.R.E.”: Integrating the Mouth with Sensory and Postural Functions (The Spastics Association of Hong Kong)",
+        "Certificate in “How Does Your Engine Run? The Alert Program for Self-Regulation” (Rotary ReHabAid Centre)",
+        "Certificate in Non-harmful Control and Breakaway Techniques (Jockey Club New Life Institute of Psychiatric Rehabilitation)",
+        "Certificate in Using DIR / Floortime Model to Treat Children with Developmental Challenges (The Chinese University of Hong Kong)",
+        "Certificate in Sensory Integration and Praxis Test (SIPT) (University of Southern California Dept. of Occupational Science and Therapy AND Western Psychological Service)",
+        "Certificate in “Vestibular Activation: Therapeutic Use of Movement to Optimize Orientation, Vision Listening and Learning” (The Spastics Association of Hong Kong)",
+        "Certificate in Advanced Listening with the Whole Body (Vital Links Course Completion No.: AM4030)"
+      ],
+      "photo": null,
+      "services": [
+        "occupational-therapy"
+      ],
+      "status": "Published"
+    },
+    {
+      "slug": "konica-kwok",
+      "name": "Konica Kwok",
+      "role": "occupational-therapist",
+      "credentials": "OT, MSc Special Education (Autism)",
+      "languages": [
+        "en",
+        "cmn",
+        "yue"
+      ],
+      "content": "卑詩省註冊職業治療師，擁有超過十五年醫院、社區環境及診所工作嘅經驗，範疇包括感覺統合、神經多樣性肯定護理、兒童發育同身體方式方面嘅專業知識。",
+      "content_en": "Registered Occupational Therapist in British Columbia with over 15 years of experience working across hospitals, community settings, and clinics supporting adults, seniors, and children and expertise in sensory processing, neurodiversity-affirming care, child development, and physical modalities.",
+      "certifications": [],
+      "photo": null,
+      "services": [
+        "occupational-therapy"
+      ],
+      "status": "Published"
+    },
+    {
+      "slug": "yvonne-ho",
+      "name": "Yvonne Ho",
+      "role": "occupational-therapist-assistant",
+      "credentials": "MScOT",
+      "languages": [
+        "en",
+        "cmn",
+        "yue"
+      ],
+      "content": "職業治療師助理，在香港擁有超過十五年從事職業治療、與兒童及家庭合作的經驗，致力以遊戲為本及以家庭為中心的方式支援兒童身心發展。",
+      "content_en": "Occupational Therapist Assistant who has over 15 years of experience working with children and families as an OT in Hong Kong and aims to support children using a play-based and family-centred approach to enhance the child's functioning and promote well-being.",
+      "certifications": [],
+      "photo": null,
+      "services": [
+        "occupational-therapy"
+      ],
+      "status": "Published"
+    },
+    {
+      "slug": "christine-siu",
+      "name": "Christine Siu",
+      "role": "counsellor",
+      "credentials": "RCC, M.Psy.Med, MSci (Hons) Psych",
+      "languages": [
+        "en",
+        "cmn",
+        "yue"
+      ],
+      "content": "BCACC 註冊輔導員同受過訓練嘅樂高®遊戲治療協助者，佢有同特殊需要兒童合作嘅經驗，並旨在透過協作嘅家庭內部溝通方法，增進親子關係。",
+      "content_en": "Registered Clinical Counsellor in BC and trained LEGO® play therapy facilitator who has experience working with special needs children and aims to enhance parent-child relationships through a collaborative intra-family communication approach.",
+      "certifications": [
+        "Double Doodle Play: A Window to Whole-Brain Vision",
+        "Brain Gym 104",
+        "Youth Mental Health First Aid (YMHFA)",
+        "Certified Mental Health Forst Aider",
+        "Bricks for Autism C.I.C",
+        "LEGO®-Based Therapy Recognised Facilitator"
+      ],
+      "photo": null,
+      "services": [
+        "counselling-and-support-service"
+      ],
+      "status": "Published"
+    },
+    {
+      "slug": "esther-lau",
+      "name": "Esther Lau",
+      "role": "counsellor",
+      "credentials": "M.S. RCC",
+      "languages": [
+        "en",
+        "cmn",
+        "yue"
+      ],
+      "content": "卑詩省註冊臨床輔導員及香港心理學會註冊心理學家及副研究員，於加拿大及香港兩地都有豐富心理治療及家庭治療臨床經驗。",
+      "content_en": "Registered Clinical Counsellor in BC. Clinical Fellow & Approved Supervisor of American Association of Marriage & Family Therapy. Registered Psychologist (Hong Kong Psychological Society). Esther has extensive clinical experience in psychotherapy and family therapy in both Canada and Hong Kong.",
+      "certifications": [],
+      "photo": null,
+      "services": [
+        "counselling-and-support-service"
+      ],
+      "status": "Published"
+    },
+    {
+      "slug": "simone-lee",
+      "name": "Simone Lee",
+      "role": "counsellor",
+      "credentials": "RSW, MSW, MSSC, BSPsych",
+      "languages": [
+        "en",
+        "cmn",
+        "yue"
+      ],
+      "content": "卑詩省註冊社工，擁有超過十年經驗，協助有兒童及青少年，範疇包括社交情緒學習、行為、學習障礙、精神健康及複雜創傷，透過遊戲、對話及以實證為本的方法，在安全且具支持性的環境中，幫助他們建立表達情緒的信心。她亦與家長緊密合作，提供實用策略協助家長更了解子女，並加強親子關係。",
+      "content_en": "Registered Social Worker in BC with over 10 years of experience supporting children and youth with elevated needs in social-emotional learning, behaviour, learning disabilities, mental health, and complex trauma, using play, conversation, and evidence-based approaches in a safe and supportive space to help them build confidence in expressing their emotions, and working closely with parents to offer practical strategies for better understanding their children and strengthening the parent-child relationship.",
+      "certifications": [],
+      "photo": null,
+      "services": [
+        "counselling-and-support-service"
+      ],
+      "status": "Published"
+    },
+    {
+      "slug": "krisie-cheng",
+      "name": "Krisie Cheng",
+      "role": "behaviour-analyst",
+      "credentials": "BCBA, Health Psychology MSc, BA (Hons) Psych / HRM",
+      "languages": [
+        "en",
+        "cmn",
+        "yue"
+      ],
+      "content": "行為分析師認證委員會（BACB）認證行為分析師（BCBA），擁有十四年豐富臨床經驗，專注服務二至十五歲有特殊教育需要的兒童，涵蓋自閉症譜系障礙（ASD）、整體發展遲緩（GDD）、專注力不足及過度活躍症（ADHD）、唐氏綜合症、感覺統合失調（SPD）、智力障礙（ID）、言語及語言發展遲緩、選擇性緘默症、特殊學習困難（SLD）及情緒調節障礙。其工作涵蓋一對一、雙人及小組治療模式，可靈活於家居、中心及學校等不同環境實施，並因應各場景提供評估及個別化課程設計，包括家居應用行為分析（ABA）治療、行為介入及臨床督導，以及家長與照顧者培訓。",
+      "content_en": "Board Certified Behavior Analyst (BCBA), certified by the Behavior Analyst Certification Board, with 14 years of clinical experience, including 3 years teaching typically developing children and 14 years supporting children aged 2 to 15 with special educational needs such as autism spectrum disorder (ASD), global developmental delay (GDD), attention deficit hyperactivity disorder (ADHD), Down syndrome, sensory processing disorder (SPD), intellectual disability (ID), speech and language delay, selective mutism, specific learning difficulties (SLD), and emotion regulation disorders. Her work spans one-on-one, duo, and group therapy models, flexibly delivered across homes, centres, and schools, and includes assessment and individualised program design for each setting, including home-based Applied Behavior Analysis (ABA) therapy, behaviour intervention and clinical supervision, and parent and caregiver training.",
+      "certifications": [
+        "Certificate in Youth & Drugs and Mental Health"
+      ],
+      "photo": null,
+      "services": [
+        "behavior-intervention"
+      ],
+      "status": "Published"
+    },
+    {
+      "slug": "lousina-wong",
+      "name": "Lousina Wong",
+      "role": "social-skills-instructor",
+      "credentials": "ECE Dip. (SEN)",
+      "languages": [
+        "en",
+        "cmn",
+        "yue"
+      ],
+      "content": "社交技巧小組導師，持有特殊需要文憑及幼兒教育文憑，擁有超過二十五年與兒童合作的經驗，於各類幼兒教育環境中支援學童學習，協助他們建立自信、解難能力及現實生活中正面的同儕互動。",
+      "content_en": "Social skill group instructor holds a Special Needs diploma and Early Childhood Education diploma and has over 25 years of experience working with children, supporting young learners in a variety of early childhood settings, helping them build confidence, problem-solving skills and real life positive peer interactions.",
+      "certifications": [],
+      "photo": null,
+      "services": [
+        "social-skills-group"
+      ],
+      "status": "Published"
+    }
+  ]
+}
