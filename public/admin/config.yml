@@ -24,6 +24,14 @@ collections:
               - { name: slug, label: Slug, widget: string }
               - { name: title, label: Title (ZH), widget: string }
               - { name: title_en, label: Title (EN), widget: string }
+              - name: category
+                label: Category
+                widget: select
+                required: true
+                options:
+                  - { label: 'Language Acquisition 語文學習', value: language-acquisition }
+                  - { label: 'Therapeutic Services 治療及支援服務', value: therapeutic-services }
+                  - { label: 'Community Services 社區服務', value: community-services }
               - name: content
                 label: Content (ZH)
                 widget: markdown
@@ -38,6 +46,68 @@ collections:
                 media_folder: /public/images
                 public_folder: /images
                 required: false
+              - name: status
+                label: Status
+                widget: select
+                options:
+                  - Published
+                  - Archived
+  - name: team
+    label: Team
+    files:
+      - name: team
+        label: Therapists
+        file: content/team.json
+        fields:
+          - name: team
+            label: Therapists
+            widget: list
+            summary: '{{name}}'
+            fields:
+              - { name: slug, label: Slug, widget: string }
+              - { name: name, label: Name, widget: string }
+              - name: role
+                label: Role
+                widget: select
+                required: true
+                options:
+                  - { label: 'Speech-Language Pathologist 言語治療師', value: speech-language-pathologist }
+                  - { label: 'Occupational Therapist 職業治療師', value: occupational-therapist }
+                  - { label: 'Occupational Therapist Assistant 職業治療師助理', value: occupational-therapist-assistant }
+                  - { label: 'Counsellor 輔導員', value: counsellor }
+                  - { label: 'Behaviour Intervention 行為治療', value: behaviour-analyst }
+                  - { label: 'Social Skills Group Instructor 社交技巧小組導師', value: social-skills-instructor }
+              - { name: credentials, label: Credentials, widget: string }
+              - name: languages
+                label: Languages
+                widget: select
+                multiple: true
+                options:
+                  - { label: 'Cantonese 廣東話', value: yue }
+                  - { label: 'Mandarin 普通話', value: cmn }
+                  - { label: 'English 英文', value: en }
+              - name: content
+                label: Bio (ZH)
+                widget: text
+              - name: content_en
+                label: Bio (EN)
+                widget: text
+              - name: certifications
+                label: Certifications
+                widget: list
+                required: false
+                field: { name: item, label: Certification, widget: string }
+              - name: photo
+                label: Photo
+                widget: image
+                media_folder: /public/images
+                public_folder: /images
+                required: false
+              - name: services
+                label: Services delivered
+                widget: list
+                required: false
+                field: { name: slug, label: Service slug, widget: string }
               - name: status
                 label: Status
                 widget: select

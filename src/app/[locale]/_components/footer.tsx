@@ -14,6 +14,7 @@ export const Footer: FC = async () => {
     { title: tNav('home'), route: '/' },
     { title: tNav('news'), route: '/news' },
     { title: tNav('services'), route: '/our-services' },
+    { title: tNav('therapists'), route: '/our-therapists' },
     // { title: tNav('classes-and-events'), route: '/classes-and-events' },
     { title: tNav('support-us'), route: '/support-us' },
     { title: tNav('about-us'), route: '/about-us' },

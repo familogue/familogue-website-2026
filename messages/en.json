@@ -10,6 +10,7 @@
     "home": "Home",
     "news": "News",
     "services": "Our Services",
+    "therapists": "Our Therapists",
     "support-us": "Support Us",
     "about-us": "About Us",
     "contact-us": "Contact Us",
@@ -100,5 +101,43 @@
     "description": "At Familogue, we are dedicated to helping Chinese-speaking parents and children in the Greater Vancouver area build on their mother tongue at home and develop it into a foundation for other essential skills. To achieve this, we regularly host events and offer a variety of programs and services. Whether you're hoping to get more involved in the community, learn more about our mission, or contribute your talents, we warmly welcome you to join our volunteer team and make a difference together.",
     "volunteerFormButton": "Volunteer Application Form",
     "description_2": "Fill out our volunteer form — we’d love to get to know you!"
+  },
+  "ServiceCategories": {
+    "language-acquisition": {
+      "name": "Language Acquisition",
+      "tagline": "Cantonese literacy and language programmes that build a strong mother-tongue foundation."
+    },
+    "therapeutic-services": {
+      "name": "Therapeutic Services",
+      "tagline": "Assessment and therapy from BC-registered therapists, in Cantonese, Mandarin and English."
+    },
+    "community-services": {
+      "name": "Community Services",
+      "tagline": "Free and low-cost gatherings for seniors, parents and families across Greater Vancouver."
+    }
+  },
+  "TeamRoles": {
+    "speech-language-pathologist": "Speech-Language Pathologists",
+    "occupational-therapist": "Occupational Therapists",
+    "occupational-therapist-assistant": "Occupational Therapist Assistant",
+    "counsellor": "Counsellors",
+    "behaviour-analyst": "Behaviour Intervention",
+    "social-skills-instructor": "Social Skills Group Instructor"
+  },
+  "Languages": {
+    "en": "English",
+    "cmn": "Mandarin",
+    "yue": "Cantonese"
+  },
+  "OurTherapists": {
+    "title": "Our Therapists",
+    "subtitle": "Registered therapists serving families in Cantonese, Mandarin and English.",
+    "meta": {
+      "description": "Meet Familogue's registered speech-language pathologists, occupational therapists, counsellors and behaviour analysts, serving Greater Vancouver families in Cantonese, Mandarin and English."
+    },
+    "certifications": "Certifications",
+    "languages": "Languages",
+    "meetTheTeam": "Meet our full team",
+    "onThisService": "Your therapists for this service"
   }
 }
