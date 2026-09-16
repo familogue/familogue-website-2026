@@ -72,13 +72,17 @@ export default async function Page() {
       <section className="mt-20">
         <h2 className="x-section-heading"><Link href="/our-services">{t("OurServices.title")} &rsaquo;</Link></h2>
         <div className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-3">
-          {serviceGroups.map(({ category, services }) => (
+          {serviceGroups.map(({ category, services }, index) => (
             <Link
               key={category}
               href={`/our-services#${category}`}
               className="group col-span-1 flex flex-col items-center text-center no-underline"
             >
-              <CategoryBlob category={category} className="h-[12.65rem] w-[14.95rem] transition-transform group-hover:scale-105">
+              <CategoryBlob
+                category={category}
+                spinOffsetDeg={index * 120}
+                className="h-[12.65rem] w-[14.95rem] transition-transform group-hover:scale-105"
+              >
                 <span className="text-sm leading-tight font-semibold text-balance">
                   {tAlt(`ServiceCategories.${category}.name`)}
                   <span className="mt-1 block text-lg font-bold">
@@ -86,8 +90,8 @@ export default async function Page() {
                   </span>
                 </span>
               </CategoryBlob>
-              <p className="text-muted-foreground mt-3 mb-0! text-sm">{t(`ServiceCategories.${category}.tagline`)}</p>
-              <p className={`mt-2 mb-0! text-sm font-medium ${CATEGORY_THEME[category].text}`}>
+              <p className="text-muted-foreground mt-3 mb-0 text-sm">{t(`ServiceCategories.${category}.tagline`)}</p>
+              <p className={`mt-2 mb-0 text-sm font-medium ${CATEGORY_THEME[category].text}`}>
                 {services.map((service) => service.title).join(" · ")}
               </p>
             </Link>

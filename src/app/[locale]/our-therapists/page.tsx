@@ -66,7 +66,7 @@ export default async function Page() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       <h1 className="text-3xl font-bold">{t("OurTherapists.title")}</h1>
-      <p className="text-muted-foreground mt-2 mb-0! max-w-prose">{t("OurTherapists.subtitle")}</p>
+      <p className="text-muted-foreground mt-2 mb-0 max-w-prose">{t("OurTherapists.subtitle")}</p>
 
       {groups.map(({ role, members }) => (
         <section key={role} id={role} className="mt-12 scroll-mt-24">
@@ -78,14 +78,14 @@ export default async function Page() {
                   <Avatar member={member} />
                   <div className="min-w-0 space-y-0.5">
                     <h3 className="text-lg leading-tight font-semibold">{member.name}</h3>
-                    <p className="text-muted-foreground my-0! text-sm leading-snug">{member.credentials}</p>
-                    <p className="text-muted-foreground my-0! text-sm leading-snug">
+                    <p className="text-muted-foreground my-0 text-sm leading-snug">{member.credentials}</p>
+                    <p className="text-muted-foreground my-0 text-sm leading-snug">
                       {t("OurTherapists.languages")}:{" "}
                       {member.languages.map((code) => t(`Languages.${code}`)).join(" · ")}
                     </p>
                   </div>
                 </div>
-                <p className="mt-4 mb-0! text-sm whitespace-pre-line">{member.content}</p>
+                <p className="mt-4 mb-0 text-sm whitespace-pre-line">{member.content}</p>
                 {member.certifications.length > 0 && (
                   <details className="mt-3">
                     <summary className="cursor-pointer text-sm font-medium">

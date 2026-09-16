@@ -341,8 +341,15 @@
   }
 }
 
-p {
-  @apply my-6;
+@layer base {
+  /*
+   * Default paragraph rhythm. Lives in `base` so that margin utilities
+   * (`mt-4`, `my-0`, ...) win without needing `!important` on every
+   * compact component.
+   */
+  p {
+    @apply my-6;
+  }
 }
 
 .x-tag {

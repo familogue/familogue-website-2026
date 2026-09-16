@@ -153,16 +153,16 @@ export default async function Page({ params }: Props) {
                   </span>
                 )}
                 <div className="min-w-0 space-y-0.5">
-                  <p className="my-0! leading-tight font-semibold">{m.name}</p>
-                  <p className="text-muted-foreground my-0! text-sm leading-snug">{m.credentials}</p>
-                  <p className="text-muted-foreground my-0! text-sm leading-snug">
+                  <p className="my-0 leading-tight font-semibold">{m.name}</p>
+                  <p className="text-muted-foreground my-0 text-sm leading-snug">{m.credentials}</p>
+                  <p className="text-muted-foreground my-0 text-sm leading-snug">
                     {m.languages.map((c) => tt(`Languages.${c}`)).join(" · ")}
                   </p>
                 </div>
               </li>
             ))}
           </ul>
-          <p className="mt-5 mb-0!">
+          <p className="mt-5 mb-0">
             <Link href="/our-therapists" className="font-medium text-emerald-700 underline underline-offset-4">
               {tt("OurTherapists.meetTheTeam")} &rsaquo;
             </Link>

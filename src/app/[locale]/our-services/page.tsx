@@ -60,11 +60,11 @@ export default async function Page() {
                 {tAlt(`ServiceCategories.${category}.name`)}
               </span>
             </h2>
-            <p className="text-muted-foreground mt-3 mb-0! max-w-prose">
+            <p className="text-muted-foreground mt-3 mb-0 max-w-prose">
               {t(`ServiceCategories.${category}.tagline`)}
             </p>
             {category === THERAPEUTIC && (
-              <p className="mt-2 mb-0!">
+              <p className="mt-2 mb-0">
                 <Link
                   href="/our-therapists"
                   className="font-medium text-emerald-700 underline underline-offset-4"
@@ -83,10 +83,10 @@ export default async function Page() {
                   <h3 className="font-semibold">
                     <Link href={`/our-services/${service.slug}`}>{service.title}</Link>
                   </h3>
-                  <p className="text-muted-foreground my-0! flex-1 text-sm">
+                  <p className="text-muted-foreground my-0 flex-1 text-sm">
                     {extractExcerpt(service.content)}
                   </p>
-                  <p className="mt-1 mb-0!">
+                  <p className="mt-1 mb-0">
                     <Button asChild variant="accent" size="sm">
                       <Link href={`/our-services/${service.slug}`}>{t("General.view_details")}</Link>
                     </Button>
