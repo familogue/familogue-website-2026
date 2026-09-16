@@ -90,8 +90,8 @@ export default async function Page() {
                   </span>
                 </span>
               </CategoryBlob>
-              <p className="text-muted-foreground mt-3 mb-0 text-sm">{t(`ServiceCategories.${category}.tagline`)}</p>
-              <p className={`mt-2 mb-0 text-sm font-medium ${CATEGORY_THEME[category].text}`}>
+              <p className="text-muted-foreground mt-3 mb-0">{t(`ServiceCategories.${category}.tagline`)}</p>
+              <p className={`mt-2 mb-0 font-medium ${CATEGORY_THEME[category].text}`}>
                 {services.map((service) => service.title).join(" · ")}
               </p>
             </Link>
