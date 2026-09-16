@@ -1,14 +1,14 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/navigation";
+import { CATEGORY_THEME } from "@/utils/category-theme";
 import { extractExcerpt } from "@/utils/extractExcerpt";
 import { generatedMetadataForPage } from "@/utils/generatedMetadataForPage";
 import { getAllMedia } from "@/utils/sdk/media";
 import { getFeaturedNews } from "@/utils/sdk/news";
 import { getServicesByCategory } from "@/utils/sdk/services";
-import { CategoryBlob } from "./_components/category-blob";
-import { CATEGORY_THEME } from "@/utils/category-theme";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
-import { Link } from "@/i18n/navigation";
+import { CategoryBlob } from "./_components/category-blob";
 
 export async function generateMetadata() {
   const locale = await getLocale();
@@ -39,6 +39,35 @@ export default async function Page() {
         <h1>{t("Homepage.title")}</h1>
         <h2>{t("Homepage.subtitle")}</h2>
       </section>
+      <section className="mt-20">
+        <h2 className="x-section-heading"><Link href="/our-services">{t("OurServices.title")} &rsaquo;</Link></h2>
+        <div className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-3">
+          {serviceGroups.map(({ category, services }, index) => (
+            <Link
+              key={category}
+              href={`/our-services#${category}`}
+              className="group col-span-1 flex flex-col items-center text-center no-underline"
+            >
+              <CategoryBlob
+                category={category}
+                spinOffsetDeg={index * 120}
+                className="h-[12.65rem] w-[14.95rem] transition-transform group-hover:scale-105"
+              >
+                <span className="text-sm leading-tight font-semibold text-balance">
+                  {tAlt(`ServiceCategories.${category}.name`)}
+                  <span className="mt-1 block text-lg font-bold">
+                    {t(`ServiceCategories.${category}.name`)}
+                  </span>
+                </span>
+              </CategoryBlob>
+              <p className="text-muted-foreground mt-3 mb-0">{t(`ServiceCategories.${category}.tagline`)}</p>
+              <p className={`mt-2 mb-0 font-medium ${CATEGORY_THEME[category].text}`}>
+                {services.map((service) => service.title).join(" · ")}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </section>
       {featuredNews.length > 0 && (
         <section className="mt-20">
           <h2 className="x-section-heading"><Link href="/news">{t("News.title")} &rsaquo;</Link></h2>
@@ -68,35 +97,6 @@ export default async function Page() {
         <h2 className="x-section-heading"><Link href="/about-us">{t("AboutUs.title")} &rsaquo;</Link></h2>
         <h3>{t("AboutUs.subtitle")}</h3>
         <p>{t("AboutUs.description")}</p>
-      </section>
-      <section className="mt-20">
-        <h2 className="x-section-heading"><Link href="/our-services">{t("OurServices.title")} &rsaquo;</Link></h2>
-        <div className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-3">
-          {serviceGroups.map(({ category, services }, index) => (
-            <Link
-              key={category}
-              href={`/our-services#${category}`}
-              className="group col-span-1 flex flex-col items-center text-center no-underline"
-            >
-              <CategoryBlob
-                category={category}
-                spinOffsetDeg={index * 120}
-                className="h-[12.65rem] w-[14.95rem] transition-transform group-hover:scale-105"
-              >
-                <span className="text-sm leading-tight font-semibold text-balance">
-                  {tAlt(`ServiceCategories.${category}.name`)}
-                  <span className="mt-1 block text-lg font-bold">
-                    {t(`ServiceCategories.${category}.name`)}
-                  </span>
-                </span>
-              </CategoryBlob>
-              <p className="text-muted-foreground mt-3 mb-0">{t(`ServiceCategories.${category}.tagline`)}</p>
-              <p className={`mt-2 mb-0 font-medium ${CATEGORY_THEME[category].text}`}>
-                {services.map((service) => service.title).join(" · ")}
-              </p>
-            </Link>
-          ))}
-        </div>
       </section>
       <section className="mt-20" aria-labelledby="media-section-heading">
         <script
