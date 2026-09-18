@@ -412,7 +412,12 @@
     @apply font-medium;
   }
 
-  .x-col1, .x-col2, .x-col3 {
+  /*
+   * One class shared by every footer column. This was previously a list of
+   * `.x-col1, .x-col2, .x-col3`, which meant adding a fourth column silently
+   * dropped its top margin and line spacing.
+   */
+  .x-footer-col {
     @apply flex flex-col gap-3 my-4;
   }
 

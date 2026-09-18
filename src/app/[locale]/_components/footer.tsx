@@ -31,12 +31,12 @@ export const Footer: FC = async () => {
   return (
     <footer className="x-global-footer">
       <div className="x-row">
-        <div className="x-col1">
+        <div className="x-footer-col">
           <h4>{siteConfig.name}</h4>
           <p className="text-muted-foreground">{tFooter('description')}</p>
           <p></p>
         </div>
-        <div className="x-col2">
+        <div className="x-footer-col">
           {footerItems.map(item => {
             const route = item.route;
             return (
@@ -57,7 +57,7 @@ export const Footer: FC = async () => {
           heading made eight items serving two different intents, and buried
           the phone number among the social links.
         */}
-        <div className="x-col3">
+        <div className="x-footer-col">
           <h4>{tNav('contact-us')}</h4>
           <p>{tNav('telephone')}: <Link href={`tel:${contactInfo.phone.e164}`}>{contactInfo.phone.display}</Link></p>
           <p>{tNav('email')}: <Link href={`mailto:${contactInfo.email}`}>{contactInfo.email}</Link></p>
@@ -65,7 +65,7 @@ export const Footer: FC = async () => {
           <p>{tContact('primarySite')} ({tContact('richmondSiteName')}): <Link href={richmond.mapsUrl} target="_blank" rel="noopener noreferrer">{richmond.displayAddress}</Link></p>
           <p>{tContact('satelliteSite')} ({tContact('satelliteSchedule')}): <Link href={vancouver.mapsUrl} target="_blank" rel="noopener noreferrer">{vancouver.displayAddress}</Link></p>
         </div>
-        <div className="x-col4">
+        <div className="x-footer-col">
           <h4>{tNav('follow-us')}</h4>
           <p><Link href={contactInfo.social.facebook} target="_blank" rel="noopener noreferrer"><FacebookIcon />Facebook</Link></p>
           <p><Link href={contactInfo.social.instagram} target="_blank" rel="noopener noreferrer"><InstagramIcon />Instagram</Link></p>
