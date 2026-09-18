@@ -21,8 +21,11 @@
   --muted-foreground: oklch(0.553 0.013 58.071);
   /* --accent: oklch(0.97 0.001 106.424); */
   /* --accent-foreground: oklch(0.216 0.006 56.043); */
-  --accent: oklch(63.695% 0.24853 27.789);
+  /* Accent is now the brand teal (matches --link); --destructive remains the red used for destructive/error states. */
+  --accent: oklch(0.511 0.08606 186.391); /* teal-700 #0f766e */
   --accent-foreground: oklch(0.97 0.001 106.424);
+  --link: oklch(0.511 0.08606 186.391); /* teal-700 #0f766e */
+  --link-hover: oklch(0.437 0.07052 188.216); /* teal-800 #115e59 */
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.923 0.003 48.717);
   --input: oklch(0.923 0.003 48.717);
@@ -55,8 +58,12 @@
   --secondary-foreground: oklch(0.985 0.001 106.423);
   --muted: oklch(0.268 0.007 34.298);
   --muted-foreground: oklch(0.709 0.01 56.259);
-  --accent: oklch(0.268 0.007 34.298);
-  --accent-foreground: oklch(0.985 0.001 106.423);
+  --accent: oklch(0.6 0.10384 184.704); /* teal-600 #0d9488 */
+  /* Dark ink, not the near-white used elsewhere: white on teal-600 is only
+     3.1:1, which fails WCAG 1.4.3 for button labels. */
+  --accent-foreground: oklch(0.147 0.004 49.25);
+  --link: oklch(0.785 0.13253 181.912); /* teal-400 #2dd4bf */
+  --link-hover: oklch(0.855 0.12508 181.071); /* teal-300 #5eead4 */
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
@@ -95,6 +102,8 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-link: var(--link);
+  --color-link-hover: var(--link-hover);
   --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
@@ -141,8 +150,15 @@
   @apply max-w-5xl mx-auto px-4 py-10;
 }
 
+/*
+ * Call-to-action button for markdown content, which can't reach the React
+ * <Button> component. Kept deliberately in step with that component's
+ * `accent` variant — same token, same hover, same radius — so the two
+ * button systems don't drift apart.
+ */
 .x-button {
-  @apply bg-primary text-white hover:bg-black transition-colors rounded p-2 inline-flex no-underline! items-center gap-1;
+  @apply bg-accent text-accent-foreground hover:bg-accent/90 shadow-xs transition-all rounded-md px-4 py-2 text-sm font-medium inline-flex no-underline! items-center gap-1;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2;
 }
 
 .x-top-nav {
@@ -337,7 +353,8 @@
   @apply border-b-2 border-emerald-500 pb-2 text-xl font-bold;
 
   a {
-    @apply no-underline hover:underline;
+    @apply text-link no-underline hover:underline hover:text-link-hover;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-link focus-visible:ring-offset-2;
   }
 }
 
@@ -377,7 +394,9 @@
   }
 
   a {
-    @apply text-accent hover:underline;
+    /* `--link`, not `--accent`: they hold the same teal today, but accent is
+       the CTA/button colour and these are text links. */
+    @apply text-link hover:text-link-hover hover:underline;
   }
 
   p {
@@ -414,6 +433,27 @@
 
 .prose a svg {
   @apply inline-block;
+}
+
+/*
+ * Links inside prose. The typography plugin ships its own `--tw-prose-links`
+ * colour, which wins over anything the `--link` token does — markdown bodies
+ * and any hand-written `<a>` in a `.prose` block would otherwise stay
+ * near-black. Point the plugin's variable at our token instead of restyling
+ * `a` directly, so the plugin keeps managing everything else about links.
+ *
+ * These keep the plugin's underline. Prose links sit inside blocks of text,
+ * where WCAG 1.4.1 requires more than colour to distinguish them — and no
+ * arrow, which belongs on standalone links only.
+ */
+.prose {
+  --tw-prose-links: var(--link);
+  --tw-prose-invert-links: var(--link);
+}
+
+/* `.x-button` is excluded: it is a button, so it keeps its own text colour. */
+.prose a:not(.x-button):hover {
+  color: var(--link-hover);
 }
 
 /* Typography plugin sets table font-size to 0.875em; keep tables at body size. */

@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { ArrowLink } from "@/components/ui/link";
 import { Link } from "@/i18n/navigation";
 import { extractExcerpt } from "@/utils/extractExcerpt";
 import { generatedMetadataForPage } from "@/utils/generatedMetadataForPage";
@@ -30,13 +30,8 @@ export default async function Page() {
             />
           </Link>
           <div className="flex-1">
-            <h2 className="mt-0"><Link href={`/news/${post.slug}`}>{post.title}</Link></h2>
+            <h2 className="mt-0"><ArrowLink href={`/news/${post.slug}`}>{post.title}</ArrowLink></h2>
             <p>{extractExcerpt(post.body)}</p>
-            <p>
-              <Button asChild className="not-prose" variant="accent" size="lg">
-                <Link href={`/news/${post.slug}`}>{t("General.view_details")}</Link>
-              </Button>
-            </p>
             <p className="text-sm text-gray-500 mb-1">{t("News.postedOn")} {post.date}</p>
           </div>
         </section>

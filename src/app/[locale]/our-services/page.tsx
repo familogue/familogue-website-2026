@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { ArrowLink } from "@/components/ui/link";
 import { Link } from "@/i18n/navigation";
 import { CATEGORY_THEME } from "@/utils/category-theme";
 import { extractExcerpt } from "@/utils/extractExcerpt";
@@ -65,12 +66,9 @@ export default async function Page() {
             </p>
             {category === THERAPEUTIC && (
               <p className="mt-2 mb-0">
-                <Link
-                  href="/our-therapists"
-                  className="font-medium text-emerald-700 underline underline-offset-4"
-                >
-                  {t("OurTherapists.meetTheTeam")} &rsaquo;
-                </Link>
+                <ArrowLink href="/our-therapists" className="font-medium">
+                  {t("OurTherapists.meetTheTeam")}
+                </ArrowLink>
               </p>
             )}
 
