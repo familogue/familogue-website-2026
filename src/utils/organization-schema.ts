@@ -1,16 +1,21 @@
 import { bcp47For } from "./alternates";
+import { contactInfo, type OpeningHoursGroup } from "./contact-info";
 import { siteConfig } from "./site-config";
 
 const ORGANIZATION_ID = `${siteConfig.baseUrl}/#organization`;
 const WEBSITE_ID = `${siteConfig.baseUrl}/#website`;
-const RICHMOND_ID = `${siteConfig.baseUrl}/#richmond-service-centre`;
-const VANCOUVER_ID = `${siteConfig.baseUrl}/#vancouver-satellite-site`;
+
+const RICHMOND = contactInfo.locations.find((l) => l.key === "richmond")!;
+const VANCOUVER = contactInfo.locations.find((l) => l.key === "vancouver")!;
+
+const RICHMOND_ID = `${siteConfig.baseUrl}/#${RICHMOND.idSuffix}`;
+const VANCOUVER_ID = `${siteConfig.baseUrl}/#${VANCOUVER.idSuffix}`;
 
 /** Public profiles that let search and answering engines resolve this entity. */
 const SAME_AS = [
-  "https://www.facebook.com/Familogue",
-  "https://www.instagram.com/familogue",
-  "https://www.youtube.com/@familogue",
+  contactInfo.social.facebook,
+  contactInfo.social.instagram,
+  contactInfo.social.youtube,
 ];
 
 /**
@@ -31,23 +36,35 @@ const AREA_SERVED = [
   { "@type": "AdministrativeArea", name: "Metro Vancouver, British Columbia, Canada" },
 ];
 
-const RICHMOND_ADDRESS = {
-  "@type": "PostalAddress",
-  streetAddress: "8181 Cambie Rd. Unit 5530",
-  addressLocality: "Richmond",
-  addressRegion: "BC",
-  postalCode: "V6X 1J8",
-  addressCountry: "CA",
-};
+function postalAddress(location: typeof RICHMOND) {
+  return {
+    "@type": "PostalAddress",
+    streetAddress: location.streetAddress,
+    addressLocality: location.addressLocality,
+    addressRegion: location.addressRegion,
+    postalCode: location.postalCode,
+    addressCountry: location.addressCountry,
+  };
+}
 
-const VANCOUVER_ADDRESS = {
-  "@type": "PostalAddress",
-  streetAddress: "8506 Ash Street",
-  addressLocality: "Vancouver",
-  addressRegion: "BC",
-  postalCode: "V6P 3M2",
-  addressCountry: "CA",
-};
+const RICHMOND_ADDRESS = postalAddress(RICHMOND);
+const VANCOUVER_ADDRESS = postalAddress(VANCOUVER);
+
+/**
+ * `openingHours` groups -> schema.org `OpeningHoursSpecification` entries.
+ * Closed days use `opens`/`closes` of `"00:00"` — Google's documented way to
+ * express a closed day, since `OpeningHoursSpecification` has no boolean for it.
+ */
+function openingHoursSpecification(groups: OpeningHoursGroup[]) {
+  return groups.map((group) => ({
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: group.days.map((day) => `https://schema.org/${day}`),
+    opens: group.closed ? "00:00" : group.opens,
+    closes: group.closed ? "00:00" : group.closes,
+  }));
+}
+
+const RICHMOND_OPENING_HOURS = openingHoursSpecification(RICHMOND.openingHours ?? []);
 
 /**
  * Site-wide entity graph, rendered once in the root layout.
@@ -76,9 +93,12 @@ export function organizationSchema(locale: string) {
         description: siteConfig.description,
         foundingDate: "2022",
         foundingLocation: { "@type": "Place", name: "British Columbia, Canada" },
-        telephone: "+17789910902",
-        email: "info@familogue.ca",
+        telephone: contactInfo.phone.e164,
+        email: contactInfo.email,
         address: RICHMOND_ADDRESS,
+        // This node shares Richmond's address/telephone, so it carries the
+        // same posted hours as the Richmond LocalBusiness node below.
+        openingHoursSpecification: RICHMOND_OPENING_HOURS,
         location: [{ "@id": RICHMOND_ID }, { "@id": VANCOUVER_ID }],
         areaServed: AREA_SERVED,
         knowsLanguage: KNOWS_LANGUAGE,
@@ -87,8 +107,8 @@ export function organizationSchema(locale: string) {
           {
             "@type": "ContactPoint",
             contactType: "customer service",
-            telephone: "+17789910902",
-            email: "info@familogue.ca",
+            telephone: contactInfo.phone.e164,
+            email: contactInfo.email,
             availableLanguage: ["yue", "zh-Hant", "en"],
             areaServed: "CA",
           },
@@ -97,19 +117,20 @@ export function organizationSchema(locale: string) {
       {
         "@type": ["LocalBusiness", "EducationalOrganization"],
         "@id": RICHMOND_ID,
-        name: "Familogue Richmond Service Centre",
+        name: RICHMOND.name,
         parentOrganization: { "@id": ORGANIZATION_ID },
         url: siteConfig.baseUrl,
-        telephone: "+17789910902",
-        email: "info@familogue.ca",
+        telephone: contactInfo.phone.e164,
+        email: contactInfo.email,
         address: RICHMOND_ADDRESS,
         areaServed: AREA_SERVED,
         knowsLanguage: KNOWS_LANGUAGE,
+        openingHoursSpecification: RICHMOND_OPENING_HOURS,
       },
       {
         "@type": "Place",
         "@id": VANCOUVER_ID,
-        name: "Familogue Vancouver Satellite Site",
+        name: VANCOUVER.name,
         address: VANCOUVER_ADDRESS,
       },
       {
