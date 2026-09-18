@@ -12,4 +12,11 @@ export const OUTLET_LOGOS: Record<string, string> = {
   "CBC News": "/images/logo-cbcnews.jpg",
 };
 
+/** Row thumbnail on the full `/media` list. */
 export const LOGO_SIZE = 60;
+
+/**
+ * Homepage strip. Larger than the list thumbnail, and requested at twice the
+ * rendered size so the logos stay sharp on a high-density screen.
+ */
+export const STRIP_LOGO_SIZE = 128;
