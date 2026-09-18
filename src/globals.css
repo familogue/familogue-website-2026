@@ -416,6 +416,12 @@
   @apply inline-block;
 }
 
+/* Typography plugin sets table font-size to 0.875em; keep tables at body size. */
+.prose :is(table, thead th, tbody td, tfoot td) {
+  font-size: inherit;
+  line-height: inherit;
+}
+
 .x-tech-stack {
   @apply flex flex-wrap gap-4;
   @apply my-4;
