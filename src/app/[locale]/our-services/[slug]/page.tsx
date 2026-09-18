@@ -7,7 +7,7 @@ import { getAllServices, getServiceBySlug } from "@/utils/sdk/services";
 import { getTeamForService } from "@/utils/sdk/team";
 import { initials } from "@/utils/category-theme";
 import { extractExcerpt } from "@/utils/extractExcerpt";
-import Markdown from "markdown-to-jsx";
+import { ContentMarkdown } from "@/components/content-markdown";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -115,7 +115,7 @@ export default async function Page({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
       />
       <nav aria-label="breadcrumb" className="not-prose text-sm mb-4">
-        <Link href="/our-services" className="hover:underline">{t("title")}</Link>
+        <Link href="/our-services" className="text-link hover:text-link-hover hover:underline">{t("title")}</Link>
         <span className="mx-2 text-gray-400">/</span>
         <span>{service.title}</span>
       </nav>
@@ -129,16 +129,7 @@ export default async function Page({ params }: Props) {
         />
       )}
       <h1>{service.title}</h1>
-      <Markdown
-        options={{
-          overrides: {
-            img: { component: "img" },
-            a: { props: { target: "_blank", rel: "noopener noreferrer" } },
-          },
-        }}
-      >
-        {service.content}
-      </Markdown>
+      <ContentMarkdown>{service.content}</ContentMarkdown>
 
       {therapists.length > 0 && (
         <section className="not-prose mt-12">

@@ -4,7 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { extractExcerpt } from "@/utils/extractExcerpt";
 import { getAllNews, getNewsBySlug } from "@/utils/sdk/news";
 import { siteConfig } from "@/utils/site-config";
-import Markdown from "markdown-to-jsx";
+import { ContentMarkdown } from "@/components/content-markdown";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -73,16 +73,7 @@ export default async function Page({ params }: Props) {
       )}
       <p className="not-prose text-sm text-gray-500 mb-1">{t("postedOn")} {post.date}</p>
       <h1>{post.title}</h1>
-      <Markdown
-        options={{
-          overrides: {
-            img: { component: "img" },
-            a: { props: { target: "_blank", rel: "noopener noreferrer" } },
-          },
-        }}
-      >
-        {post.body}
-      </Markdown>
+      <ContentMarkdown>{post.body}</ContentMarkdown>
     </div>
   );
 }

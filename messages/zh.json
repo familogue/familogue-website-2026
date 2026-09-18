@@ -83,7 +83,8 @@
   },
   "General": {
     "register_now": "立即報名",
-    "view_details": "查看詳情"
+    "view_details": "查看詳情",
+    "opensInNewTab": "在新分頁開啟"
   },
   "Donate": {
     "title": "捐助與你童行",
