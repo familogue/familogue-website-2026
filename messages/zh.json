@@ -27,7 +27,8 @@
     "activities": "近期活動",
     "classes-and-events": "課程和活動",
     "donate": "捐款",
-    "volunteer": "義工"
+    "volunteer": "義工",
+    "follow-us": "關注我們"
   },
   "Footer": {
     "description": "卑詩省註冊非牟利團體，創會成員包括一班來自香港的資深教育工作者，也是剛移民到加拿大溫哥華的媽媽。成員希望透過他們的專業，幫助家庭更有效地溝通，一起同行與成長。我們的使命是為新移民家庭提供支持和資源，幫助他們在新的環境中茁壯成長。"
@@ -51,7 +52,9 @@
       "description": "支持 Familogue 及其使命的各種方式，包括捐款、參與義工服務和宣傳。"
     },
     "subscribe": "訂閱我們的社交媒體",
-    "subscribe_description": "請訂閱我們的社交媒體，隨時了解我們的最新消息、活動和資源："
+    "subscribe_description": "請訂閱我們的社交媒體，隨時了解我們的最新消息、活動和資源：",
+    "donate_cta": "我要捐款",
+    "volunteer_cta": "成為義工"
   },
   "AboutUs": {
     "title": "關於我們",

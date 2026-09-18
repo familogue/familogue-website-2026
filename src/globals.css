@@ -389,7 +389,9 @@
 
   .x-row {
     @apply flex flex-col justify-between;
-    @apply sm:grid sm:grid-cols-3 sm:gap-8;
+    /* Four columns since contact and follow split apart; two up at `sm` so
+       the columns don't get too narrow to hold an address on one line. */
+    @apply sm:grid sm:grid-cols-2 sm:gap-8 lg:grid-cols-4;
   }
 
   h4 {
