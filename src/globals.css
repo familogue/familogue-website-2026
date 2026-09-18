@@ -176,11 +176,14 @@
   }
 
   .x-menu {
-    @apply flex flex-row flex-wrap list-none gap-8 m-0 items-center justify-center font-medium;
+    /* Tighter than the original gap-8: the bar now also carries a phone
+       number and a Donate button, so the items need to sit closer to stay
+       on one line. Separate y-gap keeps the rows readable once it wraps. */
+    @apply flex flex-row flex-wrap list-none gap-x-5 gap-y-2 m-0 items-center justify-center font-medium;
   }
 
   a {
-    @apply hover:underline my-4;
+    @apply hover:underline my-2;
   }
 }
 

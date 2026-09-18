@@ -93,13 +93,25 @@ export default async function Page() {
               </div>
             ))}
           </div>
-          <p className="mt-6">
-            <Button asChild variant="accentOutline" size="sm">
+          {/*
+            The group is how news actually reaches families, so the ask needs
+            to answer "why would I join?" rather than just name the channel.
+            Kept as an outline button: it is a secondary action, and Donate in
+            the header is the only solid button on the page.
+          */}
+          <div className="border-accent/30 bg-accent/5 mt-8 rounded-lg border p-6">
+            <h3 className="mt-0 mb-1 text-lg font-semibold">
+              {t("Contact.whatsappGroupTitle")}
+            </h3>
+            <p className="text-muted-foreground mt-0 mb-4 max-w-prose">
+              {t("Contact.whatsappGroupBlurb")}
+            </p>
+            <Button asChild variant="accentOutline" size="lg">
               <a href={contactInfo.whatsappCommunityUrl} target="_blank" rel="noopener noreferrer">
                 {t("Contact.joinWhatsappGroup")}
               </a>
             </Button>
-          </p>
+          </div>
         </section>
       )}
       <section className="mt-20">

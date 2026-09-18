@@ -151,7 +151,9 @@
     "whatsapp": "WhatsApp",
     "richmondSiteName": "Richmond Service Centre",
     "satelliteSchedule": "Every Saturday",
-    "joinWhatsappGroup": "Join our WhatsApp group"
+    "joinWhatsappGroup": "Join our WhatsApp group",
+    "whatsappGroupTitle": "Get updates on WhatsApp",
+    "whatsappGroupBlurb": "Join our WhatsApp group for class openings, event reminders and new parenting resources — sent straight to your phone, in Cantonese and English."
   },
   "Days": {
     "monday": "Monday",

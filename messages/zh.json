@@ -152,7 +152,9 @@
     "whatsapp": "WhatsApp",
     "richmondSiteName": "列治文服務中心",
     "satelliteSchedule": "逢星期六",
-    "joinWhatsappGroup": "加入 WhatsApp 群組"
+    "joinWhatsappGroup": "加入 WhatsApp 群組",
+    "whatsappGroupTitle": "WhatsApp 群組接收最新消息",
+    "whatsappGroupBlurb": "加入我們的 WhatsApp 群組，第一時間收到開班通知、活動提醒和最新親子資源，直接送到你的手機。"
   },
   "Days": {
     "monday": "星期一",
