@@ -3,12 +3,14 @@
     "subtitle": "用母語讓家長與孩子更有效地溝通，一起同行與成長",
     "title": "Familogue 語你童行",
     "mediaSection": {
-      "title": "媒體報導"
+      "title": "媒體報導",
+      "featuredIn": "曾獲以下媒體報導"
     }
   },
   "Navigation": {
     "home": "首頁",
     "news": "資訊中心",
+    "media": "媒體報導",
     "services": "服務介紹",
     "therapists": "治療師團隊",
     "support-us": "支持我們",
@@ -84,6 +86,12 @@
     "postedOn": "日期：",
     "meta": {
       "description": "語你童行教育學會的最新消息和公告。"
+    }
+  },
+  "Media": {
+    "title": "媒體報導",
+    "meta": {
+      "description": "有關語你童行服務大溫哥華地區粵語家庭、長者及兒童的電視、電台及新聞報導。"
     }
   },
   "General": {

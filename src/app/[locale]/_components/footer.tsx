@@ -14,6 +14,7 @@ export const Footer: FC = async () => {
   const footerItems: { title: string, route: string, cta?: boolean; }[] = [
     { title: tNav('home'), route: '/' },
     { title: tNav('news'), route: '/news' },
+    { title: tNav('media'), route: '/media' },
     { title: tNav('services'), route: '/our-services' },
     { title: tNav('therapists'), route: '/our-therapists' },
     // { title: tNav('classes-and-events'), route: '/classes-and-events' },

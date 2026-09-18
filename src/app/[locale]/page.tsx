@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { ArrowGlyph, ArrowLink } from "@/components/ui/link";
+import { ArrowLink } from "@/components/ui/link";
 import { Link } from "@/i18n/navigation";
 import { CATEGORY_THEME } from "@/utils/category-theme";
 import { contactInfo } from "@/utils/contact-info";
 import { extractExcerpt } from "@/utils/extractExcerpt";
 import { generatedMetadataForPage } from "@/utils/generatedMetadataForPage";
+import { LOGO_SIZE, OUTLET_LOGOS } from "@/utils/outlet-logos";
 import { getAllMedia } from "@/utils/sdk/media";
 import { getFeaturedNews } from "@/utils/sdk/news";
 import { getServicesByCategory } from "@/utils/sdk/services";
@@ -18,21 +19,18 @@ export async function generateMetadata() {
   return await generatedMetadataForPage(locale, "Home", "/");
 }
 
-const OUTLET_LOGOS: Record<string, string> = {
-  "Fairchild TV": "/images/logo-fairchildtv.jpg",
-  "OMNI News": "/images/logo-omnitv.jpg",
-  "One Night Talk": "/images/logo-onenighttalk.jpg",
-  "UBC Asia Pacific": "/images/logo-ubc.jpg",
-  "The Toronto Star": "/images/logo-torontostar.jpg",
-  "CBC News": "/images/logo-cbcnews.jpg",
-};
-
-const LOGO_SIZE = 60;
-
 export default async function Page() {
   const locale = await getLocale();
   const serviceGroups = getServicesByCategory(locale);
   const mediaItems = getAllMedia();
+  // Unique outlets in order of first (most recent, since getAllMedia is
+  // date-descending) appearance, for the compact homepage logo strip.
+  // Filtered to outlets that have a logo: the strip is images only, and a new
+  // outlet added to the content without one would otherwise render an <Image>
+  // with no `src`. Its coverage still appears in full on /media.
+  const uniqueOutlets = [...new Set(mediaItems.map((item) => item.outlet))].filter(
+    (outlet) => OUTLET_LOGOS[outlet]
+  );
   const featuredNews = getFeaturedNews(locale);
   const t = await getTranslations();
   const tAlt = await getTranslations({ locale: locale === "zh" ? "en" : "zh" });
@@ -120,63 +118,23 @@ export default async function Page() {
         <p>{t("AboutUs.description")}</p>
       </section>
       <section className="mt-20" aria-labelledby="media-section-heading">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(
-              mediaItems.map((item) => ({
-                "@context": "https://schema.org",
-                "@type": item.url.includes("youtube.com") || item.url.includes("youtu.be")
-                  ? "VideoObject"
-                  : "NewsArticle",
-                "name": item.headline,
-                "url": item.url,
-                "datePublished": item.date,
-                "publisher": { "@type": "Organization", "name": item.outlet },
-              }))
-            ),
-          }}
-        />
-        <h2 id="media-section-heading" className="x-section-heading">{t("Homepage.mediaSection.title")}</h2>
-        <div className="mt-8 flex flex-col gap-4">
-          {mediaItems.map((item) => (
-            <a
-              key={item.url}
-              href={item.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-row items-center gap-4"
-            >
-              {OUTLET_LOGOS[item.outlet] ? (
-                <div className="flex shrink-0 items-center justify-center" style={{ width: LOGO_SIZE, height: LOGO_SIZE }}>
-                  <Image
-                    src={OUTLET_LOGOS[item.outlet]}
-                    alt={item.outlet}
-                    width={LOGO_SIZE}
-                    height={LOGO_SIZE}
-                    className="h-full w-full object-contain rounded"
-                  />
-                </div>
-              ) : (
-                <div className="flex shrink-0 items-center justify-center" style={{ width: LOGO_SIZE, height: LOGO_SIZE }}>
-                  <Image
-                    src={item.thumbnail ?? "/images/og-image.png"}
-                    alt={item.headline}
-                    width={LOGO_SIZE}
-                    height={LOGO_SIZE}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              )}
-              <div>
-                <div className="text-muted-foreground text-sm">
-                  {item.outlet} · <time dateTime={item.date}>{item.date}</time>
-                </div>
-                <h3>
-                  {item.headline} <ArrowGlyph className="text-link" />
-                </h3>
+        <h2 id="media-section-heading" className="x-section-heading">
+          <ArrowLink href="/media">{t("Homepage.mediaSection.title")}</ArrowLink>
+        </h2>
+        <p className="text-muted-foreground mt-2">{t("Homepage.mediaSection.featuredIn")}</p>
+        <div className="mt-6 flex flex-row flex-wrap items-center gap-6">
+          {uniqueOutlets.map((outlet) => (
+            <Link key={outlet} href="/media" className="shrink-0">
+              <div className="flex items-center justify-center" style={{ width: LOGO_SIZE, height: LOGO_SIZE }}>
+                <Image
+                  src={OUTLET_LOGOS[outlet]}
+                  alt={outlet}
+                  width={LOGO_SIZE}
+                  height={LOGO_SIZE}
+                  className="h-full w-full object-contain rounded"
+                />
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </section>

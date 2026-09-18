@@ -3,12 +3,14 @@
     "title": "Familogue 語你童行",
     "subtitle": "Empowering families, seniors, caregivers, and children to communicate and grow together through their mother tongue.",
     "mediaSection": {
-      "title": "Media Coverage"
+      "title": "Media Coverage",
+      "featuredIn": "As featured in"
     }
   },
   "Navigation": {
     "home": "Home",
     "news": "News",
+    "media": "Media",
     "services": "Our Services",
     "therapists": "Our Therapists",
     "support-us": "Support Us",
@@ -83,6 +85,12 @@
     "postedOn": "Date:",
     "meta": {
       "description": "Latest news, updates, and announcements from Familogue Education Society."
+    }
+  },
+  "Media": {
+    "title": "Media Coverage",
+    "meta": {
+      "description": "Television, radio and news coverage of Familogue's work with Cantonese-speaking families, seniors and children in Metro Vancouver."
     }
   },
   "General": {
