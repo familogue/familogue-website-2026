@@ -25,7 +25,9 @@
     "email": "電郵",
     "address": "地址",
     "activities": "近期活動",
-    "classes-and-events": "課程和活動"
+    "classes-and-events": "課程和活動",
+    "donate": "捐款",
+    "volunteer": "義工"
   },
   "Footer": {
     "description": "卑詩省註冊非牟利團體，創會成員包括一班來自香港的資深教育工作者，也是剛移民到加拿大溫哥華的媽媽。成員希望透過他們的專業，幫助家庭更有效地溝通，一起同行與成長。我們的使命是為新移民家庭提供支持和資源，幫助他們在新的環境中茁壯成長。"
@@ -149,7 +151,8 @@
     "satelliteSite": "分處",
     "whatsapp": "WhatsApp",
     "richmondSiteName": "列治文服務中心",
-    "satelliteSchedule": "逢星期六"
+    "satelliteSchedule": "逢星期六",
+    "joinWhatsappGroup": "加入 WhatsApp 群組"
   },
   "Days": {
     "monday": "星期一",

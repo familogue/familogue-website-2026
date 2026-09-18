@@ -27,7 +27,7 @@ export default async function Page() {
         <section className="col-span-1">
           <h2><HeartHandshake size={iconsize} /> {t("Volunteer.title")}</h2>
           <p>{t("Volunteer.description")}</p>
-          <Button asChild className="not-prose" variant="accent" size="lg"><Link href="/volunteer">{t("General.view_details")}</Link></Button>
+          <Button asChild className="not-prose" variant="accentOutline" size="lg"><Link href="/volunteer">{t("General.view_details")}</Link></Button>
         </section>
         <section className="col-span-1">
           <h2><Megaphone size={iconsize} /> {t("SupportUs.subscribe")}</h2>

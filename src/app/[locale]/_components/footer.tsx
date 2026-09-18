@@ -18,6 +18,8 @@ export const Footer: FC = async () => {
     { title: tNav('therapists'), route: '/our-therapists' },
     // { title: tNav('classes-and-events'), route: '/classes-and-events' },
     { title: tNav('support-us'), route: '/support-us' },
+    { title: tNav('donate'), route: '/donate' },
+    { title: tNav('volunteer'), route: '/volunteer' },
     { title: tNav('about-us'), route: '/about-us' },
     // { title: tNav('member'), route: '/member' },
   ];

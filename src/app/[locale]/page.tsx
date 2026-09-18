@@ -1,6 +1,8 @@
+import { Button } from "@/components/ui/button";
 import { ArrowGlyph, ArrowLink } from "@/components/ui/link";
 import { Link } from "@/i18n/navigation";
 import { CATEGORY_THEME } from "@/utils/category-theme";
+import { contactInfo } from "@/utils/contact-info";
 import { extractExcerpt } from "@/utils/extractExcerpt";
 import { generatedMetadataForPage } from "@/utils/generatedMetadataForPage";
 import { getAllMedia } from "@/utils/sdk/media";
@@ -69,7 +71,6 @@ export default async function Page() {
           ))}
         </div>
       </section>
-      <ContactBlock locale={locale} />
       {featuredNews.length > 0 && (
         <section className="mt-20">
           <h2 className="x-section-heading"><ArrowLink href="/news">{t("News.title")}</ArrowLink></h2>
@@ -92,6 +93,13 @@ export default async function Page() {
               </div>
             ))}
           </div>
+          <p className="mt-6">
+            <Button asChild variant="accentOutline" size="sm">
+              <a href={contactInfo.whatsappCommunityUrl} target="_blank" rel="noopener noreferrer">
+                {t("Contact.joinWhatsappGroup")}
+              </a>
+            </Button>
+          </p>
         </section>
       )}
       <section className="mt-20">
@@ -160,6 +168,7 @@ export default async function Page() {
           ))}
         </div>
       </section>
+      <ContactBlock locale={locale} />
     </div>
   );
 }

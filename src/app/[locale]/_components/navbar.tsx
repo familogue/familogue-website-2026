@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+import { contactInfo } from "@/utils/contact-info";
 import { getTranslations } from "next-intl/server";
 import { type FC } from 'react';
 import { Link } from "src/i18n/navigation";
@@ -34,6 +36,18 @@ export const Navbar: FC<{ lang: 'en' | 'zh'; }> = async ({ lang }) => {
             </li>
           );
         })}
+        <li>
+          <a href={`tel:${contactInfo.phone.e164}`} className="text-sm text-link hover:text-link-hover">
+            {contactInfo.phone.display}
+          </a>
+        </li>
+        <li>
+          {/* `no-underline!` overrides `.x-top-nav a`, which would otherwise
+              underline this on hover — wrong for a solid button. */}
+          <Button asChild variant="accent" size="sm" className="no-underline!">
+            <Link href="/donate">{t('donate')}</Link>
+          </Button>
+        </li>
       </ul>
     </nav >
   );

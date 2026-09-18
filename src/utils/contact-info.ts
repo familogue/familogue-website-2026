@@ -57,7 +57,14 @@ export const contactInfo = {
     display: "+1 (778) 991-0902",
   },
   email: "info@familogue.ca",
+  /** 1:1 direct-message link, used for contact (footer, contact block). */
   whatsappUrl: "https://wa.me/17789910902",
+  /**
+   * Broadcast group invite link, used for news and updates. This is a
+   * public invite link and may need rotating if it's abused, which is
+   * why it lives here — a single place to update.
+   */
+  whatsappCommunityUrl: "https://chat.whatsapp.com/JI0SrO7IH8H5wMo2cqsq3e",
   social: {
     facebook: "https://www.facebook.com/Familogue",
     instagram: "https://www.instagram.com/familogue",
