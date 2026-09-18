@@ -14,29 +14,6 @@ const STATIC_FILE = /\.[a-z0-9]+$/i;
 /** A locale segment written into the content by hand (`/zh/our-services/...`). */
 const LOCALE_PREFIX = new RegExp(`^/(${locales.join("|")})(?=/|$)`, "i");
 
-/**
- * Arrow marking a link that leaves the site. Sized in `em` so it tracks the
- * surrounding text.
- */
-function ExternalArrowGlyph() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 16 16"
-      fill="none"
-      className="ml-0.5 inline-block size-[0.8em] align-[0.05em]"
-    >
-      <path
-        d="M6 10l4-4m0 0H6.5M10 6v3.5"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 type MarkdownLinkProps = React.ComponentProps<"a"> & { newTabLabel: string };
 
 /**
@@ -47,7 +24,9 @@ type MarkdownLinkProps = React.ComponentProps<"a"> & { newTabLabel: string };
  * ahead of `mailto:`/`tel:` handoffs. Each kind of destination is now handled
  * on its own terms:
  *
- * - external        new tab, with an arrow and a note for screen readers
+ * - external        new tab, with a note for screen readers. No visual
+ *                   marker: some content already ends its link text with a
+ *                   hand-written arrow, so an added glyph would double up.
  * - mailto/tel/#    same tab, no `rel`
  * - static files    same tab, and never locale-prefixed — `/assets/x.pdf`
  *                   is a file on disk, so routing it would 404
@@ -59,7 +38,6 @@ function MarkdownLink({ href = "", newTabLabel, children, ...props }: MarkdownLi
     return (
       <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
         {children}
-        <ExternalArrowGlyph />
         <span className="sr-only"> {newTabLabel}</span>
       </a>
     );
