@@ -19,8 +19,10 @@ export const CategoryBlob: React.FC<{
   className?: string;
   spinOffsetDeg?: number;
   children?: React.ReactNode;
-}> = ({ category, className = "", spinOffsetDeg = 0, children }) => {
-  const theme = CATEGORY_THEME[category];
+  /* PROTOTYPE hook */
+  themeOverride?: typeof CATEGORY_THEME;
+}> = ({ category, className = "", spinOffsetDeg = 0, children, themeOverride }) => {
+  const theme = (themeOverride ?? CATEGORY_THEME)[category];
   const animationDelay = `-${(spinOffsetDeg / 360) * SPIN_DURATION_SECONDS}s`;
 
   return (
