@@ -127,33 +127,29 @@ export default async function Page() {
         </h2>
         <p className="text-muted-foreground mt-2">{t("Homepage.mediaSection.featuredIn")}</p>
         {/*
-          A fixed grid rather than free-flowing wrap: the outlet names differ
-          a lot in length, so wrapping chips sized to their content produced
-          ragged rows. One per row on a phone, where a two-up chip would be
-          too narrow for "UBC Asia Pacific" on one line.
+          Fixed grid rather than a free-flowing wrap, which produced ragged
+          rows because the outlet names run from "CBC News" to "UBC Asia
+          Pacific". Five columns at `lg` fits all five outlets on one line.
         */}
-        <ul className="mt-6 grid list-none grid-cols-1 gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-6 grid list-none grid-cols-2 gap-4 p-0 sm:grid-cols-3 lg:grid-cols-5">
           {outlets.map(({ outlet, count }) => (
             <li key={outlet}>
               <Link
                 href="/media"
-                className="hover:border-accent hover:bg-accent/5 flex h-full items-center gap-4 rounded-xl border p-4 no-underline transition-colors"
+                className="hover:border-accent hover:bg-accent/5 flex h-full flex-col items-center gap-3 rounded-xl border p-4 text-center no-underline transition-colors"
               >
-                {/* White tile behind the logo: the source images carry their
-                    own white backgrounds, so this squares them off against
-                    the cream page rather than letting them float. */}
-                <span className="ring-border flex size-16 shrink-0 items-center justify-center rounded-lg bg-white p-1.5 shadow-sm ring-1">
-                  <Image
-                    src={OUTLET_LOGOS[outlet]}
-                    alt=""
-                    width={STRIP_LOGO_SIZE}
-                    height={STRIP_LOGO_SIZE}
-                    className="h-full w-full object-contain"
-                  />
-                </span>
-                <span className="flex min-w-0 flex-col leading-tight">
-                  <span className="text-foreground font-medium">{outlet}</span>
-                  <span className="text-muted-foreground mt-0.5 text-sm">
+                <Image
+                  src={OUTLET_LOGOS[outlet]}
+                  alt=""
+                  width={STRIP_LOGO_SIZE}
+                  height={STRIP_LOGO_SIZE}
+                  className="size-20 rounded-lg object-contain"
+                />
+                <span className="flex flex-col leading-tight">
+                  <span className="text-foreground text-sm font-medium text-balance">
+                    {outlet}
+                  </span>
+                  <span className="text-muted-foreground mt-1 text-xs">
                     {t("Homepage.mediaSection.storyCount", { count })}
                   </span>
                 </span>
