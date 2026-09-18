@@ -58,7 +58,7 @@ export default async function Page({ params }: Props) {
   return (
     <div className="x-container prose">
       <nav aria-label="breadcrumb" className="not-prose text-sm mb-4">
-        <Link href="/news" className="hover:underline">{t("title")}</Link>
+        <Link href="/news" className="text-link hover:text-link-hover hover:underline">{t("title")}</Link>
         <span className="mx-2 text-gray-400">/</span>
         <span>{post.title}</span>
       </nav>

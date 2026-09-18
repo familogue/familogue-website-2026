@@ -387,7 +387,9 @@
   }
 
   a {
-    @apply text-accent hover:underline;
+    /* `--link`, not `--accent`: they hold the same teal today, but accent is
+       the CTA/button colour and these are text links. */
+    @apply text-link hover:text-link-hover hover:underline;
   }
 
   p {
@@ -424,6 +426,26 @@
 
 .prose a svg {
   @apply inline-block;
+}
+
+/*
+ * Links inside prose. The typography plugin ships its own `--tw-prose-links`
+ * colour, which wins over anything the `--link` token does — markdown bodies
+ * and any hand-written `<a>` in a `.prose` block would otherwise stay
+ * near-black. Point the plugin's variable at our token instead of restyling
+ * `a` directly, so the plugin keeps managing everything else about links.
+ *
+ * These keep the plugin's underline. Prose links sit inside blocks of text,
+ * where WCAG 1.4.1 requires more than colour to distinguish them — and no
+ * arrow, which belongs on standalone links only.
+ */
+.prose {
+  --tw-prose-links: var(--link);
+  --tw-prose-invert-links: var(--link);
+}
+
+.prose a:hover {
+  color: var(--link-hover);
 }
 
 /* Typography plugin sets table font-size to 0.875em; keep tables at body size. */
