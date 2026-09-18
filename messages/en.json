@@ -140,5 +140,23 @@
     "languages": "Languages",
     "meetTheTeam": "Meet our full team",
     "onThisService": "Your therapists for this service"
+  },
+  "Contact": {
+    "hours": "Hours",
+    "closed": "Closed",
+    "primarySite": "Primary site",
+    "satelliteSite": "Satellite site",
+    "whatsapp": "WhatsApp",
+    "richmondSiteName": "Richmond Service Centre",
+    "satelliteSchedule": "Every Saturday"
+  },
+  "Days": {
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday"
   }
 }

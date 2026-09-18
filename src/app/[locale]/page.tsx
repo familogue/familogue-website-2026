@@ -9,6 +9,7 @@ import { getServicesByCategory } from "@/utils/sdk/services";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { CategoryBlob } from "./_components/category-blob";
+import { ContactBlock } from "./_components/contact-block";
 
 export async function generateMetadata() {
   const locale = await getLocale();
@@ -68,6 +69,7 @@ export default async function Page() {
           ))}
         </div>
       </section>
+      <ContactBlock locale={locale} />
       {featuredNews.length > 0 && (
         <section className="mt-20">
           <h2 className="x-section-heading"><ArrowLink href="/news">{t("News.title")}</ArrowLink></h2>
