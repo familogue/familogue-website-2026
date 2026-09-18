@@ -1,8 +1,11 @@
-import { ArrowGlyph, ArrowLink } from "@/components/ui/link";
+import { Button } from "@/components/ui/button";
+import { ArrowLink } from "@/components/ui/link";
 import { Link } from "@/i18n/navigation";
 import { CATEGORY_THEME } from "@/utils/category-theme";
+import { contactInfo } from "@/utils/contact-info";
 import { extractExcerpt } from "@/utils/extractExcerpt";
 import { generatedMetadataForPage } from "@/utils/generatedMetadataForPage";
+import { OUTLET_LOGOS, STRIP_LOGO_SIZE } from "@/utils/outlet-logos";
 import { getAllMedia } from "@/utils/sdk/media";
 import { getFeaturedNews } from "@/utils/sdk/news";
 import { getServicesByCategory } from "@/utils/sdk/services";
@@ -16,21 +19,22 @@ export async function generateMetadata() {
   return await generatedMetadataForPage(locale, "Home", "/");
 }
 
-const OUTLET_LOGOS: Record<string, string> = {
-  "Fairchild TV": "/images/logo-fairchildtv.jpg",
-  "OMNI News": "/images/logo-omnitv.jpg",
-  "One Night Talk": "/images/logo-onenighttalk.jpg",
-  "UBC Asia Pacific": "/images/logo-ubc.jpg",
-  "The Toronto Star": "/images/logo-torontostar.jpg",
-  "CBC News": "/images/logo-cbcnews.jpg",
-};
-
-const LOGO_SIZE = 60;
-
 export default async function Page() {
   const locale = await getLocale();
   const serviceGroups = getServicesByCategory(locale);
   const mediaItems = getAllMedia();
+  // Outlets in order of first (most recent, since getAllMedia is
+  // date-descending) appearance, with how many pieces each ran — five logos
+  // otherwise undersell thirteen pieces of coverage.
+  // Filtered to outlets that have a logo: the strip is images only, and a new
+  // outlet added to the content without one would otherwise render an <Image>
+  // with no `src`. Its coverage still appears in full on /media.
+  const outlets = [...new Set(mediaItems.map((item) => item.outlet))]
+    .filter((outlet) => OUTLET_LOGOS[outlet])
+    .map((outlet) => ({
+      outlet,
+      count: mediaItems.filter((item) => item.outlet === outlet).length,
+    }));
   const featuredNews = getFeaturedNews(locale);
   const t = await getTranslations();
   const tAlt = await getTranslations({ locale: locale === "zh" ? "en" : "zh" });
@@ -69,7 +73,6 @@ export default async function Page() {
           ))}
         </div>
       </section>
-      <ContactBlock locale={locale} />
       {featuredNews.length > 0 && (
         <section className="mt-20">
           <h2 className="x-section-heading"><ArrowLink href="/news">{t("News.title")}</ArrowLink></h2>
@@ -92,6 +95,25 @@ export default async function Page() {
               </div>
             ))}
           </div>
+          {/*
+            The group is how news actually reaches families, so the ask needs
+            to answer "why would I join?" rather than just name the channel.
+            Kept as an outline button: it is a secondary action, and Donate in
+            the header is the only solid button on the page.
+          */}
+          <div className="border-accent/30 bg-accent/5 mt-8 rounded-lg border p-6">
+            <h3 className="mt-0 mb-1 text-lg font-semibold">
+              {t("Contact.whatsappGroupTitle")}
+            </h3>
+            <p className="text-muted-foreground mt-0 mb-4 max-w-prose">
+              {t("Contact.whatsappGroupBlurb")}
+            </p>
+            <Button asChild variant="accentOutline" size="lg">
+              <a href={contactInfo.whatsappCommunityUrl} target="_blank" rel="noopener noreferrer">
+                {t("Contact.joinWhatsappGroup")}
+              </a>
+            </Button>
+          </div>
         </section>
       )}
       <section className="mt-20">
@@ -100,66 +122,43 @@ export default async function Page() {
         <p>{t("AboutUs.description")}</p>
       </section>
       <section className="mt-20" aria-labelledby="media-section-heading">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(
-              mediaItems.map((item) => ({
-                "@context": "https://schema.org",
-                "@type": item.url.includes("youtube.com") || item.url.includes("youtu.be")
-                  ? "VideoObject"
-                  : "NewsArticle",
-                "name": item.headline,
-                "url": item.url,
-                "datePublished": item.date,
-                "publisher": { "@type": "Organization", "name": item.outlet },
-              }))
-            ),
-          }}
-        />
-        <h2 id="media-section-heading" className="x-section-heading">{t("Homepage.mediaSection.title")}</h2>
-        <div className="mt-8 flex flex-col gap-4">
-          {mediaItems.map((item) => (
-            <a
-              key={item.url}
-              href={item.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-row items-center gap-4"
-            >
-              {OUTLET_LOGOS[item.outlet] ? (
-                <div className="flex shrink-0 items-center justify-center" style={{ width: LOGO_SIZE, height: LOGO_SIZE }}>
-                  <Image
-                    src={OUTLET_LOGOS[item.outlet]}
-                    alt={item.outlet}
-                    width={LOGO_SIZE}
-                    height={LOGO_SIZE}
-                    className="h-full w-full object-contain rounded"
-                  />
-                </div>
-              ) : (
-                <div className="flex shrink-0 items-center justify-center" style={{ width: LOGO_SIZE, height: LOGO_SIZE }}>
-                  <Image
-                    src={item.thumbnail ?? "/images/og-image.png"}
-                    alt={item.headline}
-                    width={LOGO_SIZE}
-                    height={LOGO_SIZE}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              )}
-              <div>
-                <div className="text-muted-foreground text-sm">
-                  {item.outlet} · <time dateTime={item.date}>{item.date}</time>
-                </div>
-                <h3>
-                  {item.headline} <ArrowGlyph className="text-link" />
-                </h3>
-              </div>
-            </a>
+        <h2 id="media-section-heading" className="x-section-heading">
+          <ArrowLink href="/media">{t("Homepage.mediaSection.title")}</ArrowLink>
+        </h2>
+        <p className="text-muted-foreground mt-2">{t("Homepage.mediaSection.featuredIn")}</p>
+        {/*
+          Fixed grid rather than a free-flowing wrap, which produced ragged
+          rows because the outlet names run from "CBC News" to "UBC Asia
+          Pacific". Five columns at `lg` fits all five outlets on one line.
+        */}
+        <ul className="mt-6 grid list-none grid-cols-2 gap-4 p-0 sm:grid-cols-3 lg:grid-cols-5">
+          {outlets.map(({ outlet, count }) => (
+            <li key={outlet}>
+              <Link
+                href="/media"
+                className="hover:border-accent hover:bg-accent/5 flex h-full flex-col items-center gap-3 rounded-xl border p-4 text-center no-underline transition-colors"
+              >
+                <Image
+                  src={OUTLET_LOGOS[outlet]}
+                  alt=""
+                  width={STRIP_LOGO_SIZE}
+                  height={STRIP_LOGO_SIZE}
+                  className="size-20 rounded-lg object-contain"
+                />
+                <span className="flex flex-col leading-tight">
+                  <span className="text-foreground text-sm font-medium text-balance">
+                    {outlet}
+                  </span>
+                  <span className="text-muted-foreground mt-1 text-xs">
+                    {t("Homepage.mediaSection.storyCount", { count })}
+                  </span>
+                </span>
+              </Link>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
+      <ContactBlock locale={locale} />
     </div>
   );
 }
