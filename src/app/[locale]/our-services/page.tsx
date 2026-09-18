@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { ArrowLink } from "@/components/ui/link";
 import { Link } from "@/i18n/navigation";
 import { CATEGORY_THEME } from "@/utils/category-theme";
@@ -79,15 +78,10 @@ export default async function Page() {
                     <ServiceThumb service={service} />
                   </Link>
                   <h3 className="font-semibold">
-                    <Link href={`/our-services/${service.slug}`}>{service.title}</Link>
+                    <ArrowLink href={`/our-services/${service.slug}`}>{service.title}</ArrowLink>
                   </h3>
                   <p className="text-muted-foreground my-0 flex-1 text-sm">
                     {extractExcerpt(service.content)}
-                  </p>
-                  <p className="mt-1 mb-0">
-                    <Button asChild variant="accent" size="sm">
-                      <Link href={`/our-services/${service.slug}`}>{t("General.view_details")}</Link>
-                    </Button>
                   </p>
                 </article>
               ))}

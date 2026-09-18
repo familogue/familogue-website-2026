@@ -22,7 +22,7 @@ export default async function Page() {
         <h2 className="x-section-heading">{t("title")}</h2>
         <p className="text-muted-foreground mt-3 mb-0 max-w-prose">{t("subtitle")}</p>
         <p className="mt-4">
-          <Button asChild variant="accent">
+          <Button asChild variant="accentOutline">
             <Link href="/our-therapists">{t("meetTheTeam")}</Link>
           </Button>
         </p>

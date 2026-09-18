@@ -176,11 +176,14 @@
   }
 
   .x-menu {
-    @apply flex flex-row flex-wrap list-none gap-8 m-0 items-center justify-center font-medium;
+    /* Tighter than the original gap-8: the bar now also carries a phone
+       number and a Donate button, so the items need to sit closer to stay
+       on one line. Separate y-gap keeps the rows readable once it wraps. */
+    @apply flex flex-row flex-wrap list-none gap-x-5 gap-y-2 m-0 items-center justify-center font-medium;
   }
 
   a {
-    @apply hover:underline my-4;
+    @apply hover:underline my-2;
   }
 }
 
@@ -386,7 +389,9 @@
 
   .x-row {
     @apply flex flex-col justify-between;
-    @apply sm:grid sm:grid-cols-3 sm:gap-8;
+    /* Four columns since contact and follow split apart; two up at `sm` so
+       the columns don't get too narrow to hold an address on one line. */
+    @apply sm:grid sm:grid-cols-2 sm:gap-8 lg:grid-cols-4;
   }
 
   h4 {
@@ -407,7 +412,12 @@
     @apply font-medium;
   }
 
-  .x-col1, .x-col2, .x-col3 {
+  /*
+   * One class shared by every footer column. This was previously a list of
+   * `.x-col1, .x-col2, .x-col3`, which meant adding a fourth column silently
+   * dropped its top margin and line spacing.
+   */
+  .x-footer-col {
     @apply flex flex-col gap-3 my-4;
   }
 
