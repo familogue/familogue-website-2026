@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { ArrowGlyph, ArrowLink } from "@/components/ui/link";
 import { Link } from "@/i18n/navigation";
 import { CATEGORY_THEME } from "@/utils/category-theme";
 import { extractExcerpt } from "@/utils/extractExcerpt";
@@ -40,7 +40,7 @@ export default async function Page() {
         <h2>{t("Homepage.subtitle")}</h2>
       </section>
       <section className="mt-20">
-        <h2 className="x-section-heading"><Link href="/our-services">{t("OurServices.title")} &rsaquo;</Link></h2>
+        <h2 className="x-section-heading"><ArrowLink href="/our-services">{t("OurServices.title")}</ArrowLink></h2>
         <div className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-3">
           {serviceGroups.map(({ category, services }, index) => (
             <Link
@@ -70,7 +70,7 @@ export default async function Page() {
       </section>
       {featuredNews.length > 0 && (
         <section className="mt-20">
-          <h2 className="x-section-heading"><Link href="/news">{t("News.title")} &rsaquo;</Link></h2>
+          <h2 className="x-section-heading"><ArrowLink href="/news">{t("News.title")}</ArrowLink></h2>
           <div className={"mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2"}>
             {featuredNews.map((post) => (
               <div key={post.slug} className="flex flex-col gap-2">
@@ -84,9 +84,8 @@ export default async function Page() {
                   />
                 </Link>
                 <div className="flex-1">
-                  <h3><Link href={`/news/${post.slug}`}>{post.title}</Link></h3>
+                  <h3><ArrowLink href={`/news/${post.slug}`}>{post.title}</ArrowLink></h3>
                   <p className="text-muted-foreground">{extractExcerpt(post.body)}</p>
-                  <p><Button asChild variant="accent"><Link href={`/news/${post.slug}`}>{t("General.view_details")}</Link></Button></p>
                 </div>
               </div>
             ))}
@@ -94,7 +93,7 @@ export default async function Page() {
         </section>
       )}
       <section className="mt-20">
-        <h2 className="x-section-heading"><Link href="/about-us">{t("AboutUs.title")} &rsaquo;</Link></h2>
+        <h2 className="x-section-heading"><ArrowLink href="/about-us">{t("AboutUs.title")}</ArrowLink></h2>
         <h3>{t("AboutUs.subtitle")}</h3>
         <p>{t("AboutUs.description")}</p>
       </section>
@@ -124,7 +123,7 @@ export default async function Page() {
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-row items-center gap-4"
+              className="group flex flex-row items-center gap-4"
             >
               {OUTLET_LOGOS[item.outlet] ? (
                 <div className="flex shrink-0 items-center justify-center" style={{ width: LOGO_SIZE, height: LOGO_SIZE }}>
@@ -151,7 +150,9 @@ export default async function Page() {
                 <div className="text-muted-foreground text-sm">
                   {item.outlet} · <time dateTime={item.date}>{item.date}</time>
                 </div>
-                <h3>{item.headline} &rsaquo;</h3>
+                <h3>
+                  {item.headline} <ArrowGlyph className="text-link" />
+                </h3>
               </div>
             </a>
           ))}

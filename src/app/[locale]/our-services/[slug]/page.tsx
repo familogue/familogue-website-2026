@@ -1,6 +1,7 @@
 import { siteConfig } from "@/utils/site-config";
 import { locales } from "@/i18n/config";
 import { buildAlternates, openGraphLocale } from "@/utils/alternates";
+import { ArrowLink } from "@/components/ui/link";
 import { Link } from "@/i18n/navigation";
 import { getAllServices, getServiceBySlug } from "@/utils/sdk/services";
 import { getTeamForService } from "@/utils/sdk/team";
@@ -163,9 +164,9 @@ export default async function Page({ params }: Props) {
             ))}
           </ul>
           <p className="mt-5 mb-0">
-            <Link href="/our-therapists" className="font-medium text-emerald-700 underline underline-offset-4">
-              {tt("OurTherapists.meetTheTeam")} &rsaquo;
-            </Link>
+            <ArrowLink href="/our-therapists" className="font-medium">
+              {tt("OurTherapists.meetTheTeam")}
+            </ArrowLink>
           </p>
         </section>
       )}
