@@ -23,14 +23,18 @@ export default async function Page() {
   const locale = await getLocale();
   const serviceGroups = getServicesByCategory(locale);
   const mediaItems = getAllMedia();
-  // Unique outlets in order of first (most recent, since getAllMedia is
-  // date-descending) appearance, for the compact homepage logo strip.
+  // Outlets in order of first (most recent, since getAllMedia is
+  // date-descending) appearance, with how many pieces each ran — five logos
+  // otherwise undersell thirteen pieces of coverage.
   // Filtered to outlets that have a logo: the strip is images only, and a new
   // outlet added to the content without one would otherwise render an <Image>
   // with no `src`. Its coverage still appears in full on /media.
-  const uniqueOutlets = [...new Set(mediaItems.map((item) => item.outlet))].filter(
-    (outlet) => OUTLET_LOGOS[outlet]
-  );
+  const outlets = [...new Set(mediaItems.map((item) => item.outlet))]
+    .filter((outlet) => OUTLET_LOGOS[outlet])
+    .map((outlet) => ({
+      outlet,
+      count: mediaItems.filter((item) => item.outlet === outlet).length,
+    }));
   const featuredNews = getFeaturedNews(locale);
   const t = await getTranslations();
   const tAlt = await getTranslations({ locale: locale === "zh" ? "en" : "zh" });
@@ -122,21 +126,30 @@ export default async function Page() {
           <ArrowLink href="/media">{t("Homepage.mediaSection.title")}</ArrowLink>
         </h2>
         <p className="text-muted-foreground mt-2">{t("Homepage.mediaSection.featuredIn")}</p>
-        <div className="mt-6 flex flex-row flex-wrap items-center gap-6">
-          {uniqueOutlets.map((outlet) => (
-            <Link key={outlet} href="/media" className="shrink-0">
-              <div className="flex items-center justify-center" style={{ width: LOGO_SIZE, height: LOGO_SIZE }}>
+        <ul className="mt-6 flex list-none flex-row flex-wrap gap-4 p-0">
+          {outlets.map(({ outlet, count }) => (
+            <li key={outlet}>
+              <Link
+                href="/media"
+                className="hover:border-accent hover:bg-accent/5 flex items-center gap-3 rounded-lg border px-4 py-3 no-underline transition-colors"
+              >
                 <Image
                   src={OUTLET_LOGOS[outlet]}
-                  alt={outlet}
+                  alt=""
                   width={LOGO_SIZE}
                   height={LOGO_SIZE}
-                  className="h-full w-full object-contain rounded"
+                  className="size-12 shrink-0 rounded object-contain"
                 />
-              </div>
-            </Link>
+                <span className="flex flex-col leading-tight">
+                  <span className="text-foreground font-medium">{outlet}</span>
+                  <span className="text-muted-foreground text-sm">
+                    {t("Homepage.mediaSection.storyCount", { count })}
+                  </span>
+                </span>
+              </Link>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
       <ContactBlock locale={locale} />
     </div>

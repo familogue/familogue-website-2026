@@ -1,4 +1,5 @@
-import { ArrowGlyph } from "@/components/ui/link";
+import { ArrowLink } from "@/components/ui/link";
+import { bcp47For } from "@/utils/alternates";
 import { generatedMetadataForPage } from "@/utils/generatedMetadataForPage";
 import { LOGO_SIZE, OUTLET_LOGOS } from "@/utils/outlet-logos";
 import { getAllMedia } from "@/utils/sdk/media";
@@ -10,7 +11,21 @@ export async function generateMetadata() {
   return generatedMetadataForPage(locale, "Media", "/media");
 }
 
+/**
+ * Dates are stored as plain `YYYY-MM-DD`. Formatted in UTC so the runtime's
+ * own timezone can't shift a date to the previous day.
+ */
+function formatDate(date: string, locale: string): string {
+  return new Intl.DateTimeFormat(bcp47For(locale), {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(`${date}T00:00:00Z`));
+}
+
 export default async function Page() {
+  const locale = await getLocale();
   const mediaItems = getAllMedia();
   const t = await getTranslations();
   return (
@@ -39,47 +54,40 @@ export default async function Page() {
         }}
       />
       <h1>{t("Media.title")}</h1>
-      <div className="mt-8 flex flex-col gap-4">
+      {/*
+        `not-prose`: the typography plugin underlines every `a` it owns, and
+        the row used to be a single link wrapping the logo, the outlet and the
+        date as well as the headline — so the underline ran across all of it
+        and the date read as clickable. Only the headline is a link now.
+      */}
+      <ul className="not-prose mt-8 flex list-none flex-col gap-8 p-0">
         {mediaItems.map((item) => (
-          <a
-            key={item.url}
-            href={item.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex flex-row items-center gap-4"
-          >
-            {OUTLET_LOGOS[item.outlet] ? (
-              <div className="flex shrink-0 items-center justify-center" style={{ width: LOGO_SIZE, height: LOGO_SIZE }}>
-                <Image
-                  src={OUTLET_LOGOS[item.outlet]}
-                  alt={item.outlet}
-                  width={LOGO_SIZE}
-                  height={LOGO_SIZE}
-                  className="h-full w-full object-contain rounded"
-                />
-              </div>
-            ) : (
-              <div className="flex shrink-0 items-center justify-center" style={{ width: LOGO_SIZE, height: LOGO_SIZE }}>
-                <Image
-                  src={item.thumbnail ?? "/images/og-image.png"}
-                  alt={item.headline}
-                  width={LOGO_SIZE}
-                  height={LOGO_SIZE}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            )}
-            <div>
-              <div className="text-muted-foreground text-sm">
-                {item.outlet} · <time dateTime={item.date}>{item.date}</time>
-              </div>
-              <h3>
-                {item.headline} <ArrowGlyph className="text-link" />
-              </h3>
+          <li key={item.url} className="flex flex-row items-start gap-4">
+            <div
+              className="flex shrink-0 items-center justify-center"
+              style={{ width: LOGO_SIZE, height: LOGO_SIZE }}
+            >
+              <Image
+                src={OUTLET_LOGOS[item.outlet] ?? item.thumbnail ?? "/images/og-image.png"}
+                alt={item.outlet}
+                width={LOGO_SIZE}
+                height={LOGO_SIZE}
+                className={`h-full w-full rounded ${OUTLET_LOGOS[item.outlet] ? "object-contain" : "object-cover"}`}
+              />
             </div>
-          </a>
+            <div className="min-w-0">
+              <p className="text-muted-foreground m-0 text-sm">
+                {item.outlet} · <time dateTime={item.date}>{formatDate(item.date, locale)}</time>
+              </p>
+              <h2 className="mt-1 mb-0 text-lg font-semibold">
+                <ArrowLink href={item.url} external>
+                  {item.headline}
+                </ArrowLink>
+              </h2>
+            </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }

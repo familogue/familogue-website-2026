@@ -4,7 +4,8 @@
     "title": "Familogue 語你童行",
     "mediaSection": {
       "title": "媒體報導",
-      "featuredIn": "曾獲以下媒體報導"
+      "featuredIn": "曾獲以下媒體報導",
+      "storyCount": "{count} 篇報導"
     }
   },
   "Navigation": {
