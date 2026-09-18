@@ -141,5 +141,23 @@
     "languages": "服務語言",
     "meetTheTeam": "認識整個團隊",
     "onThisService": "提供此服務的治療師"
+  },
+  "Contact": {
+    "hours": "辦公時間",
+    "closed": "休息",
+    "primarySite": "主要地點",
+    "satelliteSite": "分處",
+    "whatsapp": "WhatsApp",
+    "richmondSiteName": "列治文服務中心",
+    "satelliteSchedule": "逢星期六"
+  },
+  "Days": {
+    "monday": "星期一",
+    "tuesday": "星期二",
+    "wednesday": "星期三",
+    "thursday": "星期四",
+    "friday": "星期五",
+    "saturday": "星期六",
+    "sunday": "星期日"
   }
 }
