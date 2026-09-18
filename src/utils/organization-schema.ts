@@ -1,6 +1,11 @@
 import { bcp47For } from "./alternates";
 import { contactInfo, type OpeningHoursGroup } from "./contact-info";
 import { siteConfig } from "./site-config";
+// This file was previously pure data with no filesystem access. Pulling in
+// `getAllMedia` gives it an `fs` read of content/media.json — that's fine
+// since `organizationSchema` is only ever called from the server-rendered
+// root layout, never from the client.
+import { getAllMedia } from "./sdk/media";
 
 const ORGANIZATION_ID = `${siteConfig.baseUrl}/#organization`;
 const WEBSITE_ID = `${siteConfig.baseUrl}/#website`;
@@ -67,6 +72,26 @@ function openingHoursSpecification(groups: OpeningHoursGroup[]) {
 const RICHMOND_OPENING_HOURS = openingHoursSpecification(RICHMOND.openingHours ?? []);
 
 /**
+ * Media coverage as `subjectOf` entries on the Organization node.
+ *
+ * Previously the homepage emitted these as standalone `NewsArticle`/
+ * `VideoObject` nodes whose `publisher` was the outlet, with nothing tying
+ * them back to Familogue — a parser saw thirteen unrelated articles rather
+ * than coverage of this organization. `subjectOf` on the Organization states
+ * "this organization was the subject of this coverage", which is the
+ * association actually worth having.
+ */
+const SUBJECT_OF = getAllMedia().map((item) => ({
+  "@type": item.url.includes("youtube.com") || item.url.includes("youtu.be")
+    ? "VideoObject"
+    : "NewsArticle",
+  name: item.headline,
+  url: item.url,
+  datePublished: item.date,
+  publisher: { "@type": "Organization", name: item.outlet },
+}));
+
+/**
  * Site-wide entity graph, rendered once in the root layout.
  *
  * Modelled as a `@graph` so the organization, its two physical sites and the
@@ -103,6 +128,7 @@ export function organizationSchema(locale: string) {
         areaServed: AREA_SERVED,
         knowsLanguage: KNOWS_LANGUAGE,
         sameAs: SAME_AS,
+        subjectOf: SUBJECT_OF,
         contactPoint: [
           {
             "@type": "ContactPoint",

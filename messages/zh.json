@@ -3,12 +3,14 @@
     "subtitle": "用母語讓家長與孩子更有效地溝通，一起同行與成長",
     "title": "Familogue 語你童行",
     "mediaSection": {
-      "title": "媒體報導"
+      "title": "媒體報導",
+      "featuredIn": "曾獲以下媒體報導"
     }
   },
   "Navigation": {
     "home": "首頁",
     "news": "資訊中心",
+    "media": "媒體報導",
     "services": "服務介紹",
     "therapists": "治療師團隊",
     "support-us": "支持我們",
@@ -86,6 +88,12 @@
       "description": "語你童行教育學會的最新消息和公告。"
     }
   },
+  "Media": {
+    "title": "媒體報導",
+    "meta": {
+      "description": "有關語你童行服務大溫哥華地區粵語家庭、長者及兒童的電視、電台及新聞報導。"
+    }
+  },
   "General": {
     "register_now": "立即報名",
     "opensInNewTab": "在新分頁開啟"
@@ -154,7 +162,9 @@
     "whatsapp": "WhatsApp",
     "richmondSiteName": "列治文服務中心",
     "satelliteSchedule": "逢星期六",
-    "joinWhatsappGroup": "加入 WhatsApp 群組"
+    "joinWhatsappGroup": "加入 WhatsApp 群組",
+    "whatsappGroupTitle": "WhatsApp 群組接收最新消息",
+    "whatsappGroupBlurb": "加入我們的 WhatsApp 群組，第一時間收到開班通知、活動提醒和最新親子資源，直接送到你的手機。"
   },
   "Days": {
     "monday": "星期一",

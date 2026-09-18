@@ -40,6 +40,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     generateLocalePage('/our-services'),
     ...getAllServices("en").map(s => generateLocalePage(`/our-services/${s.slug}`)),
     generateLocalePage('/our-therapists'),
+    generateLocalePage('/media'),
     generateLocalePage('/about-us'),
     generateLocalePage('/support-us'),
     generateLocalePage('/donate'),

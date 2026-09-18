@@ -3,12 +3,14 @@
     "title": "Familogue 語你童行",
     "subtitle": "Empowering families, seniors, caregivers, and children to communicate and grow together through their mother tongue.",
     "mediaSection": {
-      "title": "Media Coverage"
+      "title": "Media Coverage",
+      "featuredIn": "As featured in"
     }
   },
   "Navigation": {
     "home": "Home",
     "news": "News",
+    "media": "Media",
     "services": "Our Services",
     "therapists": "Our Therapists",
     "support-us": "Support Us",
@@ -85,6 +87,12 @@
       "description": "Latest news, updates, and announcements from Familogue Education Society."
     }
   },
+  "Media": {
+    "title": "Media Coverage",
+    "meta": {
+      "description": "Television, radio and news coverage of Familogue's work with Cantonese-speaking families, seniors and children in Metro Vancouver."
+    }
+  },
   "General": {
     "register_now": "Register Now",
     "opensInNewTab": "opens in a new tab"
@@ -153,7 +161,9 @@
     "whatsapp": "WhatsApp",
     "richmondSiteName": "Richmond Service Centre",
     "satelliteSchedule": "Every Saturday",
-    "joinWhatsappGroup": "Join our WhatsApp group"
+    "joinWhatsappGroup": "Join our WhatsApp group",
+    "whatsappGroupTitle": "Get updates on WhatsApp",
+    "whatsappGroupBlurb": "Join our WhatsApp group for class openings, event reminders and new parenting resources — sent straight to your phone, in Cantonese and English."
   },
   "Days": {
     "monday": "Monday",
