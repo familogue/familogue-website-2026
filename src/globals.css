@@ -150,8 +150,15 @@
   @apply max-w-5xl mx-auto px-4 py-10;
 }
 
+/*
+ * Call-to-action button for markdown content, which can't reach the React
+ * <Button> component. Kept deliberately in step with that component's
+ * `accent` variant — same token, same hover, same radius — so the two
+ * button systems don't drift apart.
+ */
 .x-button {
-  @apply bg-primary text-white hover:bg-black transition-colors rounded p-2 inline-flex no-underline! items-center gap-1;
+  @apply bg-accent text-accent-foreground hover:bg-accent/90 shadow-xs transition-all rounded-md px-4 py-2 text-sm font-medium inline-flex no-underline! items-center gap-1;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2;
 }
 
 .x-top-nav {
@@ -444,7 +451,8 @@
   --tw-prose-invert-links: var(--link);
 }
 
-.prose a:hover {
+/* `.x-button` is excluded: it is a button, so it keeps its own text colour. */
+.prose a:not(.x-button):hover {
   color: var(--link-hover);
 }
 
