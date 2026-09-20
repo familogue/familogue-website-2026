@@ -12,7 +12,7 @@ import { Link } from "@/i18n/navigation";
 import { getAllServices, getServiceBySlug } from "@/utils/sdk/services";
 import { getTeamForService } from "@/utils/sdk/team";
 import { initials } from "@/utils/category-theme";
-import { medicalTherapyProperties } from "@/utils/medical-schema";
+import { medicalConditions, medicalTherapyProperties } from "@/utils/medical-schema";
 import { extractExcerpt } from "@/utils/extractExcerpt";
 import { ContentMarkdown } from "@/components/content-markdown";
 import { getLocale, getTranslations } from "next-intl/server";
@@ -122,9 +122,24 @@ export default async function Page({ params }: Props) {
       })),
     ],
     areaServed: { "@type": "AdministrativeArea", name: "Greater Vancouver, British Columbia" },
-    availableLanguage: ["yue", "cmn", "en"],
+    // Languages hang off a `ServiceChannel`, not off the service. `Service` has
+    // no `availableLanguage`; stating it there produced a property parsers
+    // discard, which for a practice whose whole differentiator is Cantonese was
+    // the worst possible property to lose.
+    availableChannel: {
+      "@type": "ServiceChannel",
+      serviceUrl: pageUrl,
+      availableLanguage: [
+        { "@type": "Language", name: "Cantonese", alternateName: "yue" },
+        { "@type": "Language", name: "Mandarin", alternateName: "cmn" },
+        { "@type": "Language", name: "English", alternateName: "en" },
+      ],
+    },
     ...(medicalProperties ?? {}),
   };
+
+  /** Conditions this therapy treats, stated from the condition's side. */
+  const conditionJsonLd = medicalConditions(slug, serviceNodeId(slug));
 
   /**
    * Clinical service pages are also `MedicalWebPage`s — a page *about* regulated
@@ -180,6 +195,12 @@ export default async function Page({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
       />
+      {conditionJsonLd.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(conditionJsonLd) }}
+        />
+      )}
       {medicalWebPageJsonLd && (
         <script
           type="application/ld+json"

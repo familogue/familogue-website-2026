@@ -53,10 +53,17 @@ const KNOWS_LANGUAGE = [
   { "@type": "Language", name: "English", alternateName: "en" },
 ];
 
+/**
+ * `City` is a `Place`, and `addressRegion` / `addressCountry` are not defined
+ * on it — they belong to `PostalAddress` or `DefinedRegion`. Naming the cities
+ * plainly and stating the region once as a `DefinedRegion` says the same thing
+ * with properties that resolve instead of being dropped.
+ */
 const AREA_SERVED = [
-  { "@type": "City", name: "Vancouver", addressRegion: "BC", addressCountry: "CA" },
-  { "@type": "City", name: "Richmond", addressRegion: "BC", addressCountry: "CA" },
-  { "@type": "City", name: "Burnaby", addressRegion: "BC", addressCountry: "CA" },
+  { "@type": "City", name: "Vancouver" },
+  { "@type": "City", name: "Richmond" },
+  { "@type": "City", name: "Burnaby" },
+  { "@type": "DefinedRegion", addressRegion: "BC", addressCountry: "CA" },
   { "@type": "AdministrativeArea", name: "Metro Vancouver, British Columbia, Canada" },
 ];
 
@@ -147,11 +154,13 @@ export function organizationSchema(locale: string) {
     "@context": "https://schema.org",
     "@graph": [
       {
-        // `MedicalBusiness` is the load-bearing type here. Without it the
-        // therapeutic side reads as programming a community group happens to
-        // run; with it, the registered clinical practice is a first-class
-        // claim that `medicalSpecialty` below can qualify.
-        "@type": ["NGO", "Organization", "MedicalBusiness"],
+        // The medical types are load-bearing. Without them the therapeutic side
+        // reads as programming a community group happens to run. Both are
+        // needed: `MedicalBusiness` is a `LocalBusiness` and says this is a
+        // place you attend, while `medicalSpecialty` is only defined on
+        // `MedicalOrganization`, so claiming a specialty without it would be an
+        // invalid property that parsers drop.
+        "@type": ["NGO", "Organization", "MedicalBusiness", "MedicalOrganization"],
         "@id": ORGANIZATION_ID,
         name: siteConfig.name,
         alternateName: ["語你童行", "Familogue", "Familogue Education Society"],
