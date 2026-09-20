@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { getAllServices, getServiceBySlug } from "@/utils/sdk/services";
 import { getTeamForService } from "@/utils/sdk/team";
 import { initials } from "@/utils/category-theme";
+import { medicalTherapyProperties } from "@/utils/medical-schema";
 import { extractExcerpt } from "@/utils/extractExcerpt";
 import { ContentMarkdown } from "@/components/content-markdown";
 import { getLocale, getTranslations } from "next-intl/server";
@@ -59,6 +60,7 @@ export default async function Page({ params }: Props) {
 
   const t = await getTranslations("OurServices");
   const tt = await getTranslations();
+  const tFaq = await getTranslations("ServiceFaq");
   const excerpt = extractExcerpt(service.content, 160);
   const therapists = getTeamForService(slug, locale);
 
@@ -81,9 +83,15 @@ export default async function Page({ params }: Props) {
     ],
   };
 
+  // Clinician-delivered services carry `MedicalTherapy` alongside `Service`, so
+  // one node states both the offering and the regulated care it is. Services
+  // without a clinical profile (community programmes, classes) get `null` back
+  // and stay a plain `Service` — see `medical-schema.ts`.
+  const medicalProperties = medicalTherapyProperties(slug);
+
   const serviceJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Service",
+    "@type": medicalProperties ? ["Service", "MedicalTherapy"] : "Service",
     name: service.title,
     description: excerpt,
     category: tt(`ServiceCategories.${service.category}.name`),
@@ -94,6 +102,7 @@ export default async function Page({ params }: Props) {
     },
     areaServed: { "@type": "AdministrativeArea", name: "Greater Vancouver, British Columbia" },
     availableLanguage: ["yue", "cmn", "en"],
+    ...(medicalProperties ?? {}),
     ...(therapists.length > 0 && {
       employee: therapists.map((m) => ({
         "@type": "Person",
@@ -102,6 +111,28 @@ export default async function Page({ params }: Props) {
         knowsLanguage: m.languages,
       })),
     }),
+  };
+
+  /**
+   * Question-and-answer pairs for services that have them, in the current
+   * locale. The answers are the specifics people phone to ask — languages,
+   * funding, who delivers the session — which is the shape an answering engine
+   * can quote back verbatim. Rendered on the page as well as in `FAQPage`:
+   * marking up content a visitor cannot see is a structured-data violation,
+   * not a shortcut.
+   */
+  const faq: { question: string; answer: string; }[] = tFaq.has(`items.${slug}`)
+    ? tFaq.raw(`items.${slug}`)
+    : [];
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map(({ question, answer }) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: { "@type": "Answer", text: answer },
+    })),
   };
 
   return (
@@ -114,6 +145,12 @@ export default async function Page({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
       />
+      {faq.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
       <nav aria-label="breadcrumb" className="not-prose text-sm mb-4">
         <Link href="/our-services" className="text-link hover:text-link-hover hover:underline">{t("title")}</Link>
         <span className="mx-2 text-gray-400">/</span>
@@ -130,6 +167,20 @@ export default async function Page({ params }: Props) {
       )}
       <h1>{service.title}</h1>
       <ContentMarkdown>{service.content}</ContentMarkdown>
+
+      {faq.length > 0 && (
+        <section className="mt-12">
+          <h2 className="x-section-heading">{tFaq("heading")}</h2>
+          <dl className="mt-6">
+            {faq.map(({ question, answer }) => (
+              <div key={question} className="border-t py-5 first:border-t-0 first:pt-0">
+                <dt className="font-semibold">{question}</dt>
+                <dd className="text-muted-foreground mt-2 mb-0 ml-0">{answer}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      )}
 
       {therapists.length > 0 && (
         <section className="not-prose mt-12">

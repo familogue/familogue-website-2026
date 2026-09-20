@@ -1,5 +1,6 @@
 import { generatedMetadataForPage } from "@/utils/generatedMetadataForPage";
 import { initials } from "@/utils/category-theme";
+import { credentialJsonLd } from "@/utils/medical-schema";
 import { getTeamByRole } from "@/utils/sdk/team";
 import { siteConfig } from "@/utils/site-config";
 import { getLocale, getTranslations } from "next-intl/server";
@@ -37,6 +38,12 @@ export default async function Page() {
 
   // Person entities are the AEO payload: role, credentials and — the differentiator —
   // which languages each therapist actually practises in.
+  //
+  // `hasCredential` was a flat list of strings, which is legal but says nothing
+  // an engine can verify. `credentialJsonLd` splits the line into post-nominals
+  // and attaches the body that recognizes each registration (CHCPBC, BCACC,
+  // BACB, RASP) — the external anchor that distinguishes a registered clinician
+  // from a self-described one.
   const personJsonLd = groups.flatMap(({ role, members }) =>
     members.map((m) => ({
       "@context": "https://schema.org",
@@ -45,7 +52,7 @@ export default async function Page() {
       jobTitle: t(`TeamRoles.${role}`),
       description: m.content,
       knowsLanguage: m.languages,
-      hasCredential: [m.credentials, ...m.certifications].filter(Boolean),
+      hasCredential: credentialJsonLd(m.credentials, m.certifications),
       worksFor: { "@type": "Organization", name: siteConfig.name, url: siteConfig.baseUrl },
       ...(m.photo ? { image: `${siteConfig.baseUrl}${m.photo}` } : {}),
     }))
