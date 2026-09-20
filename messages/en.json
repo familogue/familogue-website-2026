@@ -116,6 +116,121 @@
     "volunteerFormButton": "Volunteer Application Form",
     "description_2": "Fill out our volunteer form — we’d love to get to know you!"
   },
+  "ServiceFaq": {
+    "heading": "Frequently asked questions",
+    "items": {
+      "speech-language-pathology": [
+        {
+          "question": "Do you offer speech therapy in Cantonese?",
+          "answer": "Yes. Our speech-language pathologists work in Cantonese, Mandarin and English, and assessment as well as therapy can be delivered in the language your child uses at home."
+        },
+        {
+          "question": "Who delivers the speech therapy sessions?",
+          "answer": "Speech-language pathologists registered with the College of Health and Care Professionals of British Columbia. One of our pathologists is also listed on the provincial Registry of Autism Service Providers (RASP)."
+        },
+        {
+          "question": "What does speech-language pathology at Familogue cover?",
+          "answer": "Professional assessment followed by individual or small-group training to build language, speech and communication skills — including autism spectrum disorder, developmental language disorder, speech sound difficulties and motor speech difficulties."
+        },
+        {
+          "question": "Can I use Autism Funding or a benefits plan to pay for it?",
+          "answer": "Yes. We accept individual health benefit plans, Autism Funding and Variety BC grants."
+        },
+        {
+          "question": "How do I get started?",
+          "answer": "We offer a free 15-minute phone consultation before you book. Call +1 (778) 991-0902 or email info@familogue.ca; sessions run at our Richmond service centre at 8181 Cambie Rd. Unit 5530."
+        }
+      ],
+      "occupational-therapy": [
+        {
+          "question": "Do you offer occupational therapy in Cantonese?",
+          "answer": "Yes. Our occupational therapists work in Cantonese, Mandarin and English, so children and parents can take part in the language they are most comfortable using."
+        },
+        {
+          "question": "Who delivers the occupational therapy sessions?",
+          "answer": "Occupational therapists registered with the College of Health and Care Professionals of British Columbia, supported by an occupational therapist assistant. One of our therapists is also listed on the provincial Registry of Autism Service Providers (RASP)."
+        },
+        {
+          "question": "What skills does occupational therapy work on?",
+          "answer": "Daily living, self-care, learning and social skills, so that a child or adult can take part in everyday life more independently and confidently."
+        },
+        {
+          "question": "Can I use Autism Funding or a benefits plan to pay for it?",
+          "answer": "Yes. We accept individual health benefit plans, Autism Funding and Variety BC grants."
+        },
+        {
+          "question": "How do I get started?",
+          "answer": "We offer a free 15-minute phone consultation before you book. Call +1 (778) 991-0902 or email info@familogue.ca; sessions run at our Richmond service centre at 8181 Cambie Rd. Unit 5530."
+        }
+      ],
+      "counselling-and-support-service": [
+        {
+          "question": "Do you offer counselling in Cantonese?",
+          "answer": "Yes. Counselling is available in Cantonese, Mandarin and English."
+        },
+        {
+          "question": "Who are the counsellors?",
+          "answer": "Registered Clinical Counsellors (RCC) with the BC Association of Clinical Counsellors, and a Registered Social Worker (RSW) with the BC College of Social Workers."
+        },
+        {
+          "question": "What can I bring to counselling?",
+          "answer": "Emotional difficulties, family relationship concerns, stress and trauma, as well as parenting support and adjusting to life as a family in a new place."
+        },
+        {
+          "question": "Can I use a benefits plan to pay for counselling?",
+          "answer": "Yes. We accept individual health benefit plans, Autism Funding and Variety BC grants."
+        },
+        {
+          "question": "How do I get started?",
+          "answer": "We offer a free 15-minute phone consultation before you book. Call +1 (778) 991-0902 or email info@familogue.ca."
+        }
+      ],
+      "behavior-intervention": [
+        {
+          "question": "Do you offer behaviour intervention in Cantonese?",
+          "answer": "Yes. Behaviour intervention is available in Cantonese, Mandarin and English."
+        },
+        {
+          "question": "Who delivers behaviour intervention?",
+          "answer": "A Board Certified Behavior Analyst (BCBA), certified by the Behavior Analyst Certification Board."
+        },
+        {
+          "question": "What does behaviour intervention involve?",
+          "answer": "Understanding the pattern behind a behaviour, then building positive behaviours in its place, so that emotional wellbeing and day-to-day functioning improve."
+        },
+        {
+          "question": "Can I use Autism Funding to pay for it?",
+          "answer": "Yes. We accept individual health benefit plans, Autism Funding and Variety BC grants."
+        },
+        {
+          "question": "How do I get started?",
+          "answer": "We offer a free 15-minute phone consultation before you book. Call +1 (778) 991-0902 or email info@familogue.ca."
+        }
+      ],
+      "social-skills-group": [
+        {
+          "question": "What language does the social skills group run in?",
+          "answer": "Cantonese, Mandarin and English."
+        },
+        {
+          "question": "What do children do in the group?",
+          "answer": "Guided group activities that build social skills, emotional expression, cooperation and problem-solving, so children can form confident and positive relationships."
+        },
+        {
+          "question": "Who runs the group?",
+          "answer": "An early childhood educator with a special education needs diploma, working alongside our therapy team."
+        },
+        {
+          "question": "Can I use Autism Funding or a benefits plan to pay for it?",
+          "answer": "Yes. We accept individual health benefit plans, Autism Funding and Variety BC grants."
+        },
+        {
+          "question": "How do I join?",
+          "answer": "We offer a free 15-minute phone consultation before you enrol. Call +1 (778) 991-0902 or email info@familogue.ca."
+        }
+      ]
+    }
+  },
   "ServiceCategories": {
     "language-acquisition": {
       "name": "Language Acquisition",
