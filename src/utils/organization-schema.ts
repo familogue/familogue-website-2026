@@ -1,15 +1,33 @@
 import { bcp47For } from "./alternates";
 import { contactInfo, type OpeningHoursGroup } from "./contact-info";
-import { ORGANIZATION_MEDICAL_SPECIALTY } from "./medical-schema";
+import { isClinicalService, ORGANIZATION_MEDICAL_SPECIALTY } from "./medical-schema";
 import { siteConfig } from "./site-config";
 // This file was previously pure data with no filesystem access. Pulling in
 // `getAllMedia` gives it an `fs` read of content/media.json — that's fine
 // since `organizationSchema` is only ever called from the server-rendered
 // root layout, never from the client.
 import { getAllMedia } from "./sdk/media";
+import { getAllServices } from "./sdk/services";
 
-const ORGANIZATION_ID = `${siteConfig.baseUrl}/#organization`;
-const WEBSITE_ID = `${siteConfig.baseUrl}/#website`;
+export const ORGANIZATION_ID = `${siteConfig.baseUrl}/#organization`;
+export const WEBSITE_ID = `${siteConfig.baseUrl}/#website`;
+
+/**
+ * Stable `@id`s for entities that more than one page describes.
+ *
+ * A service page and the organization graph both talk about the same service;
+ * a therapist page and a service page both talk about the same person. Without
+ * a shared identifier each page mints a fresh entity, and a parser sees eleven
+ * unrelated people who happen to share a name with our team. The URL is
+ * locale-free on purpose: one therapist, not an English one and a Chinese one.
+ */
+export function serviceNodeId(slug: string) {
+  return `${siteConfig.baseUrl}/#service/${slug}`;
+}
+
+export function personNodeId(slug: string) {
+  return `${siteConfig.baseUrl}/#person/${slug}`;
+}
 
 const RICHMOND = contactInfo.locations.find((l) => l.key === "richmond")!;
 const VANCOUVER = contactInfo.locations.find((l) => l.key === "vancouver")!;
@@ -100,6 +118,31 @@ const SUBJECT_OF = getAllMedia().map((item) => ({
  * rather than a single node with an invalid `location` array.
  */
 export function organizationSchema(locale: string) {
+  const services = getAllServices(locale);
+
+  /**
+   * Every published service as an offer, so the site-wide graph carries the
+   * inventory rather than leaving it to be discovered one service page at a
+   * time. Each `itemOffered` is an `@id` reference — the service page itself
+   * supplies the type, description and clinical properties for that node.
+   */
+  const offerCatalog = {
+    "@type": "OfferCatalog",
+    itemListElement: services.map((service) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@id": serviceNodeId(service.slug),
+        name: service.title,
+        url: `${siteConfig.baseUrl}/${locale}/our-services/${service.slug}`,
+      },
+    })),
+  };
+
+  /** Clinician-delivered services only — what a `MedicalClinic` can offer. */
+  const clinicalServices = services
+    .filter((service) => isClinicalService(service.slug))
+    .map((service) => ({ "@id": serviceNodeId(service.slug), name: service.title }));
+
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -133,6 +176,7 @@ export function organizationSchema(locale: string) {
         areaServed: AREA_SERVED,
         knowsLanguage: KNOWS_LANGUAGE,
         medicalSpecialty: ORGANIZATION_MEDICAL_SPECIALTY,
+        hasOfferCatalog: offerCatalog,
         sameAs: SAME_AS,
         subjectOf: SUBJECT_OF,
         contactPoint: [
@@ -162,6 +206,7 @@ export function organizationSchema(locale: string) {
         areaServed: AREA_SERVED,
         knowsLanguage: KNOWS_LANGUAGE,
         medicalSpecialty: ORGANIZATION_MEDICAL_SPECIALTY,
+        availableService: clinicalServices,
         openingHoursSpecification: RICHMOND_OPENING_HOURS,
       },
       {

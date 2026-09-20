@@ -28,7 +28,9 @@ function loadRows(): ServiceRow[] {
 
 function toRecord(r: ServiceRow, locale: string): ServiceRecord {
   return {
-    title: locale === "zh" ? r.title : r.title_en,
+    // Trimmed at the boundary: a stray leading space in the source data ends up
+    // in the H1, the `<title>` and the `name` of every schema node otherwise.
+    title: (locale === "zh" ? r.title : r.title_en).trim(),
     content: locale === "zh" ? r.content : r.content_en,
     slug: r.slug,
     image: r.image ? [r.image] : [],

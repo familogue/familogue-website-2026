@@ -204,6 +204,11 @@ const MEDICAL_PROFILES: Record<string, MedicalProfile> = {
  * node of type `["Service", "MedicalTherapy"]` rather than two competing
  * descriptions of the same offering.
  */
+/** Whether a service is delivered by registered clinicians. */
+export function isClinicalService(slug: string): boolean {
+  return slug in MEDICAL_PROFILES;
+}
+
 export function medicalTherapyProperties(slug: string) {
   const profile = MEDICAL_PROFILES[slug];
   if (!profile) return null;

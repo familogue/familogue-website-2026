@@ -1,6 +1,12 @@
 import { siteConfig } from "@/utils/site-config";
 import { locales } from "@/i18n/config";
-import { buildAlternates, openGraphLocale } from "@/utils/alternates";
+import { bcp47For, buildAlternates, openGraphLocale } from "@/utils/alternates";
+import {
+  ORGANIZATION_ID,
+  personNodeId,
+  serviceNodeId,
+  WEBSITE_ID,
+} from "@/utils/organization-schema";
 import { ArrowLink } from "@/components/ui/link";
 import { Link } from "@/i18n/navigation";
 import { getAllServices, getServiceBySlug } from "@/utils/sdk/services";
@@ -89,27 +95,56 @@ export default async function Page({ params }: Props) {
   // and stay a plain `Service` — see `medical-schema.ts`.
   const medicalProperties = medicalTherapyProperties(slug);
 
+  const pageUrl = `${siteConfig.baseUrl}/${locale}/our-services/${slug}`;
+
   const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": medicalProperties ? ["Service", "MedicalTherapy"] : "Service",
+    // Shared with the organization's offer catalogue, so both descriptions
+    // resolve to one service rather than two lookalikes.
+    "@id": serviceNodeId(slug),
+    url: pageUrl,
     name: service.title,
     description: excerpt,
     category: tt(`ServiceCategories.${service.category}.name`),
-    provider: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.baseUrl,
-    },
-    areaServed: { "@type": "AdministrativeArea", name: "Greater Vancouver, British Columbia" },
-    availableLanguage: ["yue", "cmn", "en"],
-    ...(medicalProperties ?? {}),
-    ...(therapists.length > 0 && {
-      employee: therapists.map((m) => ({
+    // The therapists who deliver a service sit here rather than under
+    // `employee`: `provider` accepts an organization *or* a person and means
+    // exactly this, whereas `employee` is an Organization property that says
+    // nothing about who performs the service.
+    provider: [
+      { "@id": ORGANIZATION_ID },
+      ...therapists.map((m) => ({
+        "@id": personNodeId(m.slug),
         "@type": "Person",
         name: m.name,
         jobTitle: tt(`TeamRoles.${m.role}`),
         knowsLanguage: m.languages,
       })),
+    ],
+    areaServed: { "@type": "AdministrativeArea", name: "Greater Vancouver, British Columbia" },
+    availableLanguage: ["yue", "cmn", "en"],
+    ...(medicalProperties ?? {}),
+  };
+
+  /**
+   * Clinical service pages are also `MedicalWebPage`s — a page *about* regulated
+   * care written for patients, which is a different claim from the service node
+   * describing the care itself. Non-clinical pages get no such node.
+   */
+  const medicalWebPageJsonLd = medicalProperties && {
+    "@context": "https://schema.org",
+    "@type": ["WebPage", "MedicalWebPage"],
+    "@id": `${pageUrl}#webpage`,
+    url: pageUrl,
+    name: service.title,
+    description: excerpt,
+    inLanguage: bcp47For(locale),
+    isPartOf: { "@id": WEBSITE_ID },
+    about: { "@id": serviceNodeId(slug) },
+    mainEntity: { "@id": serviceNodeId(slug) },
+    medicalAudience: { "@type": "MedicalAudience", audienceType: "Patient" },
+    ...("relevantSpecialty" in medicalProperties && {
+      specialty: medicalProperties.relevantSpecialty,
     }),
   };
 
@@ -145,6 +180,12 @@ export default async function Page({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
       />
+      {medicalWebPageJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(medicalWebPageJsonLd) }}
+        />
+      )}
       {faq.length > 0 && (
         <script
           type="application/ld+json"
