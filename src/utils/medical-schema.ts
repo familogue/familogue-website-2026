@@ -198,29 +198,46 @@ const MEDICAL_PROFILES: Record<string, MedicalProfile> = {
   },
 };
 
-/**
- * `MedicalTherapy` properties for a service, or `null` when the service is not
- * clinician-delivered. Spread onto the `Service` node so the result is one
- * node of type `["Service", "MedicalTherapy"]` rather than two competing
- * descriptions of the same offering.
- */
 /** Whether a service is delivered by registered clinicians. */
 export function isClinicalService(slug: string): boolean {
   return slug in MEDICAL_PROFILES;
 }
 
+/**
+ * `MedicalTherapy` properties for a service, or `null` when the service is not
+ * clinician-delivered. Spread onto the `Service` node so the result is one
+ * node of type `["Service", "MedicalTherapy"]` rather than two competing
+ * descriptions of the same offering.
+ *
+ * Both properties come from `MedicalEntity`, which `MedicalTherapy` inherits.
+ */
 export function medicalTherapyProperties(slug: string) {
   const profile = MEDICAL_PROFILES[slug];
   if (!profile) return null;
   return {
     ...(profile.relevantSpecialty && { relevantSpecialty: profile.relevantSpecialty }),
-    ...(profile.indication && {
-      indication: profile.indication.map((name) => ({ "@type": "MedicalIndication", name })),
-    }),
     recognizingAuthority: {
       "@type": "Organization",
       name: profile.recognizingAuthority.name,
       url: profile.recognizingAuthority.url,
     },
   };
+}
+
+/**
+ * Conditions a service is offered for, as `MedicalCondition` nodes pointing at
+ * the therapy.
+ *
+ * schema.org models this one way only: a condition names its
+ * `possibleTreatment`, and there is no property on a therapy for the conditions
+ * it treats. The relationship therefore has to be stated from the condition's
+ * side, as separate nodes rather than as a property of the service.
+ */
+export function medicalConditions(slug: string, therapyId: string) {
+  return (MEDICAL_PROFILES[slug]?.indication ?? []).map((name) => ({
+    "@context": "https://schema.org",
+    "@type": "MedicalCondition",
+    name,
+    possibleTreatment: { "@id": therapyId },
+  }));
 }
