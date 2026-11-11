@@ -78,9 +78,9 @@ export const contactInfo = {
       streetAddress: "8181 Cambie Rd. Unit 5530",
       addressLocality: "Richmond",
       addressRegion: "BC",
-      postalCode: "V6X 1J8",
+      postalCode: "V6X 3X9",
       addressCountry: "CA",
-      displayAddress: "8181 Cambie Rd. Unit 5530, Richmond, BC V6X 1J8",
+      displayAddress: "8181 Cambie Rd. Unit 5530, Richmond, BC V6X 3X9",
       mapsUrl: "https://maps.app.goo.gl/wopnafQpovYgxuBH6",
       openingHours: [
         { days: ["Tuesday", "Wednesday", "Thursday", "Friday"], opens: "11:00", closes: "16:00" },
