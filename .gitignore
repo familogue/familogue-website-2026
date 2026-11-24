@@ -13,3 +13,6 @@ supabase/.temp/rest-version
 supabase/.temp/storage-version
 .vercel
 tsconfig.tsbuildinfo
+
+# direnv
+.envrc
