@@ -1,6 +1,6 @@
 # Full static rebuild on git push replaces ISR + revalidation webhook
 
-Content changes infrequently (weeks to months), and the revalidation webhook was the only attack surface requiring a shared secret. With Decap CMS writing directly to `main`, Vercel's native Git integration auto-deploys on every push — no GitHub Actions workflow required. Each content edit triggers a full static rebuild (~40 s, under 2 min ceiling). The latency trade-off (seconds with ISR vs. under 2 min with full rebuild) is accepted given the update cadence. Eliminating the webhook removes the security surface entirely.
+Content changes infrequently (weeks to months), and the revalidation webhook was the only attack surface requiring a shared secret. With content changes pushed directly to `main`, Vercel's native Git integration auto-deploys on every push — no GitHub Actions workflow required. Each content edit triggers a full static rebuild (~40 s, under 2 min ceiling). The latency trade-off (seconds with ISR vs. under 2 min with full rebuild) is accepted given the update cadence. Eliminating the webhook removes the security surface entirely.
 
 ## Consequences
 
