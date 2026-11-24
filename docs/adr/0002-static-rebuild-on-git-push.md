@@ -1,9 +1,9 @@
-# Full static rebuild on git push replaces ISR + revalidation webhook
+# Full static rebuild on deploy replaces ISR + revalidation webhook
 
-Content changes infrequently (weeks to months), and the revalidation webhook was the only attack surface requiring a shared secret. With content changes pushed directly to `main`, Vercel's native Git integration auto-deploys on every push — no GitHub Actions workflow required. Each content edit triggers a full static rebuild (~40 s, under 2 min ceiling). The latency trade-off (seconds with ISR vs. under 2 min with full rebuild) is accepted given the update cadence. Eliminating the webhook removes the security surface entirely.
+Content changes infrequently (weeks to months), and the revalidation webhook was the only attack surface requiring a shared secret. Each content change is published by a full static rebuild. A rebuild takes ~40 s, under a 2 min ceiling. The latency trade-off (seconds with ISR vs. under 2 min with full rebuild) is accepted given the update cadence. Eliminating the webhook removes the security surface entirely.
 
 ## Consequences
 
 On-demand cache invalidation (`revalidatePath` / `revalidateTag`) was not adopted — it still requires a webhook, trading one attack surface for another with no meaningful latency benefit at this content volume.
 
-The repo must remain public. On Vercel's Hobby plan, auto-deploy from a private GitHub org repo is blocked entirely — making the repo private would break the deploy pipeline without a Pro upgrade or a GitHub Actions workaround.
+Vercel's Git integration is not used. Hobby blocks auto-deploy when the commit author doesn't match the Vercel account. Production deploys are manual with the Vercel CLI (see README). Merging to `main` does not publish the site.
