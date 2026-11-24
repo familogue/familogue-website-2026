@@ -1,6 +1,6 @@
 # Full static rebuild on deploy replaces ISR + revalidation webhook
 
-Content changes infrequently (weeks to months), and the revalidation webhook was the only attack surface requiring a shared secret. Each content change is published by a full static rebuild and a manual production deploy with the Vercel CLI (see README, "Deploying"). A rebuild takes ~40 s, under a 2 min ceiling. The latency trade-off (seconds with ISR vs. under 2 min with full rebuild) is accepted given the update cadence. Eliminating the webhook removes the security surface entirely.
+Content changes infrequently (weeks to months), and the revalidation webhook was the only attack surface requiring a shared secret. Each content change is published by a full static rebuild. A rebuild takes ~40 s, under a 2 min ceiling. The latency trade-off (seconds with ISR vs. under 2 min with full rebuild) is accepted given the update cadence. Eliminating the webhook removes the security surface entirely.
 
 ## Consequences
 
